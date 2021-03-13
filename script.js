@@ -9,7 +9,7 @@ const emailForm         = document.querySelector('.email-form')
 
 emailSubmit.addEventListener('click', () => {
   if(!emailInput.checkValidity()){
-    emailNotification.innerHTML = 'Malformated Email'
+    emailNotification.innerHTML = 'Malformed Email'
     emailNotification.style.color = 'red'
   } else if(emailInput.value === 'example@mail.com'){
     emailNotification.innerHTML = 'email already registered'
