@@ -55,7 +55,7 @@ const specialCharacterPattern = /([-+=_!@#$%^&*.,;:'\"<>/?`~\¦\°\§\´\¨\[\]\
 const characterCountPattern = /^.{6,}/;
 
 
-showPasswordButtons.forEach((button) => button.addEventListener('click', function(e) {
+showPasswordButtons.forEach((button) => button.addEventListener('click', (e) => {
     if(password.type === 'password' && confirmPassword.type === 'password') {
         password.type = 'text'
         confirmPassword.type = 'text'
@@ -66,7 +66,11 @@ showPasswordButtons.forEach((button) => button.addEventListener('click', functio
         showPasswordButtons.forEach((button) => button.innerHTML = "Show")
     }
 
-    password.focus();
+    if(e.target.id === 'show-pw-btn'){
+      password.focus();
+    } else {
+      confirmPassword.focus()
+    }
 }))
 
 confirmPassword.addEventListener('keyup', () => {  
@@ -87,7 +91,6 @@ password.addEventListener('keyup', () => {
   toggleRequirement(password, characterCountPattern, chars)
 
   const color = testPasswordStrength(password.value)
-  console.log(color)
   styleStrengthLine(color, password.value)
 })
 
