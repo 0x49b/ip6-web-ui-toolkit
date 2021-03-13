@@ -51,8 +51,8 @@ const numberPattern = /^(?=.*[\d]).+$/;
 // At least one SPECIAL character:
 const specialCharacterPattern = /([-+=_!@#$%^&*.,;:'\"<>/?`~\¦\°\§\´\¨\[\]\(\)\{\}\\\|\s])/;
 
-// At least 8 characters in the screen:
-const characterCountPattern = /^.{8,}/;
+// At least 6 characters in the screen:
+const characterCountPattern = /^.{6,}/;
 
 
 showPasswordButtons.forEach((button) => button.addEventListener('click', function(e) {
@@ -71,9 +71,10 @@ showPasswordButtons.forEach((button) => button.addEventListener('click', functio
 
 confirmPassword.addEventListener('keyup', () => {  
   if(password.value === confirmPassword.value){
+    matchNotification.innerHTML = 'Your passwords match!'
     matchNotification.style.color = 'green'
-
   } else {
+    matchNotification.innerHTML = 'Your passwords do not match.'
     matchNotification.style.color = 'red'
   }
 })

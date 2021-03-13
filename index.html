@@ -32,7 +32,7 @@
   <div>
     <form id="pw-form">
       <label for="password">Passwort</label>
-      <input type="password" name="password" id="password" placeholder="Choose">
+      <input type="password" name="password" id="password" placeholder="P4$$word">
       <button type="button" class="show-password-btn">show</button>
       <div class="strength-lines">
         <div class="line"></div>
@@ -41,17 +41,18 @@
         <div class="line"></div>
         <div class="line"></div>
       </div>
+      <p>The password must contain:</p>
       <ul id="pw-criterias">
         <li class="uppercase">One uppercase</li>
         <li class="lowercase">One lowercase</li>
         <li class="number">One number</li>
         <li class="special-character">One special character</li>
-        <li class="characters">6 characters</li>
+        <li class="characters">At least 6 characters</li>
       </ul>
       <label for="confirm-password">Confirm Password</label>
-      <input type="password" name="confirm-password" id="confirm-password" placeholder="Enter your password again">
+      <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
       <button type="button" class="show-password-btn">show</button>
-      <p id="match-notification">Passwords match</p>
+      <p id="match-notification"></p>
     </form>
   </div>
   <script src="./script.js"></script>
