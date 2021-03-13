@@ -1,0 +1,55 @@
+*, html {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.strength-lines{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+    bottom: 2px;
+    left: 0;
+    right: 0 + size(calc(100% - 50px), 6px);
+    margin-top: 10px;
+}
+
+.line {
+    border: none;
+    height: 6px;
+    width: 95%;
+    border-radius: 2px;
+    transition: background-color 0.25s ease-in;
+}
+
+/* .line:first-of-type {
+    left: 4px;
+    right: 68%;
+}
+    
+.line:last-of-type {
+    left: 68%;
+    right: 4px;
+}
+
+.line:not(:first-of-type):not(:last-of-type) {
+    left: 33%;
+    right: 33%;
+} */
+
+.bg-transparent {
+    background-color: transparent;
+}
+	
+.bg-red {
+    background-color: red;
+}
+	
+.bg-orange {
+    background-color: orange;
+}
+	
+.bg-green {
+    background-color: green;
+}
+	

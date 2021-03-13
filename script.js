@@ -1,0 +1,192 @@
+
+
+//! Email
+
+const emailNotification = document.querySelector('.email-validity-notification')
+const emailInput        = document.querySelector('#email')
+const emailSubmit       = document.querySelector('.email-submit')
+const emailForm         = document.querySelector('.email-form')
+
+emailSubmit.addEventListener('click', () => {
+  if(!emailInput.checkValidity()){
+    emailNotification.innerHTML = 'Malformated Email'
+    emailNotification.style.color = 'red'
+  } else if(emailInput.value === 'example@mail.com'){
+    emailNotification.innerHTML = 'email already registered'
+    emailNotification.style.color = 'red'
+  } else {
+    emailNotification.innerHTML = ''
+  }
+})
+
+emailForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+})
+
+
+
+//! Password
+
+const showPasswordButton = document.querySelector(".show-password-btn")
+const password           = document.querySelector("#password")
+const confirmPassword    = document.querySelector("#confirm-password")
+const matchNotification  = document.querySelector('#match-notification')
+const uppercase          = document.querySelector('.uppercase')
+const lowercase          = document.querySelector('.lowercase')
+const number             = document.querySelector('.number')
+const specialChar        = document.querySelector('.special-character')
+const chars              = document.querySelector('.characters')
+const strengthLines      = document.querySelector('.strength-lines')
+const lines              = document.querySelectorAll('.line')
+
+// At least one LOWERCASE character:
+const lowerCasePattern  = /^(?=.*[a-z]).+$/;
+
+// At least one UPPERCASE character:
+const upperCasePattern = /^(?=.*[A-Z]).+$/;
+
+// At least one NUMBER:
+const numberPattern = /^(?=.*[\d]).+$/;
+
+// At least one SPECIAL character:
+const specialCharacterPattern = /([-+=_!@#$%^&*.,;:'\"<>/?`~\¦\°\§\´\¨\[\]\(\)\{\}\\\|\s])/;
+
+// At least 8 characters in the screen:
+const characterCountPattern = /^.{8,}/;
+
+
+showPasswordButton.addEventListener('click', function(e) {
+    if(password.type === 'password' && confirmPassword.type === 'password') {
+        password.type = 'text'
+        confirmPassword.type = 'text'
+        showPasswordButton.innerHTML = "Hide"
+    } else {
+        password.type = 'password'
+        confirmPassword.type = 'password'
+        showPasswordButton.iinnerHTML = "Show"
+    }
+
+    password.focus();
+})
+
+confirmPassword.addEventListener('keyup', () => {  
+  if(password.value === confirmPassword.value){
+    matchNotification.style.color = 'green'
+
+  } else {
+    matchNotification.style.color = 'red'
+  }
+})
+
+password.addEventListener('keyup', () => {
+  toggleRequirement(password, lowerCasePattern, lowercase)
+  toggleRequirement(password, upperCasePattern, uppercase)
+  toggleRequirement(password, numberPattern, number)
+  toggleRequirement(password, specialCharacterPattern, specialChar)
+  toggleRequirement(password, characterCountPattern, chars)
+
+  const color = testPasswordStrength(password.value)
+  console.log(color)
+  styleStrengthLine(color, password.value)
+})
+
+const toggleRequirement = (pwd, regex, el) => {
+  if(regex.test(pwd.value)){
+    el.style.color = 'green'
+  } else {
+    el.style.color = 'red'
+  }
+}
+
+const testPasswordStrength = (value) => {
+  const strongRegex = new RegExp(
+    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[=/\()%ยง!@#$%^&*])(?=.{8,})'
+    ),
+    mediumRegex = new RegExp(
+      '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
+    );
+
+  if (strongRegex.test(value)) {
+    return "green";
+  } else if (mediumRegex.test(value)) {
+    return "orange";
+  } else {
+    return "red";
+  }
+}
+
+const styleStrengthLine = (color, value) => {
+  lines.forEach((line) => {
+    line.classList.remove("bg-red", "bg-orange", "bg-green")
+    line.classList.add("bg-transparent")
+  })
+
+  if(value) {
+    if(color === "red") {
+      lines[0].classList.remove("bg-transparent")
+      lines[0].classList.add("bg-red")
+    } else if (color === "orange") {
+      const linesArr = [...lines]
+      linesArr.slice(0, 4).forEach(line => line.classList.remove("bg-transparent"))
+      linesArr.slice(0, 4).forEach(line => line.classList.add("bg-orange"))
+    } else if (color === "green") {
+      lines.forEach(line => line.classList.remove("bg-transparent"))
+      lines.forEach(line => line.classList.add("bg-green"))
+    }
+  }
+}
+
+  
+//   ready(function(){
+//     var pwd = dom.byId("password");
+//     var lowercaseChar = query(".lowercase-char")[0];
+//     var uppercaseChar = query(".uppercase-char")[0];
+//     var numberChar = query(".number-char")[0];
+//     var specialChar = query(".special-char")[0];
+//     var _8Char = query(".8-char")[0];
+    
+    
+//     on(password, "keyup", function(e) {
+      
+//       // Write to console. Debug
+//       consoleOutput(pwd);
+      
+//       toggleRequirements(pwd, lowerCasePattern, lowercaseChar);
+//       toggleRequirements(pwd, upperCasePattern, uppercaseChar);
+//       toggleRequirements(pwd, numberPattern, numberChar);
+//       toggleRequirements(pwd, specialCharacterPatter, specialChar);
+//       toggleRequirements(pwd, characterCountPattern, _8Char);
+      
+//       if(lowerCasePattern.test(pwd.value) && 
+//          upperCasePattern.test(pwd.value) &&
+//          numberPattern.test(pwd.value) &&
+//          specialCharacterPatter.test(pwd.value) &&
+//          characterCountPattern.test(pwd.value)
+//         ){
+//           domClass.remove(query(".success")[0], "hide");  
+//          }else{ domClass.add(query(".success")[0], "hide");   }
+      
+//     });
+       
+//   });
+    
+//     function toggleRequirements(/*input*/pwd, /*RegEx*/regEx, /*element*/el){
+//       if(regEx.test(pwd.value) ){
+//         domClass.add(el, "hide");  
+//       }else{
+//         domClass.remove(el, "hide");
+//       }
+//     }
+  
+//     // Console stuffs
+//     function consoleOutput(pwd){
+//       console.clear();
+//       console.log('has lowercase: ', lowerCasePattern.test(pwd.value)); 
+//       console.log('has uppercase: ', upperCasePattern.test(pwd.value));
+//       console.log('has number: ', numberPattern.test(pwd.value));
+//       console.log('has special character: ', specialCharacterPatter.test(pwd.value));
+//       console.log('at least 8 characters: ', characterCountPattern.test(pwd.value));
+//       console.log("----------------------------------------");
+//     }
+  
+// });

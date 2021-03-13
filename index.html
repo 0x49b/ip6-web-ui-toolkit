@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Web UI Toolkit">
+  <link rel="icon" href="">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>IP6 Web UI-Toolkit</title>
+</head>
+<body>
+
+  <h1>Email Field</h1>
+  <form class="email-form" action="">
+    <div>
+      <!--
+        [a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}
+      -->
+
+      <label for="email">E-Mail</label>
+      <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
+      <button class="email-submit" type="submit">Submit</button>
+      <p class="email-validity-notification"></p>
+    </div>
+  </form>
+
+  <h1>Passwort Field</h1>
+  <div>
+    <form id="pw-form">
+      <label for="password">Passwort</label>
+      <input type="password" name="password" id="password" placeholder="Choose">
+      <button type="button" class="show-password-btn">show</button>
+      <div class="strength-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul id="pw-criterias">
+        <li class="uppercase">One uppercase</li>
+        <li class="lowercase">One lowercase</li>
+        <li class="number">One number</li>
+        <li class="special-character">One special character</li>
+        <li class="characters">6 characters</li>
+      </ul>
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" name="confirm-password" id="confirm-password" placeholder="Enter your password again">
+      <button type="button" class="show-password-btn">show</button>
+      <p id="match-notification">Passwords match</p>
+    </form>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>
+
