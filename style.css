@@ -1,7 +1,18 @@
-*, html {
-    font-family: 'Roboto', sans-serif;
+:root {
+    --grey: #C4C4C4;
+    --black: #222222;
+    --white: #fcfcfc;
 }
 
+*, html {
+    font-family: 'Roboto', sans-serif;
+    background: var(--white)
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
 
 .strength-lines{
     display: flex;
@@ -52,4 +63,44 @@
 .bg-green {
     background-color: green;
 }
-	
+
+.btn {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    height: 40px;
+    width: 100px;
+}
+
+.btn:hover {
+    background-color: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+    height: 40px;
+    width: 100px;
+}
+
+.btn-secondary {
+    background-color: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+    height: 40px;
+    width: 100px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--black);
+    color: var(--white);
+    height: 40px;
+    width: 100px;
+}
+
+input {
+    border: 1px solid var(--grey);
+    height: 36px;
+    width: auto;
+}
+
+input:focus {
+    border: 1px solid var(--black);
+}

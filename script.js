@@ -3,9 +3,9 @@
 //! Email
 
 const emailNotification  = document.querySelector('.email-validity-notification')
-const emailInput        = document.querySelector('#email')
-const emailSubmit       = document.querySelector('.email-submit')
-const emailForm         = document.querySelector('.email-form')
+const emailInput         = document.querySelector('#email')
+const emailSubmit        = document.querySelector('.email-submit')
+const emailForm          = document.querySelector('.email-form')
 
 emailSubmit.addEventListener('click', () => {
   if(!emailInput.checkValidity()){

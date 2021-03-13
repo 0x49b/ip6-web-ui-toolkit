@@ -22,9 +22,9 @@
         [a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}
       -->
 
-      <label for="email">E-Mail</label>
+      <label for="email">E-Mail</label><br>
       <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
-      <button class="email-submit" type="submit">Submit</button>
+      <button class="email-submit btn" type="submit">Submit</button>
       <p class="email-validity-notification"></p>
     </div>
   </form>
@@ -33,8 +33,9 @@
   <div>
     <form id="pw-form">
       <label for="password">Passwort</label>
+      <br>
       <input type="password" name="password" id="password" placeholder="P4$$word">
-      <button type="button" class="show-password-btn">show</button>
+      <button type="button" class="show-password-btn btn-secondary">show</button>
       <div class="strength-lines">
         <div class="line"></div>
         <div class="line"></div>
@@ -51,8 +52,9 @@
         <li class="characters">At least 6 characters</li>
       </ul>
       <label for="confirm-password">Confirm Password</label>
+      <br>
       <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
-      <button type="button" class="show-password-btn">show</button>
+      <button type="button" class="show-password-btn btn-secondary">show</button>
       <p id="match-notification"></p>
     </form>
   </div>
