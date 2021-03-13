@@ -2,7 +2,7 @@
 
 //! Email
 
-const emailNotification = document.querySelector('.email-validity-notification')
+const emailNotification  = document.querySelector('.email-validity-notification')
 const emailInput        = document.querySelector('#email')
 const emailSubmit       = document.querySelector('.email-submit')
 const emailForm         = document.querySelector('.email-form')
@@ -27,17 +27,17 @@ emailForm.addEventListener('submit', (e) => {
 
 //! Password
 
-const showPasswordButton = document.querySelector(".show-password-btn")
-const password           = document.querySelector("#password")
-const confirmPassword    = document.querySelector("#confirm-password")
-const matchNotification  = document.querySelector('#match-notification')
-const uppercase          = document.querySelector('.uppercase')
-const lowercase          = document.querySelector('.lowercase')
-const number             = document.querySelector('.number')
-const specialChar        = document.querySelector('.special-character')
-const chars              = document.querySelector('.characters')
-const strengthLines      = document.querySelector('.strength-lines')
-const lines              = document.querySelectorAll('.line')
+const showPasswordButtons = document.querySelectorAll(".show-password-btn")
+const password            = document.querySelector("#password")
+const confirmPassword     = document.querySelector("#confirm-password")
+const matchNotification   = document.querySelector('#match-notification')
+const uppercase           = document.querySelector('.uppercase')
+const lowercase           = document.querySelector('.lowercase')
+const number              = document.querySelector('.number')
+const specialChar         = document.querySelector('.special-character')
+const chars               = document.querySelector('.characters')
+const strengthLines       = document.querySelector('.strength-lines')
+const lines               = document.querySelectorAll('.line')
 
 // At least one LOWERCASE character:
 const lowerCasePattern  = /^(?=.*[a-z]).+$/;
@@ -55,19 +55,19 @@ const specialCharacterPattern = /([-+=_!@#$%^&*.,;:'\"<>/?`~\¦\°\§\´\¨\[\]\
 const characterCountPattern = /^.{8,}/;
 
 
-showPasswordButton.addEventListener('click', function(e) {
+showPasswordButtons.forEach((button) => button.addEventListener('click', function(e) {
     if(password.type === 'password' && confirmPassword.type === 'password') {
         password.type = 'text'
         confirmPassword.type = 'text'
-        showPasswordButton.innerHTML = "Hide"
+        showPasswordButtons.forEach((button) => button.innerHTML = "Hide")
     } else {
         password.type = 'password'
         confirmPassword.type = 'password'
-        showPasswordButton.iinnerHTML = "Show"
+        showPasswordButtons.forEach((button) => button.innerHTML = "Show")
     }
 
     password.focus();
-})
+}))
 
 confirmPassword.addEventListener('keyup', () => {  
   if(password.value === confirmPassword.value){
@@ -135,58 +135,3 @@ const styleStrengthLine = (color, value) => {
     }
   }
 }
-
-  
-//   ready(function(){
-//     var pwd = dom.byId("password");
-//     var lowercaseChar = query(".lowercase-char")[0];
-//     var uppercaseChar = query(".uppercase-char")[0];
-//     var numberChar = query(".number-char")[0];
-//     var specialChar = query(".special-char")[0];
-//     var _8Char = query(".8-char")[0];
-    
-    
-//     on(password, "keyup", function(e) {
-      
-//       // Write to console. Debug
-//       consoleOutput(pwd);
-      
-//       toggleRequirements(pwd, lowerCasePattern, lowercaseChar);
-//       toggleRequirements(pwd, upperCasePattern, uppercaseChar);
-//       toggleRequirements(pwd, numberPattern, numberChar);
-//       toggleRequirements(pwd, specialCharacterPatter, specialChar);
-//       toggleRequirements(pwd, characterCountPattern, _8Char);
-      
-//       if(lowerCasePattern.test(pwd.value) && 
-//          upperCasePattern.test(pwd.value) &&
-//          numberPattern.test(pwd.value) &&
-//          specialCharacterPatter.test(pwd.value) &&
-//          characterCountPattern.test(pwd.value)
-//         ){
-//           domClass.remove(query(".success")[0], "hide");  
-//          }else{ domClass.add(query(".success")[0], "hide");   }
-      
-//     });
-       
-//   });
-    
-//     function toggleRequirements(/*input*/pwd, /*RegEx*/regEx, /*element*/el){
-//       if(regEx.test(pwd.value) ){
-//         domClass.add(el, "hide");  
-//       }else{
-//         domClass.remove(el, "hide");
-//       }
-//     }
-  
-//     // Console stuffs
-//     function consoleOutput(pwd){
-//       console.clear();
-//       console.log('has lowercase: ', lowerCasePattern.test(pwd.value)); 
-//       console.log('has uppercase: ', upperCasePattern.test(pwd.value));
-//       console.log('has number: ', numberPattern.test(pwd.value));
-//       console.log('has special character: ', specialCharacterPatter.test(pwd.value));
-//       console.log('at least 8 characters: ', characterCountPattern.test(pwd.value));
-//       console.log("----------------------------------------");
-//     }
-  
-// });
