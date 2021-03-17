@@ -16,35 +16,61 @@
 
 <body>
 
-  <h1>Email Field</h1>
+  <div class="login">
+    <h2>Login</h2>
+    <form class="login-form" action="">
+
+      <div class="input email-input">
+        <label for="email">E-Mail</label>
+        <br>
+        <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
+        <p class="notification email-validity-notification"></p>
+      </div>
+
+      <div class="input password-input">
+        <label for="password">Passwort</label>
+        <br>
+        <div class="password-field">
+          <input type="password" name="password" id="password" placeholder="P4$$word">
+          <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
+        </div>
+        <p class="notification login-validity-notification"></p>        
+      </div>
+
+      <button class="login-submit btn" type="submit">Login</button>
+      
+    </form>
+  </div>
+
+  <!-- <h1>Email Field</h1>
   <p>Hint, try the following email: "example@mail.com"</p>
   <form class="email-form" action="">
     <div>
-      <!--
-        [a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}
-      -->
-
       <label for="email">E-Mail</label><br>
       <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
       <button class="email-submit btn" type="submit">Submit</button>
       <p class="email-validity-notification"></p>
-    </div>
-  </form>
+    </div>  
+  </form> -->
 
-  <h1>Passwort Field</h1>
+  <!-- <h1>Passwort Field</h1>
   <div>
     <form id="pw-form">
       <label for="password">Passwort</label>
       <br>
       <input type="password" name="password" id="password" placeholder="P4$$word">
       <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-      <div class="strength-lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-      </div>
+      <div class="strengtlines-container">
+        <div class="strength-lines">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <p class="strength-notification"></p>
+      </div>        
       <p>The password must contain:</p>
       <ul id="pw-criterias">
         <li class="uppercase">One uppercase</li>
@@ -53,13 +79,15 @@
         <li class="special-character">One special character</li>
         <li class="characters">At least 6 characters</li>
       </ul>
-      <label for="confirm-password">Confirm Password</label>
-      <br>
-      <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
-      <button id="show-confirm-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-      <p id="match-notification"></p>
+      <div class="confirm-password-container">
+        <label for="confirm-password">Confirm Password</label>
+        <br>
+        <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
+        <button id="show-confirm-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
+        <p id="match-notification"></p>
+      </div>      
     </form>
-  </div>
+  </div> -->
   <script src="./script.js"></script>
 </body>
 
