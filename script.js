@@ -87,7 +87,6 @@ password.addEventListener('keyup', () => {
   toggleRequirement(password, characterCountPattern, chars)
 
   const color = testPasswordStrength(password.value)
-  console.log(color)
   styleStrengthLine(color, password.value)
 })
 
