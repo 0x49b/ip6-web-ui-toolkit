@@ -33,21 +33,6 @@ h1 {
     transition: background-color 0.25s ease-in;
 }
 
-/* .line:first-of-type {
-    left: 4px;
-    right: 68%;
-}
-    
-.line:last-of-type {
-    left: 68%;
-    right: 4px;
-}
-
-.line:not(:first-of-type):not(:last-of-type) {
-    left: 33%;
-    right: 33%;
-} */
-
 .bg-transparent {
     background-color: transparent;
 }

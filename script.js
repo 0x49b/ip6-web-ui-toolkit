@@ -1,5 +1,3 @@
-
-
 //! Email
 
 const emailNotification = document.querySelector('.email-validity-notification')
@@ -10,13 +8,17 @@ const emailForm = document.querySelector('.email-form')
 emailInput.addEventListener('focusout', () => {
   if (!emailInput.checkValidity()) {
     emailNotification.innerHTML = 'Malformed Email'
-    emailNotification.style.color = 'red'
+    emailNotification.style.color = 'rgb(210, 16, 16)'
   } else if (emailInput.value === 'example@mail.com') {
     emailNotification.innerHTML = 'email already registered'
     emailNotification.style.color = 'red'
   } else {
     emailNotification.innerHTML = ''
   }
+})
+
+emailInput.addEventListener('focusin', () => {
+  emailNotification.innerHTML = ''
 })
 
 emailForm.addEventListener('submit', (e) => {
@@ -37,7 +39,9 @@ const number = document.querySelector('.number')
 const specialChar = document.querySelector('.special-character')
 const chars = document.querySelector('.characters')
 const strengthLines = document.querySelector('.strength-lines')
+const strengthNotification = document.querySelector('.strength-notification')
 const lines = document.querySelectorAll('.line')
+const criterias = document.querySelectorAll('ul#pw-criterias > li')
 
 // At least one LOWERCASE character:
 const lowerCasePattern = /^(?=.*[a-z]).+$/;
@@ -70,13 +74,11 @@ showPasswordButtons.forEach((button) => button.addEventListener('click', functio
 }))
 
 confirmPassword.addEventListener('keyup', () => {
-  if (password.value === confirmPassword.value) {
-    matchNotification.innerHTML = 'Your passwords match!'
-    matchNotification.style.color = 'green'
-  } else {
-    matchNotification.innerHTML = 'Your passwords do not match.'
-    matchNotification.style.color = 'red'
-  }
+  checkPasswordConfirmation()
+})
+
+confirmPassword.addEventListener('paste', (e) => {
+  e.preventDefault()
 })
 
 password.addEventListener('keyup', () => {
@@ -86,8 +88,9 @@ password.addEventListener('keyup', () => {
   toggleRequirement(password, specialCharacterPattern, specialChar)
   toggleRequirement(password, characterCountPattern, chars)
 
-  const color = testPasswordStrength(password.value)
-  styleStrengthLine(color, password.value)
+  testPasswordStrength(password.value)
+
+  checkPasswordConfirmation()
 })
 
 const toggleRequirement = (pwd, regex, el) => {
@@ -99,39 +102,64 @@ const toggleRequirement = (pwd, regex, el) => {
 }
 
 const testPasswordStrength = (value) => {
-  const strongRegex = new RegExp(
-    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[=/\()%ยง!@#$%^&*])(?=.{8,})'
-  ),
-    mediumRegex = new RegExp(
-      '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
-    );
+  let fulfilledCriterias = 0
 
-  if (strongRegex.test(value)) {
-    return "green";
-  } else if (mediumRegex.test(value)) {
-    return "orange";
-  } else {
-    return "red";
+  criterias.forEach(criteria => {
+    if(criteria.style.color === 'green'){
+      ++fulfilledCriterias
+    }
+  })
+
+  if( fulfilledCriterias === 5 && value.length >= 8) {
+    fulfilledCriterias = 6
   }
+
+  styleStrengthLine(fulfilledCriterias, value)
 }
 
-const styleStrengthLine = (color, value) => {
+const styleStrengthLine = (counter, value) => {
   lines.forEach((line) => {
     line.classList.remove("bg-red", "bg-orange", "bg-green")
     line.classList.add("bg-transparent")
   })
 
   if (value) {
-    if (color === "red") {
+    if (counter === 1) {
       lines[0].classList.remove("bg-transparent")
       lines[0].classList.add("bg-red")
-    } else if (color === "orange") {
+    } else if (counter > 1 && counter < 6) {
       const linesArr = [...lines]
-      linesArr.slice(0, 4).forEach(line => line.classList.remove("bg-transparent"))
-      linesArr.slice(0, 4).forEach(line => line.classList.add("bg-orange"))
-    } else if (color === "green") {
+      linesArr.slice(0, counter).forEach(line => line.classList.remove("bg-transparent"))
+      linesArr.slice(0, counter).forEach(line => line.classList.add("bg-orange"))
+    } else if (counter === 6) {
       lines.forEach(line => line.classList.remove("bg-transparent"))
       lines.forEach(line => line.classList.add("bg-green"))
     }
+    if(counter < 5){
+      strengthNotification.innerHTML = `Missing ${5 - counter} more criterias`
+    } else {
+      strengthNotification.innerHTML = `Add a personal touch for stronger password`
+    }
+  } else {
+    strengthNotification.innerHTML = ''
+  }  
+}
+
+
+const checkPasswordConfirmation = () => {
+  if(confirmPassword.value){
+    if(confirmPassword.value === password.value) {
+      matchNotification.innerHTML = 'Passwords match!'
+      matchNotification.style.color = 'green'
+    } else if (password.value.includes(confirmPassword.value)) {
+      matchNotification.innerHTML = 'Your on a good way'
+      matchNotification.style.color = 'black'
+    } else {
+      matchNotification.innerHTML = 'oops! There seems to be a typo'
+      matchNotification.style.color = 'red'
+    }
+  } else {
+    matchNotification.innerHTML = ''
   }
 }
+
