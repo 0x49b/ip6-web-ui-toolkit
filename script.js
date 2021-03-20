@@ -10,12 +10,11 @@ const emailNotification = document.querySelector('.email-validity-notification')
 const emailInput = document.querySelector('#email')
 const passwordInput = document.querySelector('#password')
 const showPwBtn = document.querySelector('#show-pw-btn')
-const password = document.querySelector('#password')
 
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  if(!(password.value === pw && emailInput.value === email)){
+  if(!(passwordInput.value === pw && emailInput.value === email)){
     loginNotification.innerHTML = 'Wrong credentials'
     loginNotification.style.color = 'rgb(210, 16, 16)'
   } else {
@@ -45,11 +44,11 @@ showPwBtn.addEventListener('click', () => {
   if(showPwBtn.classList.contains('disabled')){
     return
   }
-  if (password.type === 'password') {
-    password.type = 'text'
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text'
     showPwBtn.innerHTML = "Hide"
   } else {
-    password.type = 'password'
+    passwordInput.type = 'password'
     showPwBtn.innerHTML = "Show"
   }
 })
