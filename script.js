@@ -94,10 +94,14 @@ password.addEventListener('keyup', () => {
 })
 
 const toggleRequirement = (pwd, regex, el) => {
-  if (regex.test(pwd.value)) {
-    el.style.color = 'green'
+  if(pwd.value) {
+    if (regex.test(pwd.value)) {
+      el.style.color = 'green'
+    } else {
+      el.style.color = 'red'
+    }
   } else {
-    el.style.color = 'red'
+    el.style.color = 'black'
   }
 }
 
@@ -137,8 +141,10 @@ const styleStrengthLine = (counter, value) => {
     }
     if(counter < 5){
       strengthNotification.innerHTML = `Missing ${5 - counter} more criterias`
-    } else {
+    } else if(counter === 5) {
       strengthNotification.innerHTML = `Add a personal touch for stronger password`
+    } else {
+      strengthNotification.innerHTML = `Your password is now strong enough!`
     }
   } else {
     strengthNotification.innerHTML = ''

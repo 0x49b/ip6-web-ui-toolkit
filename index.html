@@ -16,14 +16,14 @@
 
 <body>
 
-  <h1>Email Field</h1> comment for netlify
+  <h1>Email Field</h1>
   <p>Hint, try the following email: "example@mail.com"</p>
   <form class="email-form" action="">
     <div>
       <label for="email">E-Mail</label><br>
       <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
       <button class="email-submit btn" type="submit">Submit</button>
-      <p class="email-validity-notification"></p>
+      <p class="notification email-validity-notification"></p>
     </div>  
   </form>
 
@@ -43,7 +43,7 @@
           <div class="line"></div>
           <div class="line"></div>
         </div>
-        <p class="strength-notification"></p>
+        <p class="notification strength-notification"></p>
       </div>        
       <p>The password must contain:</p>
       <ul id="pw-criterias">
@@ -58,7 +58,7 @@
         <br>
         <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
         <button id="show-confirm-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-        <p id="match-notification"></p>
+        <p id="match-notification" class="notification"></p>
       </div>      
     </form>
   </div>

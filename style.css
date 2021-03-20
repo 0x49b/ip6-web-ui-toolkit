@@ -89,3 +89,8 @@ input {
 input:focus {
     border: 1px solid var(--black);
 }
+
+.notification:empty:before {
+    content: ' ';
+    white-space: pre;
+}
