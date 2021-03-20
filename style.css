@@ -79,12 +79,12 @@ h2 {
     align-items: center;
 }
 
-#password {
+.password-input {
     width: 100%;
     flex: 3;
 }
 
-#show-pw-btn {
+.show-password-btn {
     background-color: rgb(218, 218, 218);
     color: var(--black);
     border: none;
@@ -96,11 +96,11 @@ h2 {
     box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-#show-pw-btn:hover {
+.show-password-btn:hover {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-#show-pw-btn:active {
+.show-password-btn:active {
     color: var(--white);
     background: var(--black);
 }
@@ -113,4 +113,66 @@ h2 {
 .notification:empty:before {
     content: ' ';
     white-space: pre;
+}
+
+
+
+/* Strenght Lines */
+.strengtlhines-container {
+    margin-bottom: 4px;
+}
+
+.strength-lines{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    bottom: 2px;
+    left: 0;
+    right: 0 + size(calc(100% - 50px), 6px);
+    margin-top: 2px;
+}
+
+.line {
+    border: none;
+    height: 6px;
+    width: 95%;
+    border-radius: 2px;
+    transition: background-color 0.25s ease-in;
+}
+
+.bg-default {
+    background-color: gray;
+}
+	
+.bg-red {
+    background-color: red;
+}
+	
+.bg-orange {
+    background-color: orange;
+}
+	
+.bg-green {
+    background-color: green;
+}
+
+
+input:invalid {
+    box-shadow: none;
+}
+
+
+/* Criterias */
+
+.pw-criterias {
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.criteria-icon {
+    margin-right: 2px;
+    font-size: 10px;
 }

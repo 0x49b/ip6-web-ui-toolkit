@@ -11,13 +11,14 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <title>IP6 Web UI-Toolkit</title>
 </head>
 
 <body>
 
   <div class="login">
-    <h2>Login</h2>
+    <h2>Register</h2>
     <form class="login-form" action="">
 
       <div class="input email-input">
@@ -28,19 +29,37 @@
       </div>
 
       <div class="input password-input">
-        <label for="password">Passwort</label>
+        <label for="password">Password</label>
         <br>
         <div class="password-field">
-          <input type="password" name="password" id="password" placeholder="P4$$word">
-          <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
+          <input type="password" name="password" id="password" placeholder="P4$$word" class="password-input">
+          <button id="show-pw-btn" type="button" class="show-password-btn">show</button>
         </div>
-        <label for="password">Confirm Password</label>
+        <div class="strengtlhines-container">
+          <div class="strength-lines">
+            <div class="line bg-default"></div>
+            <div class="line bg-default"></div>
+            <div class="line bg-default"></div>
+            <div class="line bg-default"></div>
+            <div class="line bg-default"></div>
+            <div class="line bg-default"></div>
+          </div>
+          <p class="strength-notification notification">Hint: Type the strongest password you can</p>
+        </div>
+        <div class="pw-criterias">
+          <p class="criteria uppercase"> <i class="criteria-icon fas fa-times-circle"></i>uppercase</p>
+          <p class="criteria lowercase"> <i class="criteria-icon fas fa-times-circle"></i>lowercase</p>
+          <p class="criteria number">    <i class="criteria-icon fas fa-times-circle"></i>number</p>
+          <p class="criteria symbols">   <i class="criteria-icon fas fa-times-circle"></i>symbols</p>
+          <p class="criteria characters"><i class="criteria-icon fas fa-times-circle"></i>6 characters</p>
+        </div>
+        <label for="confirm-password">Confirm Password</label>
         <br>
         <div class="password-field">
-          <input type="password" name="password" id="password" placeholder="P4$$word">
-          <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
+          <input type="password" name="password" id="confirm-password" placeholder="P4$$word" class="password-input">
+          <button id="show-confirm-pw-btn" type="button" class="show-password-btn">show</button>
         </div>
-        <p class="notification login-validity-notification"></p>
+        <p id="match-notification" class="notification"></p>
       </div>
 
       <button class="login-submit btn" type="submit">Register</button>
