@@ -96,11 +96,11 @@ h2 {
     box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-#show-pw-btn:hover {
+#show-pw-btn:hover:not(.disabled) {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-#show-pw-btn:active {
+#show-pw-btn:active:not(.disabled) {
     color: var(--white);
     background: var(--black);
 }
@@ -113,4 +113,24 @@ h2 {
 .notification:empty:before {
     content: ' ';
     white-space: pre;
+}
+
+.login-validity-notification {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.info {
+    max-width: 25rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.info  p:first-child {
+    margin-bottom: 5px;
+}
+
+.disabled {
+    opacity: 0.4;
 }

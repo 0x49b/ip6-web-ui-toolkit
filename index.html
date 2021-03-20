@@ -20,6 +20,8 @@
     <h2>Login</h2>
     <form class="login-form" action="">
 
+      <p class="notification login-validity-notification"></p> 
+
       <div class="input email-input">
         <label for="email">E-Mail</label>
         <br>
@@ -32,9 +34,8 @@
         <br>
         <div class="password-field">
           <input type="password" name="password" id="password" placeholder="P4$$word">
-          <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-        </div>
-        <p class="notification login-validity-notification"></p>        
+          <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary disabled">show</button>
+        </div>               
       </div>
 
       <button class="login-submit btn" type="submit">Login</button>
@@ -42,52 +43,14 @@
     </form>
   </div>
 
-  <!-- <h1>Email Field</h1> comment for netlify
-  <p>Hint, try the following email: "example@mail.com"</p>
-  <form class="email-form" action="">
-    <div>
-      <label for="email">E-Mail</label><br>
-      <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
-      <button class="email-submit btn" type="submit">Submit</button>
-      <p class="email-validity-notification"></p>
-    </div>  
-  </form> -->
+  <div class="info">
+    <p>Example for successful Login:</p>
+    <p>
+      Email: example@mail.com<br>
+      Password: P4$$word
+    </p>
+  </div>
 
-  <!-- <h1>Passwort Field</h1>
-  <div>
-    <form id="pw-form">
-      <label for="password">Passwort</label>
-      <br>
-      <input type="password" name="password" id="password" placeholder="P4$$word">
-      <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-      <div class="strengtlines-container">
-        <div class="strength-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
-        <p class="strength-notification"></p>
-      </div>        
-      <p>The password must contain:</p>
-      <ul id="pw-criterias">
-        <li class="uppercase">One uppercase</li>
-        <li class="lowercase">One lowercase</li>
-        <li class="number">One number</li>
-        <li class="special-character">One special character</li>
-        <li class="characters">At least 6 characters</li>
-      </ul>
-      <div class="confirm-password-container">
-        <label for="confirm-password">Confirm Password</label>
-        <br>
-        <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
-        <button id="show-confirm-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-        <p id="match-notification"></p>
-      </div>      
-    </form>
-  </div> -->
   <script src="./script.js"></script>
 </body>
 
