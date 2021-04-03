@@ -28,6 +28,7 @@ loginForm.addEventListener('submit', (e) => {
 })
 
 emailInput.addEventListener('focusout', () => {
+  if(!emailInput.value) return
   if (!emailInput.checkValidity()) {
     emailNotification.innerHTML = 'Malformed Email'
     emailNotification.style.color = 'rgb(210, 16, 16)'
