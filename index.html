@@ -11,20 +11,23 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
   <title>IP6 Web UI-Toolkit</title>
 </head>
 
 <body>
 
-  <div class="login">
+  <div class="register">
     <h2>Register</h2>
-    <form class="login-form" action="">
+    <form class="register-form" action="">
 
       <div class="input email-input">
         <label for="email">E-Mail</label>
         <br>
-        <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
+        <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+"
+          class="validation">
         <p class="notification email-validity-notification"></p>
       </div>
 
@@ -35,7 +38,7 @@
           <input type="password" name="password" id="password" placeholder="P4$$word" class="password-input">
           <button id="show-pw-btn" type="button" class="show-password-btn">show</button>
         </div>
-        <div class="strengtlhines-container">
+        <div class="strengthlines-container">
           <div class="strength-lines">
             <div class="line bg-default"></div>
             <div class="line bg-default"></div>
@@ -49,8 +52,8 @@
         <div class="pw-criterias">
           <p class="criteria uppercase"> <i class="criteria-icon fas fa-times-circle"></i>uppercase</p>
           <p class="criteria lowercase"> <i class="criteria-icon fas fa-times-circle"></i>lowercase</p>
-          <p class="criteria number">    <i class="criteria-icon fas fa-times-circle"></i>number</p>
-          <p class="criteria symbols">   <i class="criteria-icon fas fa-times-circle"></i>symbols</p>
+          <p class="criteria number"> <i class="criteria-icon fas fa-times-circle"></i>number</p>
+          <p class="criteria symbols"> <i class="criteria-icon fas fa-times-circle"></i>symbols</p>
           <p class="criteria characters"><i class="criteria-icon fas fa-times-circle"></i>6 characters</p>
         </div>
         <label for="confirm-password">Confirm Password</label>
@@ -66,53 +69,6 @@
 
     </form>
   </div>
-
-  <!-- <h1>Email Field</h1>
-  <p>Hint, try the following email: "example@mail.com"</p>
-  <form class="email-form" action="">
-    <div>
-      <label for="email">E-Mail</label><br>
-      <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+">
-      <button class="email-submit btn" type="submit">Submit</button>
-      <p class="email-validity-notification"></p>
-    </div>  
-  </form> -->
-
-  <!-- <h1>Passwort Field</h1>
-  <div>
-    <form id="pw-form">
-      <label for="password">Passwort</label>
-      <br>
-      <input type="password" name="password" id="password" placeholder="P4$$word">
-      <button id="show-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-      <div class="strengtlines-container">
-        <div class="strength-lines">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
-        <p class="strength-notification"></p>
-      </div>        
-      <p>The password must contain:</p>
-      <ul id="pw-criterias">
-        <li class="uppercase">One uppercase</li>
-        <li class="lowercase">One lowercase</li>
-        <li class="number">One number</li>
-        <li class="special-character">One special character</li>
-        <li class="characters">At least 6 characters</li>
-      </ul>
-      <div class="confirm-password-container">
-        <label for="confirm-password">Confirm Password</label>
-        <br>
-        <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
-        <button id="show-confirm-pw-btn" type="button" class="show-password-btn btn-secondary">show</button>
-        <p id="match-notification"></p>
-      </div>      
-    </form>
-  </div> -->
   <script src="./script.js"></script>
 </body>
 

@@ -1,7 +1,29 @@
 :root {
-    --grey: #C4C4C4;
-    --black: #222222;
-    --white: #fcfcfc;
+   /* Colors in HEX */
+   --grey: #C4C4C4; /* should be removed one day */
+   --gray1: #333333;
+   --gray4: #BDBDBD;
+   --gray6: #F2F2F2;
+   --white: #fcfcfc;
+   --dark-blue: #184BCE;
+   --dark-blue-hover: #3768E8;
+   --light-blue: #87F1FF;
+   --dark-green: #298808;
+   --light-green: #91F58C;
+   --red: #EB5757;
+   --orange: rgb(255, 165, 0);
+
+   /* Colors in hsl */
+   --gray1-hsl: 0, 0%, 20%;
+   --gray4-hsl: 0, 0%, 74%;
+   --gray6-hsl: 0, 0%, 95%;
+   --white-hsl: 0, 0%, 99%;
+   --dark-blue-hsl: 223, 79%, 45%;
+   --light-blue-hsl: 187, 100%, 76%;
+   --dark-blue-hover-hsl: 233, 79%, 56%;
+   --dark-green-hsl: 104, 89%, 28%;
+   --light-green-hsl: 117, 85%, 76%;
+   --red-hsl: 0, 79%, 63%;
 }
 
 *, html {
@@ -16,16 +38,18 @@ h1 {
     font-weight: 800;
 }
 
-.login {
+.register {
     margin: 3rem auto;
     max-width: 25rem;
-    background: rgb(181, 182, 192);
+    background: var(--white);
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center; 
-    border-radius: 0.75rem;   
+    border-radius: 0.75rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 5px 3px 6px, 
+                rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 h2 {
@@ -33,7 +57,16 @@ h2 {
     padding-bottom: 0.5rem;
 }
 
+button:focus,
+button:active,
+input:focus,
+input:active {
+    border-color: transparent;
+    outline: none;
+}
+
 .input{
+    border-style: hidden;
     margin-top: 0.75rem;
 }
 
@@ -41,37 +74,95 @@ h2 {
     width: 100%;
 }
 
-.login-form {
+.register-form {
     width: 100%;
 }
 
-.login-form input{
+.register-form input{
+    border-radius: 5px;
     padding: 10px 5px;
-    border: none;
+    border: 1px solid var(--gray1);
     margin-top: 5px;
+    filter: none;
+    transition: all 0.1s ease-in-out;
+
 }
 
-.login-form label {
+.register-form:hover {
+    border-color: var(--gray4);
+}
+
+.register-form input:not(:placeholder-shown) {
+    border-color: var(--dark-blue);
+}
+
+.register-form input:focus,
+.register-form input:active {
+    border-color: var(--dark-blue);
+    filter: drop-shadow(0px 0px 3px rgba(24, 75, 206, 0.53));
+}
+
+.register-form .validation:not(:focus):invalid:not(:placeholder-shown) {
+    border: 1px solid var(--red);
+    filter: drop-shadow(2px 2px 3px rgba(235, 87, 87, 0.53));
+}
+
+.register-form .validation:not(:focus):not(:invalid):not(:placeholder-shown) {
+    border: 1px solid #298808;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 0px 3px #298808)
+}
+
+.register-form label {
     font-size: 1.1rem;
 }
 
+
+
+
 .btn {
-    background-color: var(--black);
-    color: var(--white);
+    background-color: var(--dark-blue);
+    color: var(--gray6);
     margin-top: 2rem;
     border: none;
+    border-radius: 5px;
     height: 40px;
     width: 100%;
+    transition: all 0.1s ease-in-out;
 }
 
 .btn:hover {
-    border: 2px solid var(--white);
+    background-color: var(--dark-blue-hover);
 }
 
 .btn:active {
-    color: var(--black);
-    background: rgb(216, 216, 216);
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+.show-password-btn,
+.show-password-btn:focus {
+    background-color: transparent;
+    border: 1px solid var(--dark-blue);
+    border-radius: 5px;
+    color: var(--gray1);
+    height: 40px;
+    font-size: 0.8rem;
+    margin-left: 15px;
+    margin-top: 5px;
+    flex: 1;
+    transition: all 0.1s ease-in-out;
+}
+
+.show-password-btn:hover:not(.disabled) {
+    filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.3));
+}
+
+.btn-secondary:active:not(.disabled) {
+    background-color: hsla(var(--dark-blue-hsl), 0.1);
+}
+
+
+
 
 .password-field {
     display: flex;
@@ -79,30 +170,19 @@ h2 {
     align-items: center;
 }
 
-.password-input {
+#password {
     width: 100%;
     flex: 3;
 }
 
-.show-password-btn {
-    background-color: rgb(218, 218, 218);
-    color: var(--black);
-    border: none;
-    height: 36px;
-    font-size: 0.8;
-    margin-left: 15px;
-    margin-top: 5px;
-    flex: 1;    
-    box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+.disabled {
+    opacity: 0.4;
 }
 
-.show-password-btn:hover {
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-}
-
-.show-password-btn:active {
-    color: var(--white);
-    background: var(--black);
+.password-input {
+    width: 100%;
+    flex: 3;
 }
 
 .notification {
@@ -116,9 +196,8 @@ h2 {
 }
 
 
-
 /* Strenght Lines */
-.strengtlhines-container {
+.strengthlines-container {
     margin-bottom: 4px;
 }
 
@@ -142,19 +221,19 @@ h2 {
 }
 
 .bg-default {
-    background-color: gray;
+    background-color: var(--gray);
 }
 	
 .bg-red {
-    background-color: red;
+    background-color:var(--red);
 }
 	
 .bg-orange {
-    background-color: orange;
+    background-color: var(--orange);
 }
 	
 .bg-green {
-    background-color: green;
+    background-color: var(--dark-green);
 }
 
 

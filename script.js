@@ -173,7 +173,7 @@
 const email = 'example@mail.com'
 const pw = 'P4$$word'
 
-const loginForm = document.querySelector('.login-form')
+const loginForm = document.querySelector('.register-form')
 const loginNotification = document.querySelector('.login-validity-notification')
 const emailNotification = document.querySelector('.email-validity-notification')
 const emailInput = document.querySelector('#email')
@@ -213,7 +213,7 @@ const characterCountPattern = /^.{6,}/;
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  if(!(password.value === pw && emailInput.value === email)){
+  if (!(password.value === pw && emailInput.value === email)) {
     loginNotification.innerHTML = 'Wrong credentials'
     loginNotification.style.color = 'rgb(210, 16, 16)'
   }
@@ -235,7 +235,7 @@ emailInput.addEventListener('focusin', () => {
   emailNotification.innerHTML = ''
 })
 
-showPasswordButtons.forEach((button) => button.addEventListener('click', (e) => { 
+showPasswordButtons.forEach((button) => button.addEventListener('click', (e) => {
   if (passwordInput.type === 'password' && confirmPasswordInput.type === 'password') {
     passwordInput.type = 'text'
     confirmPasswordInput.type = 'text'
@@ -246,12 +246,12 @@ showPasswordButtons.forEach((button) => button.addEventListener('click', (e) => 
     showPasswordButtons.forEach((button) => button.innerHTML = "Show")
   }
 
-  if(e.target.id === 'show-pw-btn'){
+  if (e.target.id === 'show-pw-btn') {
     passwordInput.focus()
   } else {
     confirmPasswordInput.focus()
   }
-  
+
 }))
 
 confirmPasswordInput.addEventListener('keyup', () => {
@@ -273,7 +273,7 @@ passwordInput.addEventListener('keyup', () => {
 })
 
 const toggleRequirement = (pwd, regex, el) => {
-  if(pwd.value){
+  if (pwd.value) {
     if (regex.test(pwd.value)) {
       el.style.color = 'green'
       el.children[0].classList.remove('fa-times-circle')
@@ -289,11 +289,11 @@ const toggleRequirement = (pwd, regex, el) => {
 const testPasswordStrength = (value) => {
   let fulfilledCriterias = 0
   criterias.forEach(criteria => {
-    if(criteria.style.color === 'green'){
+    if (criteria.style.color === 'green') {
       ++fulfilledCriterias
     }
   })
-  if(fulfilledCriterias === 5 && value.length >= 8) {
+  if (fulfilledCriterias === 5 && value.length >= 8) {
     fulfilledCriterias = 6
   }
   styleStrengthLine(fulfilledCriterias, value)
@@ -317,21 +317,21 @@ const styleStrengthLine = (counter, value) => {
       lines.forEach(line => line.classList.remove("bg-default"))
       lines.forEach(line => line.classList.add("bg-green"))
     }
-    if(counter < 5){
+    if (counter < 5) {
       strengthNotification.innerHTML = `Missing ${5 - counter} more criterias`
-    } else if(counter === 6) {
+    } else if (counter === 6) {
       strengthNotification.innerHTML = `You're password is now strong enough!`
     } else {
       strengthNotification.innerHTML = `Add a personal touch for stronger password`
     }
   } else {
     strengthNotification.innerHTML = 'Hint: Type the strongest password you can'
-  }  
+  }
 }
 
 const checkPasswordConfirmation = () => {
-  if(confirmPasswordInput.value){
-    if(confirmPasswordInput.value === passwordInput.value) {
+  if (confirmPasswordInput.value) {
+    if (confirmPasswordInput.value === passwordInput.value) {
       matchNotification.innerHTML = 'Passwords match!'
       matchNotification.style.color = 'green'
     } else if (passwordInput.value.includes(confirmPasswordInput.value)) {
