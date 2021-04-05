@@ -19,6 +19,14 @@
 
 <body>
 
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      <div class="slider round"></div>
+    </label>
+    <em>Enable Dark Mode!</em>
+  </div>
+
   <div class="register">
     <h2>Register</h2>
     <form class="register-form" action="">
@@ -36,16 +44,16 @@
         <br>
         <div class="password-field">
           <input type="password" name="password" id="password" placeholder="P4$$word" class="password-input">
-          <button id="show-pw-btn" type="button" class="show-password-btn">show</button>
+          <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn">show</button>
         </div>
         <div class="strengthlines-container">
           <div class="strength-lines">
-            <div class="line bg-default"></div>
-            <div class="line bg-default"></div>
-            <div class="line bg-default"></div>
-            <div class="line bg-default"></div>
-            <div class="line bg-default"></div>
-            <div class="line bg-default"></div>
+            <div class="line line-bg-default"></div>
+            <div class="line line-bg-default"></div>
+            <div class="line line-bg-default"></div>
+            <div class="line line-bg-default"></div>
+            <div class="line line-bg-default"></div>
+            <div class="line line-bg-default"></div>
           </div>
           <p class="strength-notification notification">Hint: Type the strongest password you can</p>
         </div>
@@ -60,7 +68,7 @@
         <br>
         <div class="password-field">
           <input type="password" name="password" id="confirm-password" placeholder="P4$$word" class="password-input">
-          <button id="show-confirm-pw-btn" type="button" class="show-password-btn">show</button>
+          <button id="show-confirm-pw-btn" type="button" class="btn-secondary show-password-btn">show</button>
         </div>
         <p id="match-notification" class="notification"></p>
       </div>
@@ -70,6 +78,7 @@
     </form>
   </div>
   <script src="./script.js"></script>
+  <script src="./darkMode.js"></script>
 </body>
 
 </html>
