@@ -13,6 +13,7 @@
 
     /* Colors in hsl */
     --gray1-hsl:           hsl(0,   0%,   20%);
+    --gray2-hsl:           hsl(0, 0%, 31%);
     --gray4-hsl:           hsl(0,   0%,   74%);
     --gray6-hsl:           hsl(0,   0%,   95%);
     --white-hsl:           hsl(0,   0%,   99%);
@@ -27,6 +28,7 @@
 
 [data-theme="dark"] {
     --gray1-hsl:           hsl(0,   0%,   95%);
+    --gray2-hsl:           hsl(0, 0%, 31%);
     --gray4-hsl:           hsl(0,   0%,   51%);
     --gray6-hsl:           hsl(0,   0%,   20%);
     --white-hsl:           hsl(0,   0%,   20%);
@@ -103,12 +105,14 @@ input:active {
 }
 
 .register-form input:hover {
-    border-color: var(--gray4);
+    border-color: var(--gray4-hsl);
 }
 
 .register-form input:not(:placeholder-shown) {
     border-color: var(--dark-blue-hsl);
 }
+
+
 
 .register-form input:focus,
 .register-form input:active {
@@ -168,7 +172,7 @@ input:active {
 }
 
 .btn-secondary:hover:not(.disabled) {
-    filter: drop-shadow(2px 3px 1px var(--gray4-hsl));
+    filter: drop-shadow(2px 3px 1px var(--gray2-hsl));
 }
 
 .btn-secondary:active:not(.disabled) {
