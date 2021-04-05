@@ -13,8 +13,8 @@
 
     /* Colors in hsl */
     --gray1-hsl:           hsl(0,   0%,   20%);
-    --gray2-hsl:           hsl(0, 0%, 31%);
     --gray4-hsl:           hsl(0,   0%,   74%);
+    --gray5-hsl:           hsl(0, 0%, 88%);
     --gray6-hsl:           hsl(0,   0%,   95%);
     --white-hsl:           hsl(0,   0%,   99%);
     --dark-blue-hsl:       hsl(223, 79%,  45%);
@@ -28,8 +28,8 @@
 
 [data-theme="dark"] {
     --gray1-hsl:           hsl(0,   0%,   95%);
-    --gray2-hsl:           hsl(0, 0%, 31%);
     --gray4-hsl:           hsl(0,   0%,   51%);
+    --gray5-hsl:           hsl(0, 0%, 31%);
     --gray6-hsl:           hsl(0,   0%,   20%);
     --white-hsl:           hsl(0,   0%,   20%);
     --dark-blue-hsl:       hsl(187, 100%, 76%); 
@@ -172,7 +172,7 @@ input:active {
 }
 
 .btn-secondary:hover:not(.disabled) {
-    filter: drop-shadow(2px 3px 1px var(--gray2-hsl));
+    filter: drop-shadow(2px 3px 1px var(--gray5-hsl));
 }
 
 .btn-secondary:active:not(.disabled) {
