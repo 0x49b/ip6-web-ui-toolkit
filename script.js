@@ -14,24 +14,24 @@ const showPwBtn = document.querySelector('#show-pw-btn')
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  if(!(passwordInput.value === pw && emailInput.value === email)){
+  if (!(passwordInput.value === pw && emailInput.value === email)) {
     loginNotification.innerHTML = 'Wrong credentials'
-    loginNotification.style.color = 'rgb(210, 16, 16)'
+    loginNotification.style.color = 'var(--red-hsl)'
   } else {
     loginNotification.innerHTML = 'Login successful!'
-    loginNotification.style.color = 'green'
+    loginNotification.style.color = 'var(--dark-green-hsl)'
   }
 
-  if(showPwBtn.classList.contains('disabled')){
+  if (showPwBtn.classList.contains('disabled')) {
     showPwBtn.classList.remove('disabled')
   }
 })
 
 emailInput.addEventListener('focusout', () => {
-  if(!emailInput.value) return
+  if (!emailInput.value) return
   if (!emailInput.checkValidity()) {
     emailNotification.innerHTML = 'Malformed Email'
-    emailNotification.style.color = 'rgb(210, 16, 16)'
+    emailNotification.style.color = 'var(--red-hsl)'
   } else {
     emailNotification.innerHTML = ''
   }
@@ -42,7 +42,7 @@ emailInput.addEventListener('focusin', () => {
 })
 
 showPwBtn.addEventListener('click', () => {
-  if(showPwBtn.classList.contains('disabled')){
+  if (showPwBtn.classList.contains('disabled')) {
     return
   }
   if (passwordInput.type === 'password') {
