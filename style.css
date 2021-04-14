@@ -156,6 +156,10 @@ input:active {
     box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.btn:focus {
+    border: 3px solid var(--gray1-hsl);
+}
+
 .password-field {
     display: flex;
     justify-content: space-between;

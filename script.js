@@ -34,6 +34,11 @@ loginForm.addEventListener('submit', (e) => {
   if (showPwBtn.classList.contains('disabled')) {
     showPwBtn.classList.remove('disabled')
   }
+
+  emailInput.value = ''
+  passwordInput.value = ''
+  loginBtn.disabled = true
+  loginBtn.classList.add('disabled')
 })
 
 emailInput.addEventListener('focusout', () => {
@@ -51,7 +56,17 @@ emailInput.addEventListener('focusin', () => {
 })
 
 emailInput.addEventListener('change', () => {
-  if(emailInput.checkValidity()){
+  if(emailInput.checkValidity() && passwordInput.value !== ''){
+    loginBtn.classList.remove('disabled')
+    loginBtn.disabled = false
+  } else {
+    loginBtn.classList.add('disabled')
+    loginBtn.disabled = true
+  }
+})
+
+passwordInput.addEventListener('change', () => {
+  if(emailInput.checkValidity() && passwordInput.value !== ''){
     loginBtn.classList.remove('disabled')
     loginBtn.disabled = false
   } else {
