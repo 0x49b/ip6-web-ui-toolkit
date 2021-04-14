@@ -153,7 +153,7 @@ input:active {
   flex: 3;
 }
 
-.btn {
+.btn-underline {
   background-color: var(--dark-blue-hsl);
   color: var(--gray6-hsl);
   margin-top: 2rem;
@@ -164,11 +164,11 @@ input:active {
   transition: all 0.1s ease-in-out;
 }
 
-.btn:hover {
+.btn-underline:hover:not(.disabled) {
   background-color: var(--dark-blue-hover-hsl);
 }
 
-.btn:active {
+.btn-underline:active:not(.disabled) {
   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 

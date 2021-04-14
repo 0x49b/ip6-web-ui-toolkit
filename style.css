@@ -148,11 +148,11 @@ input:active {
     transition: all 0.1s ease-in-out;
 }
 
-.btn:hover {
+.btn:hover:not(.disabled) {
     background-color: var(--dark-blue-hover-hsl);
 }
 
-.btn:active {
+.btn:active:not(.disabled) {
     box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 

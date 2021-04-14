@@ -5,6 +5,7 @@ const email = 'example@mail.com'
 const pw = 'P4$$word'
 
 const loginForm = document.querySelector('.login-form')
+const loginBtn = document.querySelector('.login-submit')
 const notificationContainer = document.querySelector('.login-validity-notification')
 const notificationMessage = document.querySelector('.login-validity-notification p')
 const notificationIcon = document.querySelector('.login-validity-notification i')
@@ -47,6 +48,16 @@ emailInput.addEventListener('focusout', () => {
 
 emailInput.addEventListener('focusin', () => {
   emailNotification.innerHTML = ''
+})
+
+emailInput.addEventListener('change', () => {
+  if(emailInput.checkValidity()){
+    loginBtn.classList.remove('disabled')
+    loginBtn.disabled = false
+  } else {
+    loginBtn.classList.add('disabled')
+    loginBtn.disabled = true
+  }
 })
 
 showPwBtn.addEventListener('click', () => {
