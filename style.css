@@ -52,8 +52,14 @@ h1 {
     font-weight: 800;
 }
 
+.logins-container {
+    display: flex;
+    justify-content: center;
+}
+
 .login {
-    margin: 3rem auto;
+    margin: 3rem;
+    min-width: 23rem;
     max-width: 25rem;
     background: var(--white-hsl);
     padding: 2rem;
@@ -101,23 +107,25 @@ input:active {
     transition: all 0.1s ease-in-out;
 }
 
-.login-form input:hover {
+/* Styling for standard input elements with border */
+
+.login-form .input-standard:hover {
     border-color: var(--gray4);
 }
 
-.login-form input:not(:placeholder-shown) {
+.login-form .input-standard:not(:placeholder-shown) {
     border-color: var(--dark-blue-hsl);
 }
 
-.login-form input:focus,
-.login-form input:active {
+.login-form .input-standard:focus,
+.login-form .input-standard:active {
     border-color: var(--dark-blue-hsl);
     filter: drop-shadow(0px 0px 3px var(--dark-blue-hsl));
 }
 
 .login-form .validation:not(:focus):invalid:not(:placeholder-shown) {
     border: 1px solid var(--red);
-    filter: drop-shadow(2px 2px 3px rgba(235, 87, 87, 0.53));
+    filter: drop-shadow(0px 0px 3px var(--red));
 }
 
 .login-form .validation:not(:focus):not(:invalid):not(:placeholder-shown) {

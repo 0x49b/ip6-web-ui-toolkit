@@ -9,6 +9,7 @@
   <meta name="description" content="Web UI Toolkit">
   <link rel="icon" href="">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login-underline.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <title>IP6 Web UI-Toolkit</title>
@@ -24,33 +25,70 @@
     <em>Enable Dark Mode!</em>
   </div>
 
-  <div class="login">
-    <h2>Login</h2>
-    <form class="login-form" action="">
+  <div class="logins-container">
+    <div class="login">
+      <h2>Login</h2>
+      <form class="login-form" action="">
 
-      <p class="notification login-validity-notification"></p> 
+        <p class="notification login-validity-notification"></p> 
 
-      <div class="input email-input">
-        <label for="email">E-Mail</label>
-        <br>
-        <input type="email" name="email" id="email" class="validation" placeholder="example@mail.com" pattern=".+@.+\..+" required>
-        <p class="notification email-validity-notification"></p>
-      </div>
+        <div class="input email-input">
+          <label for="email">E-Mail</label>
+          <br>
+          <input type="email" name="email" id="email" class="input-standard validation" placeholder="example@mail.com" pattern=".+@.+\..+" required>
+          <p class="notification email-validity-notification"></p>
+        </div>
 
-      <div class="input password-input">
-        <label for="password">Passwort</label>
-        <br>
-        <div class="password-field">
-          <input type="password" name="password" id="password" placeholder="P4$$word">
-          <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn disabled">show</button>
-        </div>               
-      </div>
+        <div class="input password-input">
+          <label for="password">Passwort</label>
+          <br>
+          <div class="password-field">
+            <input class="input-standard" type="password" name="password" id="password" placeholder="P4$$word">
+            <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn disabled">show</button>
+          </div>               
+        </div>
 
-      <button class="login-submit btn" type="submit">Login</button>
-      
-    </form>
+        <button class="login-submit btn" type="submit">Login</button>
+        
+      </form>
+    </div>
+
+
+    <!-- Login form with underlined inputfields -->
+
+    <div class="login-underline">
+      <h2>Login</h2>
+      <form class="login-form-underline" action="">
+
+        <p class="notification-underline login-validity-notification-underline"></p> 
+
+        <div class="input email-input">
+          <label for="email">E-Mail</label>
+          <br>
+          <div class="modified-inputfield">
+            <input class="input-underline validate-underline" type="email" name="email" id="email-underline" placeholder="example@mail.com" pattern=".+@.+\..+" required>
+            <div class="underline"></div>
+          </div>          
+          <p class="notification-underline email-validity-notification-underline"></p>
+        </div>
+
+        <div class="input password-input">
+          <label for="password">Passwort</label>
+          <br>
+          <div class="password-field">
+            <div class="modified-inputfield">
+              <input class="input-underline" type="password" name="password" id="password-underline" placeholder="P4$$word">
+              <div class="underline"></div>
+            </div>            
+            <button id="show-pw-btn-underline" type="button" class="btn-secondary show-password-btn disabled">show</button>
+          </div>               
+        </div>
+
+        <button class="login-submit btn" type="submit">Login</button>
+        
+      </form>
+    </div>
   </div>
-
   <div class="info">
     <p>Example for successful Login:</p>
     <p>
@@ -60,6 +98,7 @@
   </div>
 
   <script src="./script.js"></script>
+  <script src="./login-underline.js"></script>
   <script src="./darkMode.js"></script>
 </body>
 
