@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="login-underline.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
   <title>IP6 Web UI-Toolkit</title>
 </head>
 
@@ -30,7 +33,10 @@
       <h2>Login</h2>
       <form class="login-form" action="">
 
-        <p class="notification login-validity-notification"></p> 
+        <div class="login-validity-notification">
+          <i class="fas"></i>
+          <p class="login-validity-message"></p>
+        </div> 
 
         <div class="input email-input">
           <label for="email">E-Mail</label>
@@ -45,7 +51,8 @@
           <div class="password-field">
             <input class="input-standard" type="password" name="password" id="password" placeholder="P4$$word">
             <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn disabled">show</button>
-          </div>               
+          </div>
+          <a id="forgot-password" href="#">Forgot E-Mail or Password?</a>             
         </div>
 
         <button class="login-submit btn" type="submit">Login</button>
@@ -60,7 +67,10 @@
       <h2>Login</h2>
       <form class="login-form-underline" action="">
 
-        <p class="notification-underline login-validity-notification-underline"></p> 
+        <div class="login-validity-notification-underline">
+          <i class="fas"></i>
+          <p class="login-validity-message"></p>
+        </div> 
 
         <div class="input email-input">
           <label for="email">E-Mail</label>
@@ -81,7 +91,8 @@
               <div class="underline"></div>
             </div>            
             <button id="show-pw-btn-underline" type="button" class="btn-secondary show-password-btn disabled">show</button>
-          </div>               
+          </div>
+          <a id="forgot-password" href="#">Forgot E-Mail or Password?</a>              
         </div>
 
         <button class="login-submit btn" type="submit">Login</button>

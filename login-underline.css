@@ -215,11 +215,49 @@ input:active {
   white-space: pre;
 }
 
+
+
+/* Styling for login notification message */
+
 .login-validity-notification-underline {
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
+  background-color: var(--red);
+  color: var(--white-hsl);
+  display: none;
+  align-items: center;
+  font-size: 0.875rem;
+  border-radius: 5px;
 }
+
+.login-validity-notification-underline i {
+  background-color: inherit;
+  margin: 1rem;
+  font-size: 2rem;
+  color: inherit;
+}
+
+.login-validity-notification-underline p {
+  background-color: inherit;
+  color: inherit;
+  max-width: 220px;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+
+/* Styling for password forgot */
+
+#forgot-password-underline {
+    font-size: 0.68rem;
+    color: var(--dark-blue-hsl);
+}
+
+#forgot-password-underline:hover {
+    font-size: 0.68rem;
+    color: var(--dark-blue-hover-hsl);
+}
+
+
+
 
 .info {
   max-width: 25rem;

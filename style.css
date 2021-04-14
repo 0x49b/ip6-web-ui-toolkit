@@ -21,7 +21,6 @@
     --dark-blue-opac-hsl:  hsla(223, 79%,  45%, 0.1);
     --dark-blue-hover-hsl: hsl(233, 79%,  56%);
     --dark-green-hsl:      hsl(104, 89%,  28%);
-    --light-green-hsl:     hsl(117, 85%,  76%);
     --red-hsl:             hsl(0,   79%,  63%);
 }
 
@@ -200,11 +199,50 @@ input:active {
     white-space: pre;
 }
 
+
+
+/* Styling for login notification message */
+
 .login-validity-notification {
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 600;
+    background-color: var(--red);
+    color: var(--white-hsl);
+    display: none;
+    align-items: center;
+    font-size: 0.875rem;
+    border-radius: 5px;
 }
+
+.login-validity-notification i {
+    background-color: inherit;
+    margin: 1rem;
+    font-size: 2rem;
+    color: inherit;
+}
+
+.login-validity-notification p {
+    background-color: inherit;
+    color: inherit;
+    max-width: 220px;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+
+
+/* Styling for password forgot */
+
+#forgot-password {
+    font-size: 0.68rem;
+    color: var(--dark-blue-hsl);
+}
+
+#forgot-password:hover {
+    font-size: 0.68rem;
+    color: var(--dark-blue-hover-hsl);
+}
+
+
+
 
 .info {
     max-width: 25rem;
@@ -222,66 +260,66 @@ input:active {
 
 /* Styling toggle switch */
 .theme-switch-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    margin-top: 1rem;
-  }
-  
-  .theme-switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
-  }
-  
-  .theme-switch input {
-    display:none;
-  }
-  
-  .slider {
-    background-color: var(--dark-blue-hsl);
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    background-color: var(--gray6-hsl);
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
-  }
-  
-  input:checked + .slider {
-    background-color: var(--dark-blue-hsl);
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-  
-  em {
-    font-size: 12px;
-    padding-left: 4px;
-    text-decoration: none;
-    color: var(--gray1-hsl);
-    font-family: "Poppins Regular", fallback, sans-serif;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: var(--dark-blue-hsl);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: var(--gray6-hsl);
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: var(--dark-blue-hsl);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+em {
+  font-size: 12px;
+  padding-left: 4px;
+  text-decoration: none;
+  color: var(--gray1-hsl);
+  font-family: "Poppins Regular", fallback, sans-serif;
+}
