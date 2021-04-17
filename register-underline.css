@@ -1,0 +1,313 @@
+:root {
+
+  /* Colors in HEX */
+  --gray1: #333333;
+  --gray4: #BDBDBD;
+  --gray6: #F2F2F2;
+  --white: #fcfcfc;
+  --dark-blue: #184BCE;
+  --dark-blue-hover: #3768E8;
+  --dark-green: #298808;
+  --light-green: #91F58C;
+  --red: #EB5757;
+
+  /* Colors in hsl */
+  --gray1-hsl:           hsl(0,   0%,   20%);
+  --gray4-hsl:           hsl(0,   0%,   74%);
+  --gray5-hsl:           hsl(0, 0%, 88%);
+  --gray6-hsl:           hsl(0,   0%,   95%);
+  --white-hsl:           hsl(0,   0%,   99%);
+  --dark-blue-hsl:       hsl(223, 79%,  45%);
+  --dark-blue-opac-hsl:  hsla(223, 79%,  45%, 0.1);
+  --dark-blue-hover-hsl: hsl(233, 79%,  56%);
+  --dark-green-hsl:      hsl(104, 89%,  28%);
+  --light-green-hsl:     hsl(117, 85%,  76%);
+  --red-hsl:             hsl(0,   79%,  63%);
+  --orange-hsl:          hsl(36,100%,48%,1);
+}
+
+[data-theme="dark"] {
+  --gray1-hsl:           hsl(0,   0%,   95%);
+  --gray4-hsl:           hsl(0,   0%,   51%);
+  --gray5-hsl:           hsl(0, 0%, 31%);
+  --gray6-hsl:           hsl(0,   0%,   20%);
+  --white-hsl:           hsl(0,   0%,   20%);
+  --dark-blue-hsl:       hsl(187, 100%, 76%); 
+  --dark-blue-opac-hsl:  hsla(187, 100%, 76%, 0.1);
+  --dark-blue-hover-hsl: hsl(187, 79%,  86%);
+  --dark-green-hsl:      hsl(117, 85%,  76%);
+  --red-hsl:             hsl(0,   79%,  63%);
+  --orange-hsl:          hsl(36,85%,62%,1);
+}
+
+*, html {
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: var(--gray1-hsl);
+  background-color: var(--white-hsl);
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.registers-container {
+  display: flex;
+  justify-content: center;
+}
+
+.register-underline {
+  margin: 3rem;
+  max-width: 25rem;
+  background: var(--white-hsl);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  border-radius: 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.36) 5px 3px 6px, 
+              rgba(0, 0, 0, 0.43) 0px 3px 6px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+  border-color: transparent;
+  outline: none;
+}
+
+.input{
+  border-style: hidden;
+  margin-top: 0.75rem;
+}
+
+#email-underline {
+  width: 100%;
+}
+
+.register-form-underline {
+  width: 100%;
+}
+
+.register-form-underline input{
+  border-radius: 5px;
+  padding: 10px 5px;
+  border: 1px solid var(--gray1-hsl);
+  margin-top: 5px;
+  filter: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.register-form-underline .input-underline {
+  border: none;
+}
+
+.underline {
+  background: var(--gray1-hsl);
+  height: 1px;
+  width: 100%;
+}
+
+.register-form-underline .input-underline:hover + .underline {
+  background: var(--gray4-hsl);
+}
+
+.register-form-underline .input-underline:not(:placeholder-shown) + .underline{
+  background: var(--dark-blue-hsl);
+}
+
+
+
+.register-form-underline .input-underline:focus + .underline,
+.register-form-underline .input-underline:active + .underline {
+  background: var(--dark-blue-hsl);
+  filter: drop-shadow(0px 0px 3px var(--dark-blue-hsl));
+}
+
+.register-form-underline .validate-underline:not(:focus):invalid:not(:placeholder-shown) + .underline {
+  background: var(--red);
+  filter: drop-shadow(0px 0px 3px var(--red));
+}
+
+.register-form-underline .validate-underline:not(:focus):not(:invalid):not(:placeholder-shown) + .underline {
+  background: var(--dark-green-hsl);
+  box-sizing: border-box;
+  filter: drop-shadow(0px 0px 3px var(--dark-green-hsl))
+}
+
+.register-form-underline label {
+  font-size: 1.1rem;
+}
+
+.modified-inputfield {
+  flex: 3;
+}
+
+
+
+
+.btn-underline {
+  background-color: var(--dark-blue-hsl);
+  color: var(--gray6-hsl);
+  margin-top: 2rem;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 100%;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-underline:hover:not(.disabled) {
+  background-color: var(--dark-blue-hover-hsl);
+}
+
+.btn-underline:active:not(.disabled) {
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary,
+.btn-secondary:focus {
+  background-color: transparent;
+  border: 1px solid var(--dark-blue-hsl);
+  border-radius: 5px;
+  color: var(--gray1-hsl);
+  height: 40px;
+  font-size: 0.8rem;
+  margin-left: 15px;
+  margin-top: 5px;
+  flex: 1;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-secondary:hover:not(.disabled) {
+  filter: drop-shadow(2px 3px 1px var(--gray5-hsl));
+}
+
+.btn-secondary:active:not(.disabled) {
+  background-color: var(--dark-blue-opac-hsl);
+}
+
+
+
+
+.password-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#password-underline {
+  width: 100%;
+  flex: 3;
+}
+
+#confirm-password-underline {
+  width: 100%;
+  flex: 3;
+}
+
+
+
+
+.disabled {
+  opacity: 0.4;
+}
+
+.password-input {
+  width: 100%;
+  flex: 3;
+}
+
+.notification-underline {
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.notification-underline:empty:before {
+  content: ' ';
+  white-space: pre;
+}
+
+
+/* Strenght Lines */
+.strengthlines-container {
+  margin-bottom: 4px;
+}
+
+.strength-lines{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 2px;
+  left: 0;
+  right: 0 + size(calc(100% - 50px), 6px);
+  margin-top: 2px;
+}
+
+.line-underline {
+  border: none;
+  height: 6px;
+  width: 95%;
+  border-radius: 2px;
+  transition: background-color 0.25s ease-in;
+}
+
+.bg-default {
+  color: var(--gray1-hsl);
+}
+
+.bg-red {
+  color:var(--red);
+}
+
+.bg-orange {
+  color: var(--orange-hsl);
+}
+
+.bg-green {
+  color: var(--dark-green-hsl);
+}
+
+/* Classes for strength lines */
+
+.line-bg-default {
+  background-color: var(--gray4-hsl);
+}
+
+.line-bg-red {
+  background-color:var(--red);
+}
+
+.line-bg-orange {
+  background-color: var(--orange-hsl);
+}
+
+.line-bg-green {
+  background-color: var(--dark-green-hsl);
+}
+
+
+/* Criterias */
+
+.pw-criterias {
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.criteria-icon {
+  margin-right: 2px;
+  font-size: 10px;
+}

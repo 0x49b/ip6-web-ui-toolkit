@@ -2,6 +2,7 @@ const email = 'example@mail.com'
 const pw = 'P4$$word'
 
 const loginForm = document.querySelector('.register-form')
+const registerBtn = document.querySelector('.register-submit')
 const loginNotification = document.querySelector('.login-validity-notification')
 const emailNotification = document.querySelector('.email-validity-notification')
 const emailInput = document.querySelector('#email')
@@ -37,13 +38,14 @@ const specialCharacterPattern = /([-+=_!@#$%^&*.,;:'\"<>/?`~\¦\°\§\´\¨\[\]\
 const characterCountPattern = /^.{6,}/;
 
 
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-  if (!(password.value === pw && emailInput.value === email)) {
-    loginNotification.innerHTML = 'Wrong credentials'
-    loginNotification.style.color = 'rgb(210, 16, 16)'
+const setDisable = (el, disable) => {
+  el.disabled = disable
+  if(disable){
+    el.classList.add('disabled')
+  } else {
+    el.classList.remove('disabled')
   }
-})
+}
 
 emailInput.addEventListener('focusout', () => {
   if (!emailInput.checkValidity()) {
@@ -63,6 +65,14 @@ emailInput.addEventListener('focusin', () => {
   emailInput.style.border = ''
   emailInput.style.filter = ''
   emailNotification.innerHTML = ''
+})
+
+emailInput.addEventListener('keyup', () => {
+  if(emailInput.checkValidity() && passwordInput.classList.contains('valid') && emailInput.value !== email) {
+    setDisable(registerBtn, false)
+  } else {
+    setDisable(registerBtn, true)
+  }
 })
 
 showPasswordButtons.forEach((button) => button.addEventListener('click', (e) => {
@@ -166,13 +176,24 @@ const styleStrengthLine = (counter, value) => {
     }
     if (counter < 5) {
       strengthNotification.innerHTML = `Missing ${5 - counter} more criterias`
+      passwordInput.classList.remove('valid')
+      setDisable(registerBtn, true)
     } else if (counter === 6) {
       strengthNotification.innerHTML = `You're password is now strong enough!`
+      passwordInput.classList.add('valid')
+      if (emailInput.checkValidity()){
+        setDisable(registerBtn, false)
+      } else {
+        setDisable(registerBtn, true)
+      }
     } else {
       strengthNotification.innerHTML = `Add a personal touch for stronger password`
+      passwordInput.classList.remove('valid')
+      setDisable(registerBtn, true)
     }
   } else {
     strengthNotification.innerHTML = 'Hint: Type the strongest password you can'
+    setDisable(registerBtn, true)
   }
 }
 const checkPasswordConfirmation = () => {

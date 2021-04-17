@@ -9,6 +9,7 @@
   <meta name="description" content="Web UI Toolkit">
   <link rel="icon" href="">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="register-underline.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -27,57 +28,128 @@
     <em>Enable Dark Mode!</em>
   </div>
 
-  <div class="register">
-    <h2>Register</h2>
-    <form class="register-form" action="">
+  <div class="registers-container">
+    <div class="register">
+      <h2>Register</h2>
+      <form class="register-form" action="">
 
-      <div class="input email-input">
-        <label for="email">E-Mail</label>
-        <br>
-        <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+"
-          class="validation">
-        <p class="notification email-validity-notification"></p>
-      </div>
-
-      <div class="input password-input">
-        <label for="password">Password</label>
-        <br>
-        <div class="password-field">
-          <input type="password" name="password" id="password" placeholder="P4$$word" class="password-input">
-          <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn">show</button>
+        <div class="input email-input">
+          <label for="email">E-Mail</label>
+          <br>
+          <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+"
+            class="validation">
+          <p class="notification email-validity-notification"></p>
         </div>
-        <div class="strengthlines-container">
-          <div class="strength-lines">
-            <div class="line line-bg-default"></div>
-            <div class="line line-bg-default"></div>
-            <div class="line line-bg-default"></div>
-            <div class="line line-bg-default"></div>
-            <div class="line line-bg-default"></div>
-            <div class="line line-bg-default"></div>
+
+        <div class="input password-input">
+          <label for="password">Password</label>
+          <br>
+          <div class="password-field">
+            <input type="password" name="password" id="password" placeholder="P4$$word" class="password-input">
+            <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn">show</button>
           </div>
-          <p class="strength-notification notification">Hint: Type the strongest password you can</p>
+          <div class="strengthlines-container">
+            <div class="strength-lines">
+              <div class="line line-bg-default"></div>
+              <div class="line line-bg-default"></div>
+              <div class="line line-bg-default"></div>
+              <div class="line line-bg-default"></div>
+              <div class="line line-bg-default"></div>
+              <div class="line line-bg-default"></div>
+            </div>
+            <p class="strength-notification notification">Hint: Type the strongest password you can</p>
+          </div>
+          <div class="pw-criterias">
+            <p class="criteria uppercase"> <i class="criteria-icon fas fa-times-circle"></i>uppercase</p>
+            <p class="criteria lowercase"> <i class="criteria-icon fas fa-times-circle"></i>lowercase</p>
+            <p class="criteria number"> <i class="criteria-icon fas fa-times-circle"></i>number</p>
+            <p class="criteria symbols"> <i class="criteria-icon fas fa-times-circle"></i>symbols</p>
+            <p class="criteria characters"><i class="criteria-icon fas fa-times-circle"></i>6 characters</p>
+          </div>
+          <label for="confirm-password">Confirm Password <span class="optional">(optional)</span></label>
+          <br>
+          <div class="password-field">
+            <input type="password" name="password" id="confirm-password" placeholder="P4$$word" class="password-input">
+            <button id="show-confirm-pw-btn" type="button" class="btn-secondary show-password-btn">show</button>
+          </div>
+          <p id="match-notification" class="notification"></p>
         </div>
-        <div class="pw-criterias">
-          <p class="criteria uppercase"> <i class="criteria-icon fas fa-times-circle"></i>uppercase</p>
-          <p class="criteria lowercase"> <i class="criteria-icon fas fa-times-circle"></i>lowercase</p>
-          <p class="criteria number"> <i class="criteria-icon fas fa-times-circle"></i>number</p>
-          <p class="criteria symbols"> <i class="criteria-icon fas fa-times-circle"></i>symbols</p>
-          <p class="criteria characters"><i class="criteria-icon fas fa-times-circle"></i>6 characters</p>
-        </div>
-        <label for="confirm-password">Confirm Password</label>
-        <br>
-        <div class="password-field">
-          <input type="password" name="password" id="confirm-password" placeholder="P4$$word" class="password-input">
-          <button id="show-confirm-pw-btn" type="button" class="btn-secondary show-password-btn">show</button>
-        </div>
-        <p id="match-notification" class="notification"></p>
-      </div>
 
-      <button class="login-submit btn" type="submit">Register</button>
+        <button class="register-submit btn disabled" type="submit" disabled>Register</button>
 
-    </form>
+      </form>
+    </div>
+
+
+    <!-- Register form with underlined inputfields -->
+
+    <div class="register-underline">
+      <h2>Register</h2>
+      <form class="register-form-underline" action="">
+
+        <div class="input email-input">
+          <label for="email">E-Mail</label>
+          <br>
+          <div class="modified-inputfield">
+            <input class="input-underline validate-underline" type="email" name="email" id="email-underline" placeholder="example@mail.com" pattern=".+@.+\..+">
+            <div id="email-input-underline" class="underline"></div>
+          </div>
+          <p class="notification-underline email-validity-notification-underline"></p>       
+        </div>
+
+        <div class="input password-input">
+          <label for="password">Password</label>
+          <br>
+          <div class="password-field">
+            <div class="modified-inputfield">
+               <input class="input-underline" type="password" name="password" id="password-underline" placeholder="P4$$word" class="password-input">
+               <div class="underline"></div>
+            </div>           
+            <button id="show-pw-btn-underline" type="button" class="btn-secondary show-password-btn-underline">show</button>
+          </div>
+
+          <div class="strengthlines-container">
+            <div class="strength-lines">
+              <div class="line-underline line-bg-default"></div>
+              <div class="li
+              ne-underline line-bg-default"></div>
+              <div class="line-underline line-bg-default"></div>
+              <div class="line-underline line-bg-default"></div>
+              <div class="line-underline line-bg-default"></div>
+              <div class="line-underline line-bg-default"></div>
+            </div>
+            <p class="strength-notification-underline notification">Hint: Type the strongest password you can</p>
+          </div>
+
+          <div class="pw-criterias">
+            <p class="criteria-underline uppercase-underline"> <i class="criteria-icon fas fa-times-circle"></i>uppercase</p>
+            <p class="criteria-underline lowercase-underline"> <i class="criteria-icon fas fa-times-circle"></i>lowercase</p>
+            <p class="criteria-underline number-underline"> <i class="criteria-icon fas fa-times-circle"></i>number</p>
+            <p class="criteria-underline symbols-underline"> <i class="criteria-icon fas fa-times-circle"></i>symbols</p>
+            <p class="criteria-underline characters-underline"><i class="criteria-icon fas fa-times-circle"></i>6 characters</p>
+          </div>
+
+          <label for="confirm-password">Confirm Password <span class="optional">(optional)</span></label>
+          <br>
+          <div class="password-field">
+            <div class="modified-inputfield">
+              <input class="input-underline" type="password" name="password" id="confirm-password-underline" placeholder="P4$$word" class="password-input">
+              <div class="underline"></div>
+            </div>            
+            <button id="show-confirm-pw-btn-underline" type="button" class="btn-secondary show-password-btn-underline">show</button>
+          </div>
+          <p id="match-notification-underline" class="notification"></p>
+        </div>
+
+        <button class="register-submit-underline btn-underline disabled" type="submit" disabled>Register</button>
+      </form>
+    </div>
+
   </div>
+
+
   <script src="./script.js"></script>
+  <script src="./register-underline.js"></script>
   <script src="./darkMode.js"></script>
 </body>
 

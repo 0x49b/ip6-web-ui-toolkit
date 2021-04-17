@@ -55,7 +55,7 @@ h1 {
 }
 
 .register {
-    margin: 3rem auto;
+    margin: 3rem;
     max-width: 25rem;
     background: var(--white-hsl);
     padding: 2rem;
@@ -149,11 +149,11 @@ input:active {
     transition: all 0.1s ease-in-out;
 }
 
-.btn:hover {
+.btn:hover:not(.disabled) {
     background-color: var(--dark-blue-hover-hsl);
 }
 
-.btn:active {
+.btn:active:not(.disabled) {
     box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -193,6 +193,9 @@ input:active {
     flex: 3;
 }
 
+.optional {
+    font-size: 0.8rem;
+}
 
 .disabled {
     opacity: 0.4;
@@ -230,7 +233,7 @@ input:active {
     margin-top: 2px;
 }
 
-.line {
+.line, .line-underline {
     border: none;
     height: 6px;
     width: 95%;
@@ -278,8 +281,13 @@ input:active {
 .pw-criterias {
     font-size: 0.7rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 1rem;
+}
+
+.pw-criterias p:not(:last-child) {
+    margin-right: 7.5px;
 }
 
 .criteria-icon {
