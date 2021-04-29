@@ -65,7 +65,7 @@ emailInput.addEventListener('change', () => {
   }
 })
 
-passwordInput.addEventListener('change', () => {
+passwordInput.addEventListener('keyup', () => {
   if(emailInput.checkValidity() && passwordInput.value !== ''){
     loginBtn.classList.remove('disabled')
     loginBtn.disabled = false
