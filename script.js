@@ -41,6 +41,7 @@ window.kolibri = {
     passwordLabel.htmlFor = 'password'
 
     showPasswordBtn.id = 'show-pw-btn'
+    showPasswordBtn.type = 'button'
     forgotPasswordLink.id = 'forgot-password'
 
     emailInput.placeholder = 'example@mail.com'
