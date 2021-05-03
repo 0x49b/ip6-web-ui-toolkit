@@ -1,32 +1,31 @@
-<div class="logins-container">
-  <div class="login">
-    <h2>Login</h2>
-    <form class="login-form" action="">
+<div class="login">
+  <h2>Login</h2>
+  <form class="login-form" action="">
 
-      <div class="login-validity-notification">
-        <i class="fas"></i>
-        <p class="login-validity-message"></p>
+    <div class="login-validity-notification">
+      <i class="fas"></i>
+      <p class="login-validity-message"></p>
+    </div>
+
+    <div class="input email-input">
+      <label for="email">E-Mail</label>
+      <br>
+      <input type="email" name="email" id="email" class="input-standard validation" placeholder="example@mail.com"
+        pattern=".+@.+\..+" required>
+      <p class="notification email-validity-notification"></p>
+    </div>
+
+    <div class="input password-input">
+      <label for="password">Passwort</label>
+      <br>
+      <div class="password-field">
+        <input class="input-standard" type="password" name="password" id="password" placeholder="P4$$word">
+        <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn disabled">show</button>
       </div>
+      <a id="forgot-password" href="#">Forgot E-Mail or Password?</a>
+    </div>
 
-      <div class="input email-input">
-        <label for="email">E-Mail</label>
-        <br>
-        <input type="email" name="email" id="email" class="input-standard validation" placeholder="example@mail.com"
-          pattern=".+@.+\..+" required>
-        <p class="notification email-validity-notification"></p>
-      </div>
+    <button class="login-submit btn disabled" type="submit" disabled>Login</button>
 
-      <div class="input password-input">
-        <label for="password">Passwort</label>
-        <br>
-        <div class="password-field">
-          <input class="input-standard" type="password" name="password" id="password" placeholder="P4$$word">
-          <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn disabled">show</button>
-        </div>
-        <a id="forgot-password" href="#">Forgot E-Mail or Password?</a>
-      </div>
-
-      <button class="login-submit btn disabled" type="submit" disabled>Login</button>
-
-    </form>
-  </div>
+  </form>
+</div>
