@@ -92,3 +92,25 @@ class Counter2 extends HTMLElement {
 
 window.customElements.define('my-counter', Counter)
 window.customElements.define('my-counter2', Counter2)
+
+class Counter3 extends HTMLElement {
+  constructor() {
+    super()
+
+    this.shadow = this.attachShadow({ mode: 'open' })
+  }
+
+  connectedCallback() {
+    this.render()
+  }
+
+  render() {
+    this.shadow.innerHTML = `
+      <my-counter2 id='counter2' count='23'>
+        <button>OK</button>
+      </my-counter2>
+    `
+  }
+}
+
+window.customElements.define('my-counter3', Counter3)
