@@ -1,43 +1,31 @@
 :root {
 
-    /* Colors in HEX */
-    --gray1: #333333;
-    --gray4: #BDBDBD;
-    --gray6: #F2F2F2;
-    --white: #fcfcfc;
-    --dark-blue: #184BCE;
-    --dark-blue-hover: #3768E8;
-    --dark-green: #298808;
-    --light-green: #91F58C;
-    --red: #EB5757;
-
     /* Colors in hsl */
-    --gray1-hsl:           hsl(0,   0%,   20%);
-    --gray4-hsl:           hsl(0,   0%,   74%);
-    --gray5-hsl:           hsl(0, 0%, 88%);
-    --gray6-hsl:           hsl(0,   0%,   95%);
-    --white-hsl:           hsl(0,   0%,   99%);
-    --dark-blue-hsl:       hsl(223, 79%,  45%);
-    --dark-blue-opac-hsl:  hsla(223, 79%,  45%, 0.1);
-    --dark-blue-hover-hsl: hsl(233, 79%,  56%);
-    --dark-green-hsl:      hsl(104, 89%,  28%);
-    --light-green-hsl:     hsl(117, 85%,  76%);
-    --red-hsl:             hsl(0,   79%,  63%);
-    --orange-hsl:          hsl(36,100%,48%,1);
+    --text:                 hsl(0,   0%,   20%);
+    --input-hover:          hsl(0,   0%,   74%);
+    --shadow-contrast:      hsl(0, 0%, 88%);
+    --text-contrast:        hsl(0,   0%,   95%);
+    --background:           hsl(0,   0%,   99%);
+    --primary:              hsl(223, 79%,  45%);
+    --primary-opac:         hsla(223, 79%,  45%, 0.1);
+    --primary-hover:        hsl(233, 79%,  56%);
+    --success:              hsl(104, 89%,  28%);
+    --error:                hsl(0,   79%,  63%);
+    --warning:              hsl(36,100%,48%,1);
 }
 
 [data-theme="dark"] {
-    --gray1-hsl:           hsl(0,   0%,   95%);
-    --gray4-hsl:           hsl(0,   0%,   51%);
-    --gray5-hsl:           hsl(0, 0%, 31%);
-    --gray6-hsl:           hsl(0,   0%,   20%);
-    --white-hsl:           hsl(0,   0%,   20%);
-    --dark-blue-hsl:       hsl(187, 100%, 76%); 
-    --dark-blue-opac-hsl:  hsla(187, 100%, 76%, 0.1);
-    --dark-blue-hover-hsl: hsl(187, 79%,  86%);
-    --dark-green-hsl:      hsl(117, 85%,  76%);
-    --red-hsl:             hsl(0,   79%,  63%);
-    --orange-hsl:          hsl(36,85%,62%,1);
+    --text:                 hsl(0,   0%,   95%);
+    --input-hover:          hsl(0,   0%,   51%);
+    --shadow-contrast:      hsl(0, 0%, 31%);
+    --text-contrast:        hsl(0,   0%,   20%);
+    --background:           hsl(0,   0%,   20%);
+    --primary:              hsl(187, 100%, 76%); 
+    --primary-opac:         hsla(187, 100%, 76%, 0.1);
+    --primary-hover:        hsl(187, 79%,  86%);
+    --success:              hsl(117, 85%,  76%);
+    --error:                hsl(0,   79%,  63%);
+    --warning:              hsl(36,85%,62%,1);
 }
 
 *, html {
@@ -45,8 +33,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: var(--gray1-hsl);
-    background-color: var(--white-hsl);
+    color: var(--text);
+    background-color: var(--background);
 }
 
 h1 {
@@ -57,7 +45,7 @@ h1 {
 .register {
     margin: 3rem;
     max-width: 25rem;
-    background: var(--white-hsl);
+    background: var(--background);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -97,7 +85,7 @@ input:active {
 .register-form input{
     border-radius: 5px;
     padding: 10px 5px;
-    border: 1px solid var(--gray1-hsl);
+    border: 1px solid var(--text);
     margin-top: 5px;
     filter: none;
     transition: all 0.1s ease-in-out;
@@ -105,30 +93,30 @@ input:active {
 }
 
 .register-form input:hover {
-    border-color: var(--gray4-hsl);
+    border-color: var(--input-hover);
 }
 
 .register-form input:not(:placeholder-shown) {
-    border-color: var(--dark-blue-hsl);
+    border-color: var(--primary);
 }
 
 
 
 .register-form input:focus,
 .register-form input:active {
-    border-color: var(--dark-blue-hsl);
-    filter: drop-shadow(0px 0px 3px var(--dark-blue-hsl));
+    border-color: var(--primary);
+    filter: drop-shadow(0px 0px 3px var(--primary));
 }
 
-.register-form .validation:not(:focus):invalid:not(:placeholder-shown) {
+.register-form .validation:not(:focus).invalid:not(:placeholder-shown) {
     border: 1px solid var(--red);
     filter: drop-shadow(2px 2px 3px rgba(235, 87, 87, 0.53));
 }
 
-.register-form .validation:not(:focus):not(:invalid):not(:placeholder-shown) {
-    border: 1px solid var(--dark-green-hsl);
+.register-form .validation:not(:focus):not(.invalid):not(:placeholder-shown) {
+    border: 1px solid var(--success);
     box-sizing: border-box;
-    filter: drop-shadow(0px 0px 3px var(--dark-green-hsl))
+    filter: drop-shadow(0px 0px 3px var(--success))
 }
 
 .register-form label {
@@ -139,8 +127,8 @@ input:active {
 
 
 .btn {
-    background-color: var(--dark-blue-hsl);
-    color: var(--gray6-hsl);
+    background-color: var(--primary);
+    color: var(--text-contrast);
     margin-top: 2rem;
     border: none;
     border-radius: 5px;
@@ -150,7 +138,7 @@ input:active {
 }
 
 .btn:hover:not(.disabled) {
-    background-color: var(--dark-blue-hover-hsl);
+    background-color: var(--primary-hover);
 }
 
 .btn:active:not(.disabled) {
@@ -160,9 +148,9 @@ input:active {
 .btn-secondary,
 .btn-secondary:focus {
     background-color: transparent;
-    border: 1px solid var(--dark-blue-hsl);
+    border: 1px solid var(--primary);
     border-radius: 5px;
-    color: var(--gray1-hsl);
+    color: var(--text);
     height: 40px;
     font-size: 0.8rem;
     margin-left: 15px;
@@ -172,11 +160,11 @@ input:active {
 }
 
 .btn-secondary:hover:not(.disabled) {
-    filter: drop-shadow(2px 3px 1px var(--gray5-hsl));
+    filter: drop-shadow(2px 3px 1px var(--shadow-contrast));
 }
 
 .btn-secondary:active:not(.disabled) {
-    background-color: var(--dark-blue-opac-hsl);
+    background-color: var(--primary-opac);
 }
 
 
@@ -207,6 +195,7 @@ input:active {
 }
 
 .notification {
+    color: var(--red);
     font-size: 0.8rem;
     margin-top: 2px;
 }
@@ -214,6 +203,10 @@ input:active {
 .notification:empty:before {
     content: ' ';
     white-space: pre;
+}
+
+.strength-notification {
+    color: var(--text);
 }
 
 
@@ -242,7 +235,7 @@ input:active {
 }
 
 .bg-default {
-    color: var(--gray1-hsl);
+    color: var(--text);
 }
 	
 .bg-red {
@@ -250,17 +243,17 @@ input:active {
 }
 	
 .bg-orange {
-    color: var(--orange-hsl);
+    color: var(--warning);
 }
 	
 .bg-green {
-    color: var(--dark-green-hsl);
+    color: var(--success);
 }
 
 /* Classes for strength lines */
 
 .line-bg-default {
-    background-color: var(--gray4-hsl);
+    background-color: var(--input-hover);
 }
 	
 .line-bg-red {
@@ -268,11 +261,11 @@ input:active {
 }
 	
 .line-bg-orange {
-    background-color: var(--orange-hsl);
+    background-color: var(--warning);
 }
 	
 .line-bg-green {
-    background-color: var(--dark-green-hsl);
+    background-color: var(--successhsl);
 }
 
 
@@ -319,7 +312,7 @@ input:active {
   }
   
   .slider {
-    background-color: var(--dark-blue-hsl);
+    background-color: var(--primary);
     bottom: 0;
     cursor: pointer;
     left: 0;
@@ -330,7 +323,7 @@ input:active {
   }
   
   .slider:before {
-    background-color: var(--gray6-hsl);
+    background-color: var(--text-contrast);
     bottom: 4px;
     content: "";
     height: 26px;
@@ -341,7 +334,7 @@ input:active {
   }
   
   input:checked + .slider {
-    background-color: var(--dark-blue-hsl);
+    background-color: var(--primary);
   }
   
   input:checked + .slider:before {
@@ -360,6 +353,6 @@ input:active {
     font-size: 12px;
     padding-left: 4px;
     text-decoration: none;
-    color: var(--gray1-hsl);
+    color: var(--text);
     font-family: "Poppins Regular", fallback, sans-serif;
   }

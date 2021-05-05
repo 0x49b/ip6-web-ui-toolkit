@@ -37,7 +37,7 @@
           <label for="email">E-Mail</label>
           <br>
           <input type="email" name="email" id="email" placeholder="example@mail.com" pattern=".+@.+\..+"
-            class="validation">
+            class="validation" required>
           <p class="notification email-validity-notification"></p>
         </div>
 
@@ -45,7 +45,7 @@
           <label for="password">Password</label>
           <br>
           <div class="password-field">
-            <input type="password" name="password" id="password" placeholder="P4$$word" class="password-input">
+            <input type="password" name="password" id="password" placeholder="P4$$word" class="password-input" required>
             <button id="show-pw-btn" type="button" class="btn-secondary show-password-btn">show</button>
           </div>
           <div class="strengthlines-container">
@@ -91,7 +91,7 @@
           <label for="email">E-Mail</label>
           <br>
           <div class="modified-inputfield">
-            <input class="input-underline validate-underline" type="email" name="email" id="email-underline" placeholder="example@mail.com" pattern=".+@.+\..+">
+            <input class="input-underline validate-underline" type="email" name="email" id="email-underline" placeholder="example@mail.com" pattern=".+@.+\..+" required>
             <div id="email-input-underline" class="underline"></div>
           </div>
           <p class="notification-underline email-validity-notification-underline"></p>       
@@ -102,7 +102,7 @@
           <br>
           <div class="password-field">
             <div class="modified-inputfield">
-               <input class="input-underline" type="password" name="password" id="password-underline" placeholder="P4$$word" class="password-input">
+               <input class="input-underline" type="password" name="password" id="password-underline" placeholder="P4$$word" class="password-input" required>
                <div class="underline"></div>
             </div>           
             <button id="show-pw-btn-underline" type="button" class="btn-secondary show-password-btn-underline">show</button>
