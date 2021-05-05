@@ -2,8 +2,8 @@
 //! Login
 
 // Used as an example for a successful login
-const email = 'example@mail.com'
-const pw    = 'P4$$word'
+const email2 = 'example@mail.com'
+const pw2   = 'P4$$word'
 
 const loginForm2             = document.querySelector('.login-form-underline')
 const loginBtn2              = document.querySelector('.login-submit-underline')

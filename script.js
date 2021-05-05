@@ -18,8 +18,8 @@ const passwordInput           = document.querySelector('#password')
 const showPwBtn               = document.querySelector('#show-pw-btn')
 
 // Set disable state to a button
-const disableButton = (btn, toggle) => {
-  if(toggle) {
+const disableButton = (btn, setDisable) => {
+  if(setDisable) {
     btn.classList.add('disabled')
     btn.disabled = true
   } else {
@@ -43,6 +43,9 @@ const showLoginNotification = (message, isSuccessful) => {
   notificationContainer.style.backgroundColor = isSuccessful 
     ? 'var(--success)' : 'var(--error)'
   notificationContainer.style.color = 'var(--background)'
+  notificationIcon.classList.remove(
+    isSuccessful ? 'fa-exclamation-circle' : 'fa-check-circle'
+  )
   notificationIcon.classList.add(
     isSuccessful ? 'fa-check-circle': 'fa-exclamation-circle'
   )
