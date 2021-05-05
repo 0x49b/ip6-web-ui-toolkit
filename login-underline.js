@@ -1,18 +1,19 @@
 
 //! Login
 
-const email2 = "example@mail.com";
-const pw2 = 'P4$$word'
+// Used as an example for a successful login
+const email = 'example@mail.com'
+const pw    = 'P4$$word'
 
-const loginForm2 = document.querySelector('.login-form-underline')
-const loginBtn2 = document.querySelector('.login-submit-underline')
+const loginForm2             = document.querySelector('.login-form-underline')
+const loginBtn2              = document.querySelector('.login-submit-underline')
 const notificationContainer2 = document.querySelector('.login-validity-notification-underline')
-const notificationMessage2 = document.querySelector('.login-validity-notification-underline p')
-const notificationIcon2 = document.querySelector('.login-validity-notification-underline i')
-const emailNotification2 = document.querySelector('.email-validity-notification-underline')
-const emailInput2 = document.querySelector('#email-underline')
-const passwordInput2 = document.querySelector('#password-underline')
-const showPwBtn2 = document.querySelector('#show-pw-btn-underline')
+const notificationMessage2   = document.querySelector('.login-validity-notification-underline p')
+const notificationIcon2      = document.querySelector('.login-validity-notification-underline i')
+const emailNotification2     = document.querySelector('.email-validity-notification-underline')
+const emailInput2            = document.querySelector('#email-underline')
+const passwordInput2         = document.querySelector('#password-underline')
+const showPwBtn2             = document.querySelector('#show-pw-btn-underline')
 
 
 loginForm2.addEventListener('submit', (e) => {
