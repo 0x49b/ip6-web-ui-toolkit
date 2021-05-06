@@ -4,7 +4,7 @@ window.kolibri = {
   login: (container) => {
 
     const head = document.querySelector('head')
-    const style = document.querySelector('style')
+    const style = document.createElement('style')
     style.innerHTML = `
     :root {
 
