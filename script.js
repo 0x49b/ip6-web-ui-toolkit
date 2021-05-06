@@ -370,95 +370,10 @@ window.kolibri = {
       </form>
     `
 
-    // // Build the login inside the container
-    // const loginTitle = document.createElement('h2')
-    // const loginForm = document.createElement('form')
-    // const loginNotification = document.createElement('div')
-    // const logingNotificationIcon = document.createElement('i')
-    // const loginNotificationMessage = document.createElement('p')
-    // const emailContainer = document.createElement('div')
-    // const emailLabel = document.createElement('label')
-    // const br = document.createElement('br')
-    // const emailInput = document.createElement('input')
-    // const emailNotification = document.createElement('p')
-    // const passwordContainer = document.createElement('div')
-    // const passwordLabel = document.createElement('label')
-    // const passwordField = document.createElement('div')
-    // const passwordInput = document.createElement('input')
-    // const showPasswordBtn = document.createElement('button')
-    // const forgotPasswordLink = document.createElement('a')
-    // const loginBtn = document.createElement('button')
-
-    // loginForm.classList.add('login-form')
-    // loginNotification.classList.add('login-validity-notification')
-    // logingNotificationIcon.classList.add('fas')
-    // loginNotificationMessage.classList.add('login-validity-message')
-    // emailContainer.classList.add('input', 'email-input')
-    // emailLabel.classList.add('email')
-    // emailInput.classList.add('input-standard', 'validation')
-    // emailNotification.classList.add('notification', 'email-validity-notification')
-    // passwordContainer.classList.add('input', 'password-input')
-    // passwordLabel.classList.add('password')
-    // passwordField.classList.add('password-field')
-    // passwordInput.classList.add('input-standard')
-    // showPasswordBtn.classList.add('btn-secondary', 'show-password-btn', 'disabled')
-    // forgotPasswordLink.classList.add('forgot-password')
-    // loginBtn.classList.add('login-submit', 'btn', 'disabled')
-
-    // emailLabel.htmlFor = 'email'
-    // passwordLabel.htmlFor = 'password'
-
-    // showPasswordBtn.id = 'show-pw-btn'
-    // showPasswordBtn.type = 'button'
-    // forgotPasswordLink.id = 'forgot-password'
-
-    // emailInput.placeholder = 'example@mail.com'
-    // emailInput.type = 'email'
-    // emailInput.id = 'email'
-    // emailInput.pattern = '.+@.+\..+'
-    // emailInput.required = true
-
-    // passwordInput.placeholder = 'P4$$word'
-    // passwordInput.id = 'password'
-    // passwordInput.type = 'password'
-    // passwordInput.name = 'password'
-    // passwordInput.required = true
-
-    // loginBtn.type = 'submit'
-    // loginBtn.disabled = true
-
-    // loginTitle.innerHTML = 'Login'
-    // emailLabel.innerHTML = 'E-Mail'
-    // passwordLabel.innerHTML = 'Password'
-    // showPasswordBtn.innerHTML = 'show'
-    // forgotPasswordLink.innerHTML = 'Forgot E-Mail or Password?'
-    // loginBtn.innerHTML = 'Login'
-
-    // container.appendChild(loginTitle)
-    // container.appendChild(loginForm)
-    // loginForm.appendChild(loginNotification)
-    // loginForm.appendChild(emailContainer)
-    // loginForm.appendChild(passwordContainer)
-    // loginForm.appendChild(loginBtn)
-    // loginNotification.appendChild(logingNotificationIcon)
-    // loginNotification.appendChild(loginNotificationMessage)
-    // emailContainer.appendChild(emailLabel)
-    // emailContainer.appendChild(br)
-    // emailContainer.appendChild(emailInput)
-    // emailContainer.appendChild(emailNotification)
-    // passwordContainer.appendChild(passwordLabel)
-    // passwordContainer.appendChild(br)
-    // passwordContainer.appendChild(passwordField)
-    // passwordContainer.appendChild(forgotPasswordLink)
-    // passwordField.appendChild(passwordInput)
-    // passwordField.appendChild(showPasswordBtn)
-
     afterRender()
   }
 }
 
-
-//! Login
 
 
 
