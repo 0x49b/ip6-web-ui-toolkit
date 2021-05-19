@@ -1,5 +1,7 @@
+import kolibri from './script.js'
+
 const loginContainer = document.querySelector('.login')
 
-console.log(window)
+console.log(kolibri)
 
 kolibri.login(loginContainer)

@@ -1,5 +1,5 @@
 
-window.kolibri = {
+const kolibri = {
   login: (container) => {
 
     const head = document.querySelector('head')
@@ -1181,3 +1181,5 @@ const setupRegisterJS = () => {
   }
 
 }
+
+export default kolibri

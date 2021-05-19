@@ -461,5 +461,3 @@ const setupLoginJS = () => {
     }
   })
 }
-
-console.log(window.kolibri)
