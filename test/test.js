@@ -22,6 +22,13 @@ const Assert = () => {
       }
       results.push(testResult)
     },
+    isNot: (actual, expected) => {
+      const testResult = actual !== expected
+      if(!testResult) {
+        console.error(`test failure. Got '${actual}', expected '${expected}'`)
+      }
+      results.push(testResult)
+    }
   }
 }
 
