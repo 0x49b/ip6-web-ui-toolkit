@@ -1,70 +1,71 @@
 import { Suite } from '../../test/test.js'
 import kolibri from '../../script.js'
+import { fireEvent } from '../../test/testUtils/events.js'
 
+// Setting up Suite
 const LoginSuite = Suite('LoginSuite')
 
+// Setting up Login context
+const loginContext = document.querySelector('.login')
+kolibri.login(loginContext)
+
+
+// declaring html elements
+const loginTitle                = loginContext.querySelector('h2')
+const emailInputField           = loginContext.querySelector('#email')
+const passwordInputField        = loginContext.querySelector('#password')
+const loginBtn                  = loginContext.querySelector('.login-submit')
+const showBtn                   = loginContext.querySelector('#show-pw-btn')
+const loginNotification         = loginContext.querySelector('.login-validity-notification')
+const emailValidityNotification = loginContext.querySelector('.email-validity-notification')
+
+const message                   = loginNotification.querySelector('p')
+
+
+
+
+// Tests
 LoginSuite.add("Login dialog has title equal Login", assert => {
-
-  const loginContainer = document.querySelector('.login')
-
-  kolibri.login(loginContainer)
-
-  const loginTitle = document.querySelector('h2')
-
   assert.is(loginTitle.innerHTML, "Login")
 })
 
+
 LoginSuite.add("email input field does not validate incorrect mail", assert => {
-  const emailInputField = document.getElementById('email')
   emailInputField.value = 'examplemail.com'
 
-  const changeEvent = new Event('change')
-  const focusOutEvent = new Event('focusout')
-
-  emailInputField.dispatchEvent(changeEvent)
-  emailInputField.dispatchEvent(focusOutEvent)
-
-  const emailValidityNotification = document.querySelector('.email-validity-notification')
+  fireEvent(emailInputField, 'change')
+  fireEvent(emailInputField, 'focusout')  
 
   assert.is(emailValidityNotification.innerHTML, "Malformed Email")
   assert.true(!emailInputField.checkValidity())
 })
 
+
+
 LoginSuite.add("email input field validates correct mail", assert => {
-  const emailInputField = document.getElementById('email')
   emailInputField.value = 'example@mail.com'
 
-  const changeEvent = new Event('change')
-
-  emailInputField.dispatchEvent(changeEvent)
+  fireEvent(emailInputField, 'change')
 
   assert.true(emailInputField.checkValidity())
 })
 
-LoginSuite.add("login button enables when email and pw field are valid", assert => {
-  const emailInputField = document.getElementById('email')
-  emailInputField.value = 'example@mail.com'
 
-  const passwordInputField = document.getElementById('password')
+
+LoginSuite.add("login button enables when email and pw field are valid", assert => {
+  emailInputField.value = 'example@mail.com'
   passwordInputField.value = 'somePassword'
 
-  const changeEvent = new Event('change')
-  const focusOutEvent = new Event('focusout')
-
-  emailInputField.dispatchEvent(changeEvent)
-  passwordInputField.dispatchEvent(changeEvent)
-  emailInputField.dispatchEvent(focusOutEvent)
-
-  const loginBtn = document.querySelector('.login-submit')
+  fireEvent(emailInputField, 'change')
+  fireEvent(passwordInputField, 'keyup')
+  fireEvent(emailInputField, 'focusout')
 
   assert.true(!loginBtn.disabled)
 })
 
+
+
 LoginSuite.add("after first failed login attempt, show button gets enabled", assert => {
-  const loginBtn = document.querySelector('.login-submit')
-
-  const showBtn = document.getElementById('show-pw-btn')
-
   assert.true(showBtn.classList.contains('disabled'))
 
   loginBtn.click()
@@ -72,44 +73,37 @@ LoginSuite.add("after first failed login attempt, show button gets enabled", ass
   assert.true(!showBtn.classList.contains('disabled'))
 })
 
-LoginSuite.add("after first failed login attempt, login button gets disabled", assert => {
-  const loginBtn = document.querySelector('.login-submit')
 
+
+LoginSuite.add("after first failed login attempt, login button gets disabled", assert => {
   assert.true(loginBtn.disabled)
 })
 
+
+
 LoginSuite.add("after first failed login attempt, user gets notified", assert => {
-  const loginNotification = document.querySelector('.login-validity-notification')
   assert.isNot(loginNotification.style.display, 'none')
 
-  const message = loginNotification.querySelector('p')
   assert.is(message.innerHTML, "Sorry, we couldn't match your request. Your E-Mail or Password must be wrong.")
 })
 
+
+
 LoginSuite.add("after successful login, user gets notified", assert => {
-  const emailInputField = document.getElementById('email')
   emailInputField.value = 'example@mail.com'
 
-  const passwordInputField = document.getElementById('password')
   passwordInputField.value = 'P4$$word'
 
-  const changeEvent = new Event('change')
-  const focusOutEvent = new Event('focusout')
-
-  emailInputField.dispatchEvent(changeEvent)
-  passwordInputField.dispatchEvent(changeEvent)
-  emailInputField.dispatchEvent(focusOutEvent)
-
-  const loginBtn = document.querySelector('.login-submit')
+  fireEvent(emailInputField, 'change')
+  fireEvent(passwordInputField, 'keyup')
+  fireEvent(emailInputField, 'focusout')
 
   loginBtn.click()
 
-  const loginNotification = document.querySelector('.login-validity-notification')
   assert.isNot(loginNotification.style.display, 'none')
-
-  const message = loginNotification.querySelector('p')
   assert.is(message.innerHTML, 'Login successful!')
 })
+
 
 
 LoginSuite.run()

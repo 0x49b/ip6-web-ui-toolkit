@@ -43,7 +43,7 @@ const test = (name, callback) => {
 const Suite = (suiteName) => {
   const tests = []
   const suite = {
-    test: (testName, callback) => test(`${suiteName}-${testName}`, callback),
+    test: (testName, callback) => test(`${suiteName} - '${testName}'`, callback),
     add: (testName, callback) => tests.push(Test(testName)(callback)),
     run: () => {
       const suiteAssert = Assert()
@@ -66,10 +66,10 @@ const report = (origin, ok) => {
     return
   }
   let reportLine = `Failing tests in ${padRight(origin, extend)}`
-  write(`| ${reportLine}`)
+  write(`   !  ${reportLine}`)
   for(let i = 0; i < ok.length; i++){
     if(!ok[i]){
-      write(`| Test #${padLeft(i+1, 3)} failed`)
+      write(`   !  Test #${padLeft(i+1, 3)} failed`)
     }
   }
 }

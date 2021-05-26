@@ -7,207 +7,197 @@ const kolibri = {
     style.innerHTML = `
     :root {
 
-      /* Colors in HEX */
-      --gray1: #333333;
-      --gray4: #BDBDBD;
-      --gray6: #F2F2F2;
-      --white: #fcfcfc;
-      --dark-blue: #184BCE;
-      --dark-blue-hover: #3768E8;
-      --dark-green: #298808;
-      --light-green: #91F58C;
-      --red: #EB5757;
-    
-      /* Colors in hsl */
-      --gray1-hsl:           hsl(0,   0%,   20%);
-      --gray4-hsl:           hsl(0,   0%,   74%);
-      --gray5-hsl:           hsl(0, 0%, 88%);
-      --gray6-hsl:           hsl(0,   0%,   95%);
-      --white-hsl:           hsl(0,   0%,   99%);
-      --dark-blue-hsl:       hsl(223, 79%,  45%);
-      --dark-blue-opac-hsl:  hsla(223, 79%,  45%, 0.1);
-      --dark-blue-hover-hsl: hsl(233, 79%,  56%);
-      --dark-green-hsl:      hsl(104, 89%,  28%);
-      --red-hsl:             hsl(0,   79%,  63%);
+        /* Colors in hsl */
+        --text:                 hsl(0,   0%,   20%);
+        --shadow:               hsl(0, 0%, 30%);
+        --input-hover:          hsl(0, 0%, 74%);
+        --shadow-contrast:      hsl(0, 0%, 88%); 
+        --text-contrast:        hsl(0,   0%,   95%); 
+        --background:           hsl(0,   0%,   99%);
+        --primary:              hsl(223, 79%,  45%);
+        --primary-opac:         hsla(223, 79%,  45%, 0.1);
+        --primary-hover:        hsl(233, 79%,  56%); 
+        --success:              hsl(104, 89%,  28%); 
+        --error:                hsl(0,   79%,  63%); 
     }
     
     [data-theme="dark"] {
-      --gray1-hsl:           hsl(0,   0%,   95%);
-      --gray4-hsl:           hsl(0,   0%,   51%);
-      --gray5-hsl:           hsl(0, 0%, 31%);
-      --gray6-hsl:           hsl(0,   0%,   20%);
-      --white-hsl:           hsl(0,   0%,   20%);
-      --dark-blue-hsl:       hsl(187, 100%, 76%); 
-      --dark-blue-opac-hsl:  hsla(187, 100%, 76%, 0.1);
-      --dark-blue-hover-hsl: hsl(187, 79%,  86%);
-      --dark-green-hsl:      hsl(117, 85%,  76%);
-      --red-hsl:             hsl(0,   79%,  63%);
+        --text:                 hsl(0,   0%,   95%);
+        --gray4-hsl:            hsl(0,   0%,   51%);
+        --shadow-contrast:      hsl(0, 0%, 31%);
+        --text-contrast:        hsl(0,   0%,   20%);
+        --background:           hsl(0,   0%,   20%);
+        --primary:              hsl(187, 100%, 76%); 
+        --primary-opac:         hsla(187, 100%, 76%, 0.1);
+        --primary-hover:        hsl(187, 79%,  86%);
+        --success:              hsl(117, 85%,  76%);
+        --error:                hsl(0,   79%,  63%);
     }
     
     *, html {
-      font-family: 'Roboto', sans-serif;
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      color: var(--gray1-hsl);
-      background-color: var(--white-hsl);
+        font-family: 'Roboto', sans-serif;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        color: var(--text);
+        background-color: var(--background);
     }
     
     h1 {
-      font-size: 1.5rem;
-      font-weight: 800;
+        font-size: 1.5rem;
+        font-weight: 800;
     }
     
     .logins-container {
-      display: flex;
-      justify-content: center;
+        display: flex;
+        justify-content: center;
     }
     
     .login {
-      margin: 3rem;
-      min-width: 23rem;
-      max-width: 25rem;
-      background: var(--white-hsl);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center; 
-      border-radius: 0.75rem;
-      box-shadow: rgba(0, 0, 0, 0.36) 5px 3px 6px, 
-                  rgba(0, 0, 0, 0.43) 0px 3px 6px;
+        margin: 3rem;
+        min-width: 23rem;
+        max-width: 25rem;
+        background: var(--background);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        border-radius: 0.75rem;
+        box-shadow: rgba(0, 0, 0, 0.36) 5px 3px 6px, 
+                    rgba(0, 0, 0, 0.43) 0px 3px 6px;
     }
     
     h2 {
-      font-size: 1.5rem;
-      padding-bottom: 0.5rem;
+        font-size: 1.5rem;
+        padding-bottom: 0.5rem;
     }
     
     button:focus,
     button:active,
     input:focus,
     input:active {
-      border-color: transparent;
-      outline: none;
+        border-color: transparent;
+        outline: none;
     }
     
     .input{
-      border-style: hidden;
-      margin-top: 0.75rem;
+        border-style: hidden;
+        margin-top: 0.75rem;
     }
     
     #email {
-      width: 100%;
+        width: 100%;
     }
     
     .login-form {
-      width: 100%;
+        width: 100%;
     }
     
     .login-form input {
-      border-radius: 5px;
-      padding: 10px 5px;
-      border: 1px solid var(--gray1-hsl);
-      margin-top: 5px;
-      filter: none;
-      transition: all 0.1s ease-in-out;
+        border-radius: 5px;
+        padding: 10px 5px;
+        border: 1px solid var(--text);
+        margin-top: 5px;
+        filter: none;
+        transition: all 0.1s ease-in-out;
     }
     
     /* Styling for standard input elements with border */
     
     .login-form .input-standard:hover {
-      border-color: var(--gray4);
+        border-color: var(--input-hover);
     }
     
     .login-form .input-standard:not(:placeholder-shown) {
-      border-color: var(--dark-blue-hsl);
+        border-color: var(--primary);
     }
     
     .login-form .input-standard:focus,
     .login-form .input-standard:active {
-      border-color: var(--dark-blue-hsl);
-      filter: drop-shadow(0px 0px 3px var(--dark-blue-hsl));
+        border-color: var(--primary);
+        filter: drop-shadow(0px 0px 3px var(--primary));
     }
     
     .login-form .validation:not(:focus):invalid:not(:placeholder-shown) {
-      border: 1px solid var(--red);
-      filter: drop-shadow(0px 0px 3px var(--red));
+        border: 1px solid var(--error);
+        filter: drop-shadow(0px 0px 3px var(--error));
     }
     
     .login-form .validation:not(:focus):not(:invalid):not(:placeholder-shown) {
-      border: 1px solid var(--dark-green-hsl);
-      box-sizing: border-box;
-      filter: drop-shadow(0px 0px 3px var(--dark-green-hsl))
+        border: 1px solid var(--success);
+        box-sizing: border-box;
+        filter: drop-shadow(0px 0px 3px var(--success))
     }
     
     .login-form label {
-      font-size: 1.1rem;
+        font-size: 1.1rem;
     }
     
     .btn {
-      background-color: var(--dark-blue-hsl);
-      color: var(--gray6-hsl);
-      margin-top: 2rem;
-      border: none;
-      border-radius: 5px;
-      height: 40px;
-      width: 100%;
-      transition: all 0.1s ease-in-out;
+        background-color: var(--primary);
+        color: var(--text-contrast);
+        margin-top: 2rem;
+        border: none;
+        border-radius: 5px;
+        height: 40px;
+        width: 100%;
+        transition: all 0.1s ease-in-out;
     }
     
     .btn:hover:not(.disabled) {
-      background-color: var(--dark-blue-hover-hsl);
+        background-color: var(--primary-hover);
     }
     
     .btn:active:not(.disabled) {
-      box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0px 4px 8px var(--color-shadow);
     }
     
     .btn:focus {
-      border: 3px solid var(--gray1-hsl);
+        border: 3px solid var(--text);
     }
     
     .password-field {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
     #password {
-      width: 100%;
-      flex: 3;
+        width: 100%;
+        flex: 3;
     }
     
     .btn-secondary,
     .btn-secondary:focus {
-      background-color: transparent;
-      border: 1px solid var(--dark-blue-hsl);
-      border-radius: 5px;
-      color: var(--gray1-hsl);
-      height: 40px;
-      font-size: 0.8rem;
-      margin-left: 15px;
-      margin-top: 5px;
-      flex: 1;
-      transition: all 0.1s ease-in-out;
+        background-color: transparent;
+        border: 1px solid var(--primary);
+        border-radius: 5px;
+        color: var(--text);
+        height: 40px;
+        font-size: 0.8rem;
+        margin-left: 15px;
+        margin-top: 5px;
+        flex: 1;
+        transition: all 0.1s ease-in-out;
     }
     
     .btn-secondary:hover:not(.disabled) {
-      filter: drop-shadow(2px 3px 1px var(--gray5-hsl));
+        filter: drop-shadow(2px 3px 1px var(--shadow-contrast));
     }
     
     .btn-secondary:active:not(.disabled) {
-      background-color: var(--dark-blue-opac-hsl);
+        background-color: var(--primary-opac);
     }
     
     .notification {
-      font-size: 0.8rem;
-      margin-top: 2px;
+        font-size: 0.8rem;
+        margin-top: 2px;
     }
     
     .notification:empty:before {
-      content: ' ';
-      white-space: pre;
+        content: ' ';
+        white-space: pre;
     }
     
     
@@ -215,27 +205,27 @@ const kolibri = {
     /* Styling for login notification message */
     
     .login-validity-notification {
-      background-color: var(--red);
-      color: var(--white-hsl);
-      display: none;
-      align-items: center;
-      font-size: 0.875rem;
-      border-radius: 5px;
+        background-color: var(--error);
+        color: var(--background);
+        display: none;
+        align-items: center;
+        font-size: 0.875rem;
+        border-radius: 5px;
     }
     
     .login-validity-notification i {
-      background-color: inherit;
-      margin: 1rem;
-      font-size: 2rem;
-      color: inherit;
+        background-color: inherit;
+        margin: 1rem;
+        font-size: 2rem;
+        color: inherit;
     }
     
     .login-validity-notification p {
-      background-color: inherit;
-      color: inherit;
-      max-width: 220px;
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
+        background-color: inherit;
+        color: inherit;
+        max-width: 220px;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
     }
     
     
@@ -243,95 +233,105 @@ const kolibri = {
     /* Styling for password forgot */
     
     #forgot-password {
-      font-size: 0.68rem;
-      color: var(--dark-blue-hsl);
-      text-decoration: underline;
+        font-size: 0.68rem;
+        color: var(--primary);
     }
     
     #forgot-password:hover {
-      font-size: 0.68rem;
-      color: var(--dark-blue-hover-hsl);
-      cursor: pointer;
-    } 
+        font-size: 0.68rem;
+        color: var(--primary-hover);
+    }
+    
+    
+    
     
     .info {
-      max-width: 25rem;
-      margin: 0 auto;
-      padding: 2rem;
+        max-width: 25rem;
+        margin: 0 auto;
+        padding: 2rem;
     }
     
     .info  p:first-child {
-      margin-bottom: 5px;
+        margin-bottom: 5px;
     }
     
     .disabled {
-      opacity: 0.4;
+        opacity: 0.4;
+    }
+    
+    
+    
+    
+    
+    
+    .email-validity-notification {
+        color: var(--error);
     }
     
     /* Styling toggle switch */
     .theme-switch-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      margin-top: 1rem;
     }
     
     .theme-switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
+      display: inline-block;
+      height: 34px;
+      position: relative;
+      width: 60px;
     }
     
     .theme-switch input {
-    display:none;
+      display:none;
     }
     
     .slider {
-    background-color: var(--dark-blue-hsl);
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
+      background-color: var(--primary);
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: .4s;
     }
     
     .slider:before {
-    background-color: var(--gray6-hsl);
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
+      background-color: var(--text-contrast);
+      bottom: 4px;
+      content: "";
+      height: 26px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 26px;
     }
     
     input:checked + .slider {
-    background-color: var(--dark-blue-hsl);
+      background-color: var(--primary);
     }
     
     input:checked + .slider:before {
-    transform: translateX(26px);
+      transform: translateX(26px);
     }
     
     .slider.round {
-    border-radius: 34px;
+      border-radius: 34px;
     }
     
     .slider.round:before {
-    border-radius: 50%;
+      border-radius: 50%;
     }
     
     em {
-    font-size: 12px;
-    padding-left: 4px;
-    text-decoration: none;
-    color: var(--gray1-hsl);
-    font-family: "Poppins Regular", fallback, sans-serif;
+      font-size: 12px;
+      padding-left: 4px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: "Poppins Regular", fallback, sans-serif;
     }
     `
 
@@ -487,7 +487,7 @@ const kolibri = {
     }
     
     .register-form .validation:not(:focus).invalid:not(:placeholder-shown) {
-        border: 1px solid var(--red);
+        border: 1px solid var(--error);
         filter: drop-shadow(2px 2px 3px rgba(235, 87, 87, 0.53));
     }
     
@@ -573,7 +573,7 @@ const kolibri = {
     }
     
     .notification {
-        color: var(--red);
+        color: var(--error);
         font-size: 0.8rem;
         margin-top: 2px;
     }
@@ -617,7 +617,7 @@ const kolibri = {
     }
       
     .bg-red {
-        color:var(--red);
+        color:var(--error);
     }
       
     .bg-orange {
@@ -635,7 +635,7 @@ const kolibri = {
     }
       
     .line-bg-red {
-        background-color:var(--red);
+        background-color:var(--error);
     }
       
     .line-bg-orange {
@@ -643,7 +643,7 @@ const kolibri = {
     }
       
     .line-bg-green {
-        background-color: var(--successhsl);
+        background-color: var(--success);
     }
     
     
@@ -796,91 +796,117 @@ const kolibri = {
 
 
 const setupLoginJS = () => {
-
+  // Used as an example for a successful login
   const email = 'example@mail.com'
-  const pw = 'P4$$word'
+  const pw    = 'P4$$word'
 
-  const loginForm = document.querySelector('.login-form')
-  const loginBtn = document.querySelector('.login-submit')
-  const notificationContainer = document.querySelector('.login-validity-notification')
-  const notificationMessage = document.querySelector('.login-validity-notification p')
-  const notificationIcon = document.querySelector('.login-validity-notification i')
-  const emailNotification = document.querySelector('.email-validity-notification')
-  const emailInput = document.querySelector('#email')
-  const passwordInput = document.querySelector('#password')
-  const showPwBtn = document.querySelector('#show-pw-btn')
+  // HTML Elements
+  const loginForm               = document.querySelector('.login-form')
+  const loginBtn                = document.querySelector('.login-submit')
+  const notificationContainer   = document.querySelector('.login-validity-notification')
+  const notificationMessage     = document.querySelector('.login-validity-notification p')
+  const notificationIcon        = document.querySelector('.login-validity-notification i')
+  const emailNotification       = document.querySelector('.email-validity-notification')
+  const emailInput              = document.querySelector('#email')
+  const passwordInput           = document.querySelector('#password')
+  const showPwBtn               = document.querySelector('#show-pw-btn')
 
-  loginForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-    if (!(passwordInput.value === pw && emailInput.value === email)) {
-      notificationMessage.innerHTML = `Sorry, we couldn't match your request. Your E-Mail or Password must be wrong.`
-      notificationContainer.style.display = 'flex'
-      notificationContainer.style.backgroundColor = 'var(--red-hsl)'
-      notificationContainer.style.color = 'var(--white-hsl)'
-      notificationIcon.classList.add('fa-exclamation-circle')
+  // Set disable state to a button
+  const disableButton = (btn, setDisable) => {
+    if(setDisable) {
+      btn.classList.add('disabled')
+      btn.disabled = true
     } else {
-      notificationMessage.innerHTML = `Login successful!`
-      notificationContainer.style.display = 'flex'
-      notificationContainer.style.backgroundColor = 'var(--dark-green-hsl)'
-      notificationContainer.style.color = 'var(--white-hsl)'
-      notificationIcon.classList.add('fa-check-circle')
+      btn.classList.remove('disabled')
+      btn.disabled = false
     }
+  }
 
-    if (showPwBtn.classList.contains('disabled')) {
-      showPwBtn.classList.remove('disabled')
-    }
+  // Specific function for button disabling/enabling if both input fields are valid
+  const handleBtnDisablingUponInputValidity = () => {
 
+    // Check if both, pw has a value and email is valid and has a value and change disable state to loginBtn
+    const isValid = (emailInput.checkValidity() && passwordInput.value !== '')
+    disableButton(loginBtn, !isValid)
+  }
+
+  // Display successful/error notification message upon login
+  const showLoginNotification = (message, isSuccessful) => {
+    notificationMessage.innerHTML = message
+    notificationContainer.style.display = 'flex'
+    notificationContainer.style.backgroundColor = isSuccessful 
+      ? 'var(--success)' : 'var(--error)'
+    notificationContainer.style.color = 'var(--background)'
+    notificationIcon.classList.remove(
+      isSuccessful ? 'fa-exclamation-circle' : 'fa-check-circle'
+    )
+    notificationIcon.classList.add(
+      isSuccessful ? 'fa-check-circle': 'fa-exclamation-circle'
+    )
+  }
+
+  // Reset states after a login attempt (except show button)
+  const resetAfterLogin = () => {
     emailInput.value = ''
     passwordInput.value = ''
     loginBtn.disabled = true
     loginBtn.classList.add('disabled')
+  }
+
+  // Toggle password input field type and change the show button text
+  const toggleShowBtn = () => {
+    const isHidden = passwordInput.type === 'password'
+    passwordInput.type = isHidden ? 'text' : 'password'
+    showPwBtn.innerHTML = isHidden ? 'hide' : 'show'
+  }
+
+  // Handle login submission
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault() // Prevents the UI from refreshing after submit
+
+    // Simulating a login attempt with preset credentials
+    const successfulLogin = (passwordInput.value === pw && emailInput.value === email)
+    const message = successfulLogin 
+      ? 'Login successful!'
+      : "Sorry, we couldn't match your request. Your E-Mail or Password must be wrong."
+
+    showLoginNotification(message, successfulLogin)
+
+
+    // After first login attempt, enable the "show" button
+    const isDisabled = showPwBtn.classList.contains('disabled') ? true : false
+    disableButton(showPwBtn, !isDisabled)
+
+    // After a login attempt, clear the input fields and disable the login button again
+    resetAfterLogin()
   })
 
+  // Handle validation of the e-mail input field
   emailInput.addEventListener('focusout', () => {
-    if (!emailInput.value) return
-    if (!emailInput.checkValidity()) {
-      emailNotification.innerHTML = 'Malformed Email'
-      emailNotification.style.color = 'var(--red-hsl)'
-    } else {
-      emailNotification.innerHTML = ''
-    }
+    if (!emailInput.value) return // Do nothing if input field is empty
+
+    // Check if its valid or not and adjust the text
+    const error = !emailInput.checkValidity()
+    emailNotification.innerHTML = error ? 'Malformed Email' : ''
   })
 
+  // Remove notification when user is focused on the email input field
   emailInput.addEventListener('focusin', () => {
     emailNotification.innerHTML = ''
   })
 
-  emailInput.addEventListener('change', () => {
-    if (emailInput.checkValidity() && passwordInput.value !== '') {
-      loginBtn.classList.remove('disabled')
-      loginBtn.disabled = false
-    } else {
-      loginBtn.classList.add('disabled')
-      loginBtn.disabled = true
-    }
-  })
+  // Handle login button disabling/enabling upon typing on the email input field
+  emailInput.addEventListener('keyup', handleBtnDisablingUponInputValidity)
 
-  passwordInput.addEventListener('keyup', () => {
-    if (emailInput.checkValidity() && passwordInput.value !== '') {
-      loginBtn.classList.remove('disabled')
-      loginBtn.disabled = false
-    } else {
-      loginBtn.classList.add('disabled')
-      loginBtn.disabled = true
-    }
-  })
+  // Handle login button disabling/enabling upon typing on the password input field
+  passwordInput.addEventListener('keyup', handleBtnDisablingUponInputValidity)
 
+  // Handle show password button click
   showPwBtn.addEventListener('click', () => {
-    if (showPwBtn.classList.contains('disabled')) {
-      return
-    }
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text'
-      showPwBtn.innerHTML = "Hide"
-    } else {
-      passwordInput.type = 'password'
-      showPwBtn.innerHTML = "Show"
-    }
+    if (showPwBtn.classList.contains('disabled')) return // if disabled, do nothing
+
+    // Toggle show button
+    toggleShowBtn()
   })
 }
 
