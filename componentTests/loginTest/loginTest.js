@@ -1,6 +1,7 @@
 import { Suite } from '../../test/test.js'
 import kolibri from '../../script.js'
 import { fireEvent } from '../../test/testUtils/events.js'
+import { setInputValue } from '../../test/testUtils/setInputValue.js'
 
 // Setting up Suite
 const LoginSuite = Suite('LoginSuite')
@@ -22,6 +23,8 @@ const emailValidityNotification = loginContext.querySelector('.email-validity-no
 const message                   = loginNotification.querySelector('p')
 
 
+// Util functions for repetitive tasks specific for Tests in this Suite
+// #NONE so far
 
 
 // Tests
@@ -31,10 +34,7 @@ LoginSuite.add("Login dialog has title equal Login", assert => {
 
 
 LoginSuite.add("email input field does not validate incorrect mail", assert => {
-  emailInputField.value = 'examplemail.com'
-
-  fireEvent(emailInputField, 'change')
-  fireEvent(emailInputField, 'focusout')  
+  setInputValue(emailInputField, 'examplemail.com')  
 
   assert.is(emailValidityNotification.innerHTML, "Malformed Email")
   assert.true(!emailInputField.checkValidity())
@@ -43,9 +43,7 @@ LoginSuite.add("email input field does not validate incorrect mail", assert => {
 
 
 LoginSuite.add("email input field validates correct mail", assert => {
-  emailInputField.value = 'example@mail.com'
-
-  fireEvent(emailInputField, 'change')
+  setInputValue(emailInputField, 'example@mail.com') 
 
   assert.true(emailInputField.checkValidity())
 })
@@ -53,12 +51,8 @@ LoginSuite.add("email input field validates correct mail", assert => {
 
 
 LoginSuite.add("login button enables when email and pw field are valid", assert => {
-  emailInputField.value = 'example@mail.com'
-  passwordInputField.value = 'somePassword'
-
-  fireEvent(emailInputField, 'change')
-  fireEvent(passwordInputField, 'keyup')
-  fireEvent(emailInputField, 'focusout')
+  setInputValue(emailInputField, 'some@mail.com')
+  setInputValue(passwordInputField, 'somePassword')
 
   assert.true(!loginBtn.disabled)
 })
@@ -90,13 +84,8 @@ LoginSuite.add("after first failed login attempt, user gets notified", assert =>
 
 
 LoginSuite.add("after successful login, user gets notified", assert => {
-  emailInputField.value = 'example@mail.com'
-
-  passwordInputField.value = 'P4$$word'
-
-  fireEvent(emailInputField, 'change')
-  fireEvent(passwordInputField, 'keyup')
-  fireEvent(emailInputField, 'focusout')
+  setInputValue(emailInputField, 'example@mail.com')
+  setInputValue(passwordInputField, 'P4$$word')
 
   loginBtn.click()
 

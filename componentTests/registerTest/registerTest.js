@@ -1,6 +1,7 @@
 import { Suite } from '../../test/test.js'
 import kolibri from '../../script.js'
 import { fireEvent } from '../../test/testUtils/events.js'
+import { setInputValue } from '../../test/testUtils/setInputValue.js'
 
 // Setting up Suite
 const RegisterSuite = Suite('RegisterSuite')
@@ -9,7 +10,7 @@ const RegisterSuite = Suite('RegisterSuite')
 const registerContext = document.querySelector('.register')
 kolibri.register(registerContext)
 
-// declaring html elements
+// Declaring HTML Elements
 const registerTitle               = registerContext.querySelector('h2')
 const emailInputField             = registerContext.querySelector('#email')
 const emailValidityNotification   = registerContext.querySelector('.email-validity-notification')
@@ -28,17 +29,32 @@ const showPwBtn                   = registerContext.querySelector('#show-pw-btn'
 const showConfirmPwBtn            = registerContext.querySelector('#show-confirm-pw-btn')
 
 
+// Util functions for repetitive tasks specific for Tests in this Suite
+// Checks whether the register button is disabled or not, deoending on email and pw input value
+const checkIfRegisterBtnIsDisabled = ( emailValue, pwValue ) => {
+  setInputValue(emailInputField, emailValue)
+  setInputValue(passwordInputField, pwValue)
+
+  return registerBtn.classList.contains('disabled')
+}
+
+// Checks if a password criteria validates when its crieria is met
+const criteriaIsValidating = (pwValue, criteria) => {
+  setInputValue(passwordInputField, pwValue)
+
+  return criteria.classList.contains('bg-green')
+}
+
+
+
+
 // Tests
 RegisterSuite.add("Register dialog has title equal Register", assert => {
   assert.is(registerTitle.innerHTML, "Register")
 })
 
-
 RegisterSuite.add("email input field does not validate incorrect mail", assert => {
-  emailInputField.value = 'examplemail.com'
-
-  fireEvent(emailInputField, 'change')
-  fireEvent(emailInputField, 'focusout')  
+  setInputValue(emailInputField, 'examplemail.com')
 
   assert.is(emailValidityNotification.innerHTML, "Malformed Email")
   assert.true(!emailInputField.checkValidity())
@@ -46,74 +62,56 @@ RegisterSuite.add("email input field does not validate incorrect mail", assert =
 
 
 RegisterSuite.add("email input field notifies user when email already registered", assert => {
-  emailInputField.value = 'example@mail.com'
-
-  fireEvent(emailInputField, 'change')
-  fireEvent(emailInputField, 'focusout') 
+  setInputValue(emailInputField, 'example@mail.com')
 
   assert.is(emailValidityNotification.innerHTML, "Email already registered")
 })
 
 
 RegisterSuite.add("email input field validates correct mail", assert => {
-  emailInputField.value = 'some@mail.com'
-
-  fireEvent(emailInputField, 'change')
-  fireEvent(emailInputField, 'focusout')
+  setInputValue(emailInputField, 'some@mail.com')
 
   assert.true(emailInputField.checkValidity())
 })
 
 
 RegisterSuite.add("password validator detects uppercase", assert => {
-  passwordInputField.value = 'A'
+  const isValidating = criteriaIsValidating('A', upperCaseCriteria)
 
-  fireEvent(passwordInputField, 'keyup')
-
-  assert.true(upperCaseCriteria.classList.contains('bg-green'))
+  assert.true(isValidating)
 })
 
 
 RegisterSuite.add("password validator detects lowercase", assert => {
-  passwordInputField.value = 'a'
+  const isValidating = criteriaIsValidating('a', lowerCaseCriteria)
 
-  fireEvent(passwordInputField, 'keyup')
-
-  assert.true(lowerCaseCriteria.classList.contains('bg-green'))
+  assert.true(isValidating)
 })
 
 
 RegisterSuite.add("password validator detects number", assert => {
-  passwordInputField.value = '1'
+  const isValidating = criteriaIsValidating('1', numberCriteria)
 
-  fireEvent(passwordInputField, 'keyup')
-
-  assert.true(numberCriteria.classList.contains('bg-green'))
+  assert.true(isValidating)
 })
 
 
 RegisterSuite.add("password validator detects symbol", assert => {
-  passwordInputField.value = '§'
+  const isValidating = criteriaIsValidating('§', symbolsCriteria)
 
-  fireEvent(passwordInputField, 'keyup')
-
-  assert.true(symbolsCriteria.classList.contains('bg-green'))
+  assert.true(isValidating)
 })
 
 
 RegisterSuite.add("password validator detects 6 characters", assert => {
-  passwordInputField.value = '123456'
+  const isValidating = criteriaIsValidating('123456', sixCharactersCriteria)
 
-  fireEvent(passwordInputField, 'keyup')
-
-  assert.true(sixCharactersCriteria.classList.contains('bg-green'))
+  assert.true(isValidating)
 })
 
 
 RegisterSuite.add("1 red strength line is show when only 1 criteria passes and feedback text changes", assert => {
-  passwordInputField.value = 'A'
-
-  fireEvent(passwordInputField, 'keyup')
+  setInputValue(passwordInputField, 'A')
 
   const [redline, ...otherLines] = strengthLines
 
@@ -125,9 +123,7 @@ RegisterSuite.add("1 red strength line is show when only 1 criteria passes and f
 
 
 RegisterSuite.add("Two orange strength lines are shown when two criterias pass and feedback text changes", assert => {
-  passwordInputField.value = 'Aa'
-
-  fireEvent(passwordInputField, 'keyup')
+  setInputValue(passwordInputField, 'Aa')
 
   const [orangeLine1, orangeLine2, ...otherLines] = strengthLines
 
@@ -140,9 +136,7 @@ RegisterSuite.add("Two orange strength lines are shown when two criterias pass a
 
 
 RegisterSuite.add("Three orange strength lines are shown when three criterias pass and feedback text changes", assert => {
-  passwordInputField.value = 'Aa1'
-
-  fireEvent(passwordInputField, 'keyup')
+  setInputValue(passwordInputField, 'Aa1')
 
   const [orangeLine1, orangeLine2, orangeLine3, ...otherLines] = strengthLines
 
@@ -156,9 +150,7 @@ RegisterSuite.add("Three orange strength lines are shown when three criterias pa
 
 
 RegisterSuite.add("Four orange strength lines are shown when four criterias pass and feedback text changes", assert => {
-  passwordInputField.value = 'Aa1§'
-
-  fireEvent(passwordInputField, 'keyup')
+  setInputValue(passwordInputField, 'Aa1§')
 
   const [ defaultLine1, defaultLine2, ...orangeLines ] = [ ...strengthLines ].reverse()
 
@@ -171,9 +163,7 @@ RegisterSuite.add("Four orange strength lines are shown when four criterias pass
 
 
 RegisterSuite.add("Five orange strength lines are shown when all criterias pass and feedback text changes", assert => {
-  passwordInputField.value = 'Aa1§56'
-  
-  fireEvent(passwordInputField, 'keyup')
+  setInputValue(passwordInputField, 'Aa1§56')
 
   const [ defaultLine, ...orangeLines ] = [ ...strengthLines ].reverse()
 
@@ -185,9 +175,7 @@ RegisterSuite.add("Five orange strength lines are shown when all criterias pass 
 
 
 RegisterSuite.add("Six green strength lines are shown when all criterias pass and password length is higher or equals 8 and feedback text changes", assert => {
-  passwordInputField.value = 'Aa1§5678'
-  
-  fireEvent(passwordInputField, 'keyup')
+  setInputValue(passwordInputField, 'Aa1§5678')
 
   const strengthLinesArr = [ ...strengthLines ]
 
@@ -199,61 +187,44 @@ RegisterSuite.add("Six green strength lines are shown when all criterias pass an
 
 RegisterSuite.add("Register button is enabled when email and password inputs are valid/strong enough", assert => {
   // If both input fields are invalid, button is disabled
-  passwordInputField.value = 'weakPassword'
-  emailInputField.value = 'invalidMail'
+  let isDisabled = checkIfRegisterBtnIsDisabled( 'invalidMail', 'weakPassword' )
 
-  fireEvent(passwordInputField, 'keyup')
-  fireEvent(emailInputField, 'focusout')
-
-  assert.true(registerBtn.classList.contains('disabled'))
+  assert.true(isDisabled)
   
   // If only password is strong enough, it should still be disabled
-  passwordInputField.value = 'P4$$word'
+  isDisabled = checkIfRegisterBtnIsDisabled( 'invalidMail', 'P4$$word' )
 
-  fireEvent(passwordInputField, 'keyup')
-
-  assert.true(registerBtn.classList.contains('disabled'))
+  assert.true(isDisabled)
 
   // If only email is valid, it should still be disabled
-  passwordInputField.value = 'weakPassword'
-  emailInputField.value = 'some@mail.com'
+  isDisabled = checkIfRegisterBtnIsDisabled( 'valid@mail.com', 'weakPw' )
 
-  fireEvent(passwordInputField, 'keyup')
-  fireEvent(emailInputField, 'focusout')
-
-  assert.true(registerBtn.classList.contains('disabled'))
+  assert.true(isDisabled)
 
   // If BOTH input fields are valid, it should be enabled
-  passwordInputField.value = 'P4$$word'
+  isDisabled = checkIfRegisterBtnIsDisabled( 'valid@mail.com', 'P4$$word' )
 
-  fireEvent(passwordInputField, 'keyup')
-
-  assert.true(!registerBtn.classList.contains('disabled'))
+  assert.true(!isDisabled)
 })
 
 
 RegisterSuite.add("Confirm Password field notifies when user misstypes during typing", assert => {
-  confirmPasswordInputField.value = 'B'
-
-  fireEvent(confirmPasswordInputField, 'keyup')
+  // Currently "P4$$word" is in the password input field
+  setInputValue(confirmPasswordInputField, 'A')
 
   assert.is(matchNotification.innerHTML, 'oops! There seems to be a typo')
 })
 
 
 RegisterSuite.add("Confirm Password field notifies when user is typing correctly so far", assert => {
-  confirmPasswordInputField.value = 'P4$$'
-
-  fireEvent(confirmPasswordInputField, 'keyup')
+  setInputValue(confirmPasswordInputField, 'P4$$')
 
   assert.is(matchNotification.innerHTML, "You're on a good way")
 })
 
 
 RegisterSuite.add("Confirm Password field notifies when user successfully matched the password", assert => {
-  confirmPasswordInputField.value = 'P4$$word'
-
-  fireEvent(confirmPasswordInputField, 'keyup')
+  setInputValue(confirmPasswordInputField, 'P4$$word')
 
   assert.is(matchNotification.innerHTML, 'Passwords match!')
 })
