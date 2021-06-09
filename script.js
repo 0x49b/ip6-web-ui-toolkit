@@ -1208,4 +1208,6 @@ const setupRegisterJS = () => {
 
 }
 
+window.kolibri = kolibri
+
 export default kolibri
