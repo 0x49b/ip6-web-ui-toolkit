@@ -9,9 +9,10 @@ const emailInputProjected = inputProjector(emailInput, 'email', 'text', 'example
 const passwordInput = document.querySelector('.password')
 const passwordInputProjected = inputProjector(passwordInput, 'password', 'password', 'P4$$word')
 
-const dateInput = document.querySelector('.date')
-const dateInputProjected = inputProjector(dateInput, 'date', 'date')
+// const dateInput = document.querySelector('.date')
+// const dateInputProjected = inputProjector(dateInput, 'date', 'date')
 
 
 // Creating form via formProjector with the recent created Inputfields
-formProjector(root, 'Test', [emailInputProjected, passwordInputProjected, dateInputProjected])
+formProjector(root, 'Login', [emailInputProjected, passwordInputProjected])
+

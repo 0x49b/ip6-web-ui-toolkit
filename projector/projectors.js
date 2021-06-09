@@ -1,3 +1,5 @@
+import { Attribute } from '../presentationModel/presentationModel.js'
+
 
 /**  Form Projector
  *  @param {HTML Element}   rootElement       Das Root element worin die Form aufgebaut wird
@@ -20,6 +22,7 @@ const formProjector = (rootElement, submitBtnLabel, formFields) => {
   const submitBtn = document.createElement('button')
   submitBtn.type = 'submit'
   submitBtn.innerHTML = submitBtnLabel
+  submitBtn.classList.add('disabled')
 
   rootElement.appendChild(form)
   formFields.forEach(field => form.appendChild(field))
@@ -63,9 +66,13 @@ const inputProjector = (rootElement, name, type, placeholder, validRegex = '', i
 
   const input = document.createElement('input')
   input.name = name
+  input.id = name
   input.type = type
   input.placeholder = placeholder
   input.pattern = validRegex
+
+  const inputAttr = Attribute(name)
+  inputAttr.getObs('valid').setValue(false)
 
   rootElement.appendChild(label)
   rootElement.appendChild(br)
@@ -82,8 +89,10 @@ const inputProjector = (rootElement, name, type, placeholder, validRegex = '', i
 
       if(element.checkValidity()) {
         message.innerHTML = validMessage
+        inputAttr.getObs('valid').setValue(true)
       } else {
         message.innerHTML = invalidMessage
+        inputAttr.getObs('valid').setValue(false)
       }
     })
   }
