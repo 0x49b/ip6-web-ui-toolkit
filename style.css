@@ -1,3 +1,7 @@
 .disabled {
   opacity: 0.1;
 }
+
+.valid {
+  border: 5px solid green;
+}

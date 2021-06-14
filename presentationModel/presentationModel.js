@@ -1,5 +1,9 @@
 import { Observable } from '../observable/observable.js'
 
+const VALUE = 'value'
+const VALID = 'valid'
+const VISIBILITY = 'visibility'
+
 const Attribute = value => {
   const observables = {}
 
@@ -24,4 +28,4 @@ const Attribute = value => {
   return { getObs, hasObs, setValidator, setConverter, setConvertedValue }
 }
 
-export { Attribute }
+export { Attribute, VALID, VALUE, VISIBILITY }
