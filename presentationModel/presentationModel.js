@@ -21,7 +21,7 @@ const Attribute = value => {
     convert = converter
     setConvertedValue(value)
   }
-  const setConvertedValue = val => getObs('value').setValue(convert(val))
+  const setConvertedValue = val => getObs(VALUE).setValue(convert(val))
 
   const setValidator = validate => getObs(VALUE).onChange( val => getObs(VALID).setValue(validate(val)));
 
