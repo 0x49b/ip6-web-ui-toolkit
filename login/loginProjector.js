@@ -20,9 +20,6 @@ const loginProjector = (loginController, rootElement, login) => {
   const [ emailInputElement, emailLabelElement ] = loginTextProjector(login, 'Email')
   const [ passwordInputElement, passwordLabelElement ] = loginPasswordProjector(login, 'Password')
 
-  emailInputElement.id = 'email'
-  passwordInputElement.id = 'password'
-
   const showButtonElement = loginShowButtonProjector(login)
 
   const notificationElement = loginNotificationProjector(login)

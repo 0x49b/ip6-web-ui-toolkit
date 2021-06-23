@@ -11,6 +11,7 @@ const LoginController = service => {
    * @returns {Object} An Object with getters, setters and observables of several Attributes
    */
   const Login = () => {
+    
     const emailAttr        = Attribute('')
     const pwAttr           = Attribute('')
     const formAttr         = Attribute(false)  // Checks whether all inputs of the login form are valid
@@ -69,7 +70,7 @@ const LoginController = service => {
 
 const LoginView = (loginController, rootElement) => {
 
-  const render = loginForm => loginProjector(loginController, rootElement, loginForm)
+  const render = login => loginProjector(loginController, rootElement, login)
 
   loginController.onLoginAdd(render)
 }
