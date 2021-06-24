@@ -1,6 +1,6 @@
 import { ObservableList } from '../observable/observable.js'
 import { Attribute, VALID, VALUE, VISIBILITY } from "../presentationModel/presentationModel.js"
-import { registerProjector } from "./registerProjector.js"
+import { registerProjector } from "./mainProjector/registerProjector.js"
 
 export { RegisterController, RegisterView }
 
@@ -39,12 +39,12 @@ const RegisterController = () => {
         isFulfilled: false
       },
       {
-        name: '6 Character',
+        name: '6 Characters',
         regex: /^.{6,}/,
         isFulfilled: false
       },
       {
-        name: '8 Character',
+        name: '8 Characters',
         regex: /^.{8,}/,
         isFulfilled: false
       },

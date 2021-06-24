@@ -1,173 +1,64 @@
+// Utils
+import { toggleColor } from './utils/toggleColor.js'
+
+// SubProjectors
+import { registerCriteriaProjector } from './subprojectors/criteriaProjector.js'
+import { registerStrengthLineProjector } from './subprojectors/strengthLineProjector.js'
+import { registerNotificationProjector } from './subprojectors/notificationProjector.js'
+import { registerShowButtonProjector } from './subprojectors/showButtonProjector.js'
+import { registerPasswordProjector } from './subprojectors/passwordProjector.js'
+import { registerTextProjector } from './subprojectors/textProjector.js'
+import { registerButtonProjector } from './subprojectors/buttonProjector.js'
+
 export { registerProjector }
+
+const BGRED    = 'line-bg-red'
+const BGORANGE = 'line-bg-orange'
+const BGGREEN  = 'line-bg-green'
 
 const registerProjector = (registerController, rootElement, register) => {
 
   // -------------Register Button-------------
-  const registerButton = document.createElement('button')
-  registerButton.innerHTML = 'Register'
+  const registerButton = registerButtonProjector(register)
 
-  register.onclick = () => {
-    // TODO: API Call auf den Server
-  }
+  
 
   // -------------Input Elements-------------
-  const [ emailInputElement, emailLabelElement ] = registerTextProjector(register, 'Email')
-  const [ passwordInputElement, passwordLabelElement ] = registerPasswordProjector(register, 'Password')
-  const [ confirmPasswordInputElement, confirmPasswordLabelElement ] = registerPasswordProjector(register, 'Confirm Password (optional)')
+  const {
+    emailInputElement,
+    emailLabelElement,
+    passwordInputElement,
+    passwordLabelElement,
+    confirmPasswordInputElement,
+    confirmPasswordLabelElement,
+  } = initialiseInputElements(register)
 
-  passwordInputElement.oninput = () => register.setPassword(passwordInputElement.value)
-
-  register.onPasswordChanged( () => passwordInputElement.value = register.getPassword() )
-
-  register.onPasswordValidityChanged(
-    valid => valid
-      ? passwordInputElement.classList.add('valid')
-      : passwordInputElement.classList.remove('valid')
-  )
-
-  confirmPasswordInputElement.oninput = () => register.setConfirmPassword(confirmPasswordInputElement.value)
-
-  register.onConfirmPasswordChanged( () => confirmPasswordInputElement.value = register.getConfirmPassword() )
-
-
-  // -------------Form validity-------------
-  register.onFormValidityChanged(
-    valid => valid
-      ? registerButton.classList.remove('disabled')
-      : registerButton.classList.add('disabled')
-  )
+  
 
   // -------------Show Password Buttons-------------
-  const showPasswordButton = registerShowButtonProjector(register)
-  const showConfirmPasswordButton = registerShowButtonProjector(register)
+  const {
+    showPasswordButton,
+    showConfirmPasswordButton
+  } = initialiseShowPwButtons(register, passwordInputElement, confirmPasswordInputElement)
 
-  showPasswordButton.onclick = () => passwordInputElement.focus()
-  showConfirmPasswordButton.onclick = () => confirmPasswordInputElement.focus()
 
-  register.onShowPwChanged( () => {
-    const type = register.getShowPw()
-      ? 'text'
-      : 'password'
-    passwordInputElement.type = type
-    confirmPasswordInputElement.type = type
-  })
 
   // -------------Notifications-------------
-  const emailValidityNotificiation = registerNotificationProjector(register)
-  const passwordStrengthNotification = registerNotificationProjector(register)
-  const confirmPwMatchNotification = registerNotificationProjector(register)
+  const {
+    emailValidityNotificiation,
+    passwordStrengthNotification,
+    confirmPwMatchNotification
+  } = intialiseNotifications(register, emailInputElement)
 
-  // Syncing innerHTML of all 3 notifications with observer
-  register.onEmailValidNotificationChanged( 
-    () => emailValidityNotificiation.innerHTML = register.getEmailValidNotification()
-  )
-  register.onPwStrengthNotificationChanged( 
-    () => passwordStrengthNotification.innerHTML = register.getPwStrengthNotification() 
-  )
-  register.onConfirmPwMatchNotificationChanged( 
-    () => confirmPwMatchNotification.innerHTML = register.getConfirmPwMatchNotification() 
-  )
 
-  emailInputElement.onchange = () => {
-    !register.getEmailValidity()
-      ? register.setEmailValidNotification('Malformed Email')
-      : register.setEmailValidNotification('')
-  }
-
-  register.onEmailValidityChanged( valid => {
-    if(valid) return register.setEmailValidNotification('')
-  })
-
-  register.onPasswordChanged(() => {
-    const pwStrength = register.getPwStrength()
-    const notificationMessage = pwStrength === 0
-      ? 'Hint: Type the strongest password you can'
-      : pwStrength < 5
-        ? `Missing ${6-pwStrength} more criterias`
-        : pwStrength === 5
-          ? 'Add a personal touch for stronger password'
-          : "You're password is now strong enough!"
-
-    register.setPwStrengthNotification(notificationMessage)
-  })
-
-  register.onConfirmPasswordChanged( () => {
-    if(!register.getConfirmPassword()) return register.setConfirmPwMatchNotification('')
-
-    if (register.getConfirmPassword() === register.getPassword()) {
-      register.setConfirmPwMatchNotification('Passwords match!')
-      toggleColor(confirmPwMatchNotification, true)
-    } else if (register.getPassword().startsWith(register.getConfirmPassword())) {
-      register.setConfirmPwMatchNotification("You're on a good way!")
-      toggleColor(confirmPwMatchNotification, null)
-    } else {
-      register.setConfirmPwMatchNotification("oops! There seems to be a typo")
-      toggleColor(confirmPwMatchNotification, false)
-    }
-  })
 
   // -------------Strength Lines-------------
-  let strengthLines = Array.from('x'.repeat(6))  // Create an array with a length of 6
+  const strengthLinesContainer = initialiseStrengthLines(register, rootElement)
 
-  strengthLines = strengthLines.map(line => registerStrengthLineProjector(register)) // Fill the array with strengthlines
 
-  // Get the div container from DOM and append all strengthlines to it
-  const strengthLinesContainer = rootElement.querySelector('.strength-lines')
-  strengthLines.forEach(line => strengthLinesContainer.appendChild(line))
-
-  register.onPasswordChanged( () => {
-    const pwStrength = register.getPwStrength()
-
-    let color = 'line-bg-default';
-    [...strengthLines].forEach(line => line.classList.add(color));
-    [...strengthLines].forEach(line => line.classList.remove('line-bg-red'));
-    [...strengthLines].forEach(line => line.classList.remove('line-bg-orange'));
-    [...strengthLines].forEach(line => line.classList.remove('line-bg-green'))
-
-    if(pwStrength === 1)                  color = 'line-bg-red'
-    if(pwStrength > 1 && pwStrength < 6)  color = 'line-bg-orange'
-    if(pwStrength === 6)                  color = 'line-bg-green';
-
-    [...strengthLines].slice(0, pwStrength).forEach(line => line.classList.remove('line-bg-default'));
-    [...strengthLines].slice(0, pwStrength).forEach(line => line.classList.add(color))
-  })
 
   // -------------Criterias-------------
-  const criteriaLabels = ['lowercase', 'uppercase', 'number', 'symbols', '6 Characters']
-  const criteriaElements = criteriaLabels.map(label => registerCriteriaProjector(register, label))
-
-  const criteriaContainer = rootElement.querySelector('.pw-criterias')
-
-  criteriaElements.forEach(element => criteriaContainer.appendChild(element))
-
-  const toggleColor = (element, isFulfilled) => {
-    if(isFulfilled === null) return element.classList.remove('green', 'red')
-    if(!isFulfilled){
-      element.classList.remove('green')
-      element.classList.add('red')
-    } else {
-      element.classList.add('green')
-      element.classList.remove('red')
-    }
-  }
-
-  register.onPasswordChanged( () => {
-
-    const patterns = register.getPatterns()
-
-    patterns.forEach(pattern => {
-
-      const currentCriteriaElement = criteriaElements.filter(element => element.innerHTML.includes(pattern.name))[0]
-
-      if(currentCriteriaElement){ // Because we do not give feedback about the 8 char pattern
-
-        !register.getPassword() // If Password input is empty, remove all color styles
-          ? criteriaElements.forEach(element => toggleColor(element, null)) 
-          : toggleColor(currentCriteriaElement, pattern.isFulfilled)
-      }
-    })
-    
-  })
+  const criteriaContainer = initialiseCriterias(register, rootElement)
 
 
   // -------------Setting up the HTML-------------
@@ -190,85 +81,188 @@ const registerProjector = (registerController, rootElement, register) => {
   rootElement.appendChild(registerButton)
 }
 
-const registerTextProjector = (register, label) => {
 
-  const inputElement = document.createElement('input')
-  inputElement.type = 'text'
-  inputElement.id   = label.toLowerCase()
 
-  const labelElement = document.createElement('label')
-  labelElement.htmlFor = label.toLowerCase()
-  labelElement.innerHTML = label
 
-  inputElement.oninput = () => register.setEmail(inputElement.value)
+// -------------Helper Functions for setting up the sections-------------
 
-  register.onEmailChanged( () => inputElement.value = register.getEmail() )
 
-  register.onEmailValidityChanged(
+// -------------Input Elements-------------
+const initialiseInputElements = register => {
+  const [ emailInputElement, emailLabelElement ] = registerTextProjector(register, 'Email')
+  const [ passwordInputElement, passwordLabelElement ] = registerPasswordProjector(register, 'Password')
+  const [ confirmPasswordInputElement, confirmPasswordLabelElement ] = registerPasswordProjector(register, 'Confirm Password (optional)')
+
+  passwordInputElement.oninput = () => register.setPassword(passwordInputElement.value)
+
+  register.onPasswordChanged( () => passwordInputElement.value = register.getPassword() )
+
+  register.onPasswordValidityChanged(
     valid => valid
-      ? inputElement.classList.add('valid')
-      : inputElement.classList.remove('valid')
+      ? passwordInputElement.classList.add('valid')
+      : passwordInputElement.classList.remove('valid')
   )
 
-  return [ inputElement, labelElement ]
+  confirmPasswordInputElement.oninput = () => register.setConfirmPassword(confirmPasswordInputElement.value)
+
+  register.onConfirmPasswordChanged( () => confirmPasswordInputElement.value = register.getConfirmPassword() )
+
+  return {
+    emailInputElement,
+    emailLabelElement,
+    passwordInputElement,
+    passwordLabelElement,
+    confirmPasswordInputElement,
+    confirmPasswordLabelElement,
+  }
 }
 
-const registerPasswordProjector = (register, label) => {
 
-  const inputElement = document.createElement('input')
-  inputElement.type = 'password'
-  inputElement.id = label.toLowerCase()
 
-  const labelElement = document.createElement('label')
-  labelElement.htmlFor = label.toLowerCase()
-  labelElement.innerHTML = label
+// -------------Show Buttons-------------
+const initialiseShowPwButtons = (register, passwordInputElement, confirmPasswordInputElement) => {
+  const showPasswordButton = registerShowButtonProjector(register)
+  const showConfirmPasswordButton = registerShowButtonProjector(register)
 
-  return [ inputElement, labelElement ]
+  showPasswordButton.onclick = () => passwordInputElement.focus()
+  showConfirmPasswordButton.onclick = () => confirmPasswordInputElement.focus()
+
+  return {
+    showPasswordButton,
+    showConfirmPasswordButton
+  }
 }
 
-const registerShowButtonProjector = register => {
 
-  const buttonElement = document.createElement('button')
-  buttonElement.innerHTML = 'show'
 
-  buttonElement.addEventListener('click', () => {
-    register.setShowPw(!register.getShowPw())
+// -------------Notifications-------------
+const intialiseNotifications = (register, emailInputElement) => {
+  const emailValidityNotificiation = registerNotificationProjector(
+    register, 
+    { 
+      onNotificationChange: register.onEmailValidNotificationChanged, 
+      getNotification:      register.getEmailValidNotification 
+    }
+  )
+  const passwordStrengthNotification = registerNotificationProjector(
+    register, 
+    { 
+      onNotificationChange: register.onPwStrengthNotificationChanged, 
+      getNotification:      register.getPwStrengthNotification 
+    }
+  )
+  const confirmPwMatchNotification = registerNotificationProjector(
+    register, 
+    { 
+      onNotificationChange: register.onConfirmPwMatchNotificationChanged, 
+      getNotification:      register.getConfirmPwMatchNotification
+    }
+  )
+
+  setupEmailValidityNotification(register, emailInputElement)
+
+  setupPasswordStrengthNotification(register)
+
+  setupConfirmPwMatchNotification(register, confirmPwMatchNotification)
+
+  return {
+    emailValidityNotificiation,
+    passwordStrengthNotification,
+    confirmPwMatchNotification
+  }
+}
+
+const setupEmailValidityNotification = (register, emailInputElement) => {
+  emailInputElement.onchange = () => {
+    if(!register.getEmail()) return register.setEmailValidNotification('')
+    !register.getEmailValidity()
+      ? register.setEmailValidNotification('Malformed Email')
+      : register.setEmailValidNotification('')
+  }
+
+  register.onEmailValidityChanged( valid => {
+    if(valid) return register.setEmailValidNotification('')
   })
-
-  register.onShowPwChanged( () => buttonElement.innerHTML = register.getShowPw() ? 'hide' : 'show')
-
-  return buttonElement
 }
 
-const registerNotificationProjector = register => {
+const setupPasswordStrengthNotification = register => {
+  register.onPasswordChanged(() => {
+    const pwStrength = register.getPwStrength()
+    const notificationMessage = pwStrength === 0
+      ? 'Hint: Type the strongest password you can'
+      : pwStrength < 5
+        ? `Missing ${5-pwStrength} more criterias`
+        : pwStrength === 5
+          ? 'Add a personal touch for stronger password'
+          : "You're password is now strong enough!"
 
-  const pElement = document.createElement('p')
-
-  return pElement
+    register.setPwStrengthNotification(notificationMessage)
+  })
 }
 
-const registerStrengthLineProjector = register => {
+const setupConfirmPwMatchNotification = (register, confirmPwMatchNotification) => {
+  register.onConfirmPasswordChanged( () => {
+    if(!register.getConfirmPassword()) return register.setConfirmPwMatchNotification('')
 
-  const divElement = document.createElement('div')
-
-  divElement.classList.add('line')
-
-  return divElement
+    if (register.getConfirmPassword() === register.getPassword()) {
+      register.setConfirmPwMatchNotification('Passwords match!')
+      toggleColor(confirmPwMatchNotification, true)
+    } else if (register.getPassword().startsWith(register.getConfirmPassword())) {
+      register.setConfirmPwMatchNotification("You're on a good way!")
+      toggleColor(confirmPwMatchNotification, null)
+    } else {
+      register.setConfirmPwMatchNotification("oops! There seems to be a typo")
+      toggleColor(confirmPwMatchNotification, false)
+    }
+  })
 }
 
-const registerCriteriaProjector = (register, label) => {
 
-  const pElement    = document.createElement('p')
-  const spanElement = document.createElement('span')
 
-  spanElement.classList.add('cross')
+// -------------Strength Lines-------------
+const initialiseStrengthLines = (register, rootElement) => {
+  let strengthLines = Array.from('x'.repeat(6))  // Create an array with a length of 6
 
-  pElement.appendChild(spanElement)
-  pElement.innerHTML = `
-    <span></span>
-    ${label}
-  `
-  pElement.querySelector('span').replaceWith(spanElement)
+  strengthLines = strengthLines.map(line => registerStrengthLineProjector(register)) // Fill the array with strengthlineElements
 
-  return pElement
+  // Get the div container from DOM and append all strengthlines to it
+  const strengthLinesContainer = rootElement.querySelector('.strength-lines')
+  strengthLines.forEach(line => strengthLinesContainer.appendChild(line))
+
+  coloriseStrengLines(register, strengthLines)
+
+  return strengthLinesContainer
+}
+
+const coloriseStrengLines = (register, strengthLines) => {
+  register.onPasswordChanged( () => {
+    const pwStrength = register.getPwStrength()
+
+    resetBackgroundColors(strengthLines)
+
+    let color = BGRED
+    if(pwStrength > 1 && pwStrength < 6)  color = BGORANGE
+    if(pwStrength === 6)                  color = BGGREEN;
+
+    [...strengthLines].slice(0, pwStrength).forEach(line => line.classList.add(color))
+  })
+}
+
+const resetBackgroundColors = strengthLines => {
+  [...strengthLines].forEach(line => line.classList.remove(BGRED));
+  [...strengthLines].forEach(line => line.classList.remove(BGORANGE));
+  [...strengthLines].forEach(line => line.classList.remove(BGGREEN))
+}
+
+
+// -------------Criterias-------------
+const initialiseCriterias = (register, rootElement) => {
+
+  const patterns = register.getPatterns()
+  const criteriaElements = patterns.map(pattern => registerCriteriaProjector(register, pattern.name))
+
+  const criteriaContainer = rootElement.querySelector('.pw-criterias')
+  criteriaElements.forEach(element => criteriaContainer.appendChild(element))
+
+  return criteriaContainer
 }
