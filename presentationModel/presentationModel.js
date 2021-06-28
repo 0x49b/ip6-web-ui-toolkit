@@ -1,10 +1,29 @@
 import { Observable } from '../observable/observable.js'
 
-const VALUE = 'value'
-const VALID = 'valid'
+export { Attribute, presentationModelFromAttributeNames, 
+         VALID, VALUE, LABEL, EDITABLE, VISIBILITY }
+
+const VALUE      = 'value'
+const VALID      = 'valid'
+const LABEL      = 'label'
+const EDITABLE   = 'editable'
 const VISIBILITY = 'visibility'
 
+const presentationModelFromAttributeNames = attributeNames => {
+
+  const result = Object.create(null)
+
+  attributeNames.forEach(attributeName => {
+    const attribute = Attribute(undefined)
+    attribute.getObs(LABEL).setValue(attributeName)
+    result[attributeName] = attribute
+  })
+
+  return result
+}
+
 const Attribute = value => {
+
   const observables = {}
 
   const hasObs = name => observables.hasOwnProperty(name)
@@ -27,5 +46,3 @@ const Attribute = value => {
 
   return { getObs, hasObs, setValidator, setConverter, setConvertedValue }
 }
-
-export { Attribute, VALID, VALUE, VISIBILITY }
