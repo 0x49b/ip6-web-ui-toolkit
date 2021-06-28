@@ -3,6 +3,7 @@ import { registerNotificationProjector } from '../../subprojectors/notificationP
 export { initNotificationElements }
 
 const initNotificationElements = (register, emailInputElement) => {
+
   const emailValidityNotificiation = registerNotificationProjector(
     register, 
     { 
@@ -10,6 +11,7 @@ const initNotificationElements = (register, emailInputElement) => {
       getNotification:      register.getEmailValidNotification 
     }
   )
+
   const passwordStrengthNotification = registerNotificationProjector(
     register, 
     { 
@@ -17,6 +19,7 @@ const initNotificationElements = (register, emailInputElement) => {
       getNotification:      register.getPwStrengthNotification 
     }
   )
+
   const confirmPwMatchNotification = registerNotificationProjector(
     register, 
     { 
@@ -57,7 +60,7 @@ const setupPasswordStrengthNotification = register => {
     const notificationMessage = pwStrength === 0
       ? 'Hint: Type the strongest password you can'
       : pwStrength < 5
-        ? `Missing ${5-pwStrength} more criterias`
+        ? `Missing ${5-pwStrength} more criteria`
         : pwStrength === 5
           ? 'Add a personal touch for stronger password'
           : "You're password is now strong enough!"

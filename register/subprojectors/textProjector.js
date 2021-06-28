@@ -3,7 +3,7 @@ export { registerTextProjector }
 const registerTextProjector = (register, label) => {
 
   const inputElement = document.createElement('input')
-  inputElement.type = 'text'
+  inputElement.type = 'email'
   inputElement.id   = label.toLowerCase()
 
   const labelElement = document.createElement('label')

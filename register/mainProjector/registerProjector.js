@@ -1,10 +1,10 @@
-import { registerButtonProjector } from '../subprojectors/buttonProjector.js'
+import { registerButtonProjector }  from '../subprojectors/buttonProjector.js'
 
-import { initInputElements } from './initialisers/initInputElements.js'
-import { initShowButtons } from './initialisers/initShowButtons.js'
+import { initInputElements }        from './initialisers/initInputElements.js'
+import { initShowButtons }          from './initialisers/initShowButtons.js'
 import { initNotificationElements } from './initialisers/initNotificationElements.js'
-import { initStrengthLines } from './initialisers/initStrengthLines.js'
-import { initCriterias } from './initialisers/initCriterias.js'
+import { initStrengthLines }        from './initialisers/initStrengthLines.js'
+import { initCriterias }            from './initialisers/initCriterias.js'
 
 export { registerProjector }
 
@@ -13,7 +13,6 @@ const registerProjector = (registerController, rootElement, register) => {
   // -------------Register Button-------------
   const registerButton = registerButtonProjector(register)
 
-  
 
   // -------------Input Elements-------------
   const {
@@ -25,14 +24,12 @@ const registerProjector = (registerController, rootElement, register) => {
     confirmPasswordLabelElement,
   } = initInputElements(register)
 
-  
 
   // -------------Show Password Buttons-------------
   const {
     showPasswordButton,
     showConfirmPasswordButton
   } = initShowButtons(register, passwordInputElement, confirmPasswordInputElement)
-
 
 
   // -------------Notifications-------------
@@ -43,10 +40,8 @@ const registerProjector = (registerController, rootElement, register) => {
   } = initNotificationElements(register, emailInputElement)
 
 
-
   // -------------Strength Lines-------------
   const strengthLinesContainer = initStrengthLines(register, rootElement)
-
 
 
   // -------------Criterias-------------
