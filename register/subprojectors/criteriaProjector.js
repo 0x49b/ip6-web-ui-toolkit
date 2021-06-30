@@ -7,6 +7,7 @@ const registerCriteriaProjector = (register, label) => {
   const pElement    = document.createElement('p')
   const spanElement = document.createElement('span')
 
+  pElement.classList.add(label.replace(/ /g, '')) // Remove whitespaces to append class 
   spanElement.classList.add('cross')
 
   pElement.appendChild(spanElement)
