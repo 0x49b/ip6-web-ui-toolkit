@@ -1,4 +1,5 @@
 import { registerNotificationProjector } from '../../subprojectors/notificationProjector.js'
+import { toggleColor } from '../../utils/toggleColor.js'
 
 export { initNotificationElements }
 
