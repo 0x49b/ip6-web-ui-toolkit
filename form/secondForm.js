@@ -2,37 +2,67 @@ import { ObservableList } from '../observable/observable.js'
 import { Attribute, LABEL, VALID, VALUE } from '../presentationModel/presentationModel.js'
 import { formProjector } from './mainProjector/formProjector.js'
 
+import { setLabel } from './utils/attrLabels.js'
+
 export { SecondFormController, SecondFormView }
 
 const SECOND_ALL_ATTRIBUTES = [
-  { id: 'password', type: 'password' },
-  { id: 'time', type: 'time' }, 
-  { id: 'checkbox1', type: 'checkbox', subtitle: 'Which meal do you like?' }, // Subtitle sets a paragraph element above the input field, which can be used as an addition description.
-  { id: 'checkbox2', type: 'checkbox' },
-  { id: 'radio1', type: 'radio', name: 'example', subtitle: 'Choose your favourite car' }, // Radio buttons require the attribute in order to be grouped
-  { id: 'radio2', type: 'radio', name: 'example' }, 
-  { id: 'radio3', type: 'radio',  name: 'example' },
+  {
+    fieldSet: { id: 'aboutYou', legend: 'About you:',
+      inputFields: [
+        { id: 'email', type: 'text', placeholder: 'example@mail.com' },
+        { id: 'password', type: 'password' },
+      ],
+    },  
+  },
+  {
+    fieldSet: { id: 'reminder', legend: 'Set a time for your reminder:',
+      inputFields: [
+        { id: 'time', type: 'time' }, 
+      ],
+    },
+    
+  },
+  {
+    fieldSet: { id: 'meal', legend: 'Which meal do you like?:',
+      inputFields: [
+        { id: 'checkbox1', type: 'checkbox' },
+        { id: 'checkbox2', type: 'checkbox' },
+      ],
+    },
+  },
+  {
+    fieldSet: { id: 'car', legend: 'Choose your favourite car:',
+      inputFields: [
+        { id: 'radio1', type: 'radio', name: 'example' }, // Radio buttons require the 'name' attribute in order to be grouped
+        { id: 'radio2', type: 'radio', name: 'example' }, 
+        { id: 'radio3', type: 'radio',  name: 'example' },
+      ],
+    },
+  },
+  {
+    submit: { id: 'send', type: 'button', onclick: () => console.log('Form submitted') }
+  },
 ]
-
-const setLabel = (attr, labelText) => {
-  attr.getObs(LABEL).setValue(labelText)
-}
 
 const SecondFormController = () => {
 
   const Form = () => {
 
+    const emailAttr = Attribute('')
+    setLabel(emailAttr, 'Email')
+
     const passwordAttr = Attribute('')
     setLabel(passwordAttr, 'Password')
+
+    const timeAttr = Attribute('')
+    setLabel(timeAttr, 'Time')
 
     const checkBox1Attr = Attribute('')
     setLabel(checkBox1Attr, 'Spaghetti')
     
     const checkBox2Attr = Attribute('')
     setLabel(checkBox2Attr, 'Cordon Bleu')
-    
-    const timeAttr = Attribute('20:54')
-    setLabel(timeAttr, 'Time')
 
     const radio1Attr = Attribute('')
     setLabel(radio1Attr, 'Mercedes')
@@ -43,15 +73,19 @@ const SecondFormController = () => {
     const radio3Attr = Attribute('')
     setLabel(radio3Attr, 'Ferrari')
 
+    const sendAttr = Attribute('Send')
+    setLabel(sendAttr, '')
 
     return {
-      password:   passwordAttr,
-      checkbox1:  checkBox1Attr,
-      checkbox2:  checkBox2Attr,
-      time:       timeAttr,
-      radio1:     radio1Attr,
-      radio2:     radio2Attr,
-      radio3:     radio3Attr,
+      email:        emailAttr,
+      password:     passwordAttr,
+      time:         timeAttr,
+      checkbox1:    checkBox1Attr,
+      checkbox2:    checkBox2Attr,
+      radio1:       radio1Attr,
+      radio2:       radio2Attr,
+      radio3:       radio3Attr,
+      send:         sendAttr,
     }
   }
 
