@@ -1,7 +1,8 @@
 import { Observable } from '../observable/observable.js'
 
-export { Attribute, presentationModelFromAttributeNames, 
-         VALID, VALUE, LABEL, EDITABLE, VISIBILITY }
+export {  Attribute, presentationModelFromAttributeNames, 
+          getAllUniqueGroupNames,
+          VALID, VALUE, LABEL, EDITABLE, VISIBILITY }
 
 const VALUE      = 'value'
 const VALID      = 'valid'
@@ -22,6 +23,11 @@ const presentationModelFromAttributeNames = attributeNames => {
   return result
 }
 
+const allGroupNames = new Set()
+const getAllUniqueGroupNames = () => {
+  return allGroupNames
+}
+
 const Attribute = value => {
 
   const observables = {}
@@ -35,6 +41,19 @@ const Attribute = value => {
 
   getObs('value', value)
 
+  let groupName = undefined
+
+  const setGroup = name => {
+    allGroupNames.add(name)
+    groupName = name
+  }
+
+  const getGroup = () => {
+    return groupName
+  }
+
+  setGroup(groupName)
+
   let convert = id => id
   const setConverter = converter => {
     convert = converter
@@ -44,5 +63,5 @@ const Attribute = value => {
 
   const setValidator = validate => getObs(VALUE).onChange( val => getObs(VALID).setValue(validate(val)));
 
-  return { getObs, hasObs, setValidator, setConverter, setConvertedValue }
+  return { getObs, hasObs, setValidator, setConverter, setConvertedValue, setGroup, getGroup }
 }
