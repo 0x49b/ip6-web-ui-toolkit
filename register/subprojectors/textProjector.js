@@ -1,5 +1,11 @@
 export { registerTextProjector }
 
+/**
+ * 
+ * @param {register} register-model 
+ * @param {string} label 
+ * @returns inputElement and labelElement
+ */
 const registerTextProjector = (register, label) => {
 
   const inputElement = document.createElement('input')

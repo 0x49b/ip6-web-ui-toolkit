@@ -8,6 +8,13 @@ import { initCriterias }            from './initialisers/initCriterias.js'
 
 export { registerProjector }
 
+
+/**
+ * 
+ * @param {registerController} registerController  
+ * @param {rootElement} rootElement - root Element which is used to append element
+ * @param {register} register-model
+ */
 const registerProjector = (registerController, rootElement, register) => {
 
   // -------------Register Button-------------

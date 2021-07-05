@@ -8,7 +8,7 @@ const registerShowButtonProjector = register => {
   buttonElement.addEventListener('click', () => {
     register.setShowPw(!register.getShowPw())
   })
-
+  
   register.onShowPwChanged( () => buttonElement.innerHTML = register.getShowPw() ? 'hide' : 'show')
 
   return buttonElement

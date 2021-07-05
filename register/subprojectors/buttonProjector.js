@@ -1,5 +1,10 @@
 export { registerButtonProjector }
 
+/**
+ * 
+ * @param {register} register-model 
+ * @returns 
+ */
 const registerButtonProjector = (register) => {
   
   const buttonElement = document.createElement('button')

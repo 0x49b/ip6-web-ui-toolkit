@@ -3,6 +3,14 @@ import { toggleColor } from '../../utils/toggleColor.js'
 
 export { initNotificationElements }
 
+
+/**
+ * 
+ * @param {register} register-model 
+ * @param {emailInputElement} emailInputElement 
+ * @returns email, password and confirm pw notification
+ * @description Initializes Notifiaction elements
+ */
 const initNotificationElements = (register, emailInputElement) => {
 
   const emailValidityNotificiation = registerNotificationProjector(

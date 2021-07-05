@@ -8,7 +8,13 @@ const LoginController = service => {
 
   /**
    * Holds all the Attributes of the Login component and makes them externally available
-   * @returns {Object} An Object with getters, setters and observables of several Attributes
+   * @typedef {Object} Login-Model
+   * @property {String} emailAttr - Emailadress
+   * @property {String} pwAttr - Password
+   * @property {boolean} formAttr - Indicates whether the form is valid or not
+   * @property {boolean} loginSuccessAttr - Indicates whether the login attempt was successful or not
+   * @property {String} notificationAttr - Notification message when the user tries to login
+   * @returns {Object} Login-Model
    */
   const Login = () => {
     
@@ -52,9 +58,13 @@ const LoginController = service => {
       setNotification:           notificationAttr.getObs(VALUE).setValue,
     }
   }
-
+  
   const loginModel = ObservableList([])
 
+  /**
+   * 
+   * @returns {newLogin} 
+   */
   const addLogin = () => {
     const newLogin = Login()
     loginModel.add(newLogin)
@@ -68,6 +78,11 @@ const LoginController = service => {
 
 }
 
+/**
+ * 
+ * @param {LoginController} loginController 
+ * @param {RootElement} rootElement 
+ */
 const LoginView = (loginController, rootElement) => {
 
   const render = login => loginProjector(loginController, rootElement, login)

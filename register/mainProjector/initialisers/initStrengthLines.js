@@ -6,6 +6,12 @@ const BGRED    = 'line-bg-red'
 const BGORANGE = 'line-bg-orange'
 const BGGREEN  = 'line-bg-green'
 
+/**
+ * 
+ * @param {register} register-model 
+ * @param {rootElement} rootElement - Rootelement where we append all elements 
+ * @returns 
+ */
 const initStrengthLines = (register, rootElement) => {
   let strengthLines = Array.from('x'.repeat(6))  // Create an array with a length of 6
 
@@ -20,6 +26,12 @@ const initStrengthLines = (register, rootElement) => {
   return strengthLinesContainer
 }
 
+/**
+ * 
+ * @param {register} register-model 
+ * @param {strengthLines} strengthLines
+ * @description Used to colorise strength lines based on password strength
+ */
 const coloriseStrengLines = (register, strengthLines) => {
   register.onPasswordChanged( () => {
     const pwStrength = register.getPwStrength()
@@ -34,6 +46,10 @@ const coloriseStrengLines = (register, strengthLines) => {
   })
 }
 
+/**
+ * 
+ * @param {strengthLines} strengthLines 
+ */
 const resetBackgroundColors = strengthLines => {
   [...strengthLines].forEach(line => line.classList.remove(BGRED));
   [...strengthLines].forEach(line => line.classList.remove(BGORANGE));

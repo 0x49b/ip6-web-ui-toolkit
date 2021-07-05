@@ -2,6 +2,13 @@ export { loginService }
 
 const loginService = () => {
 
+  /**
+   * 
+   * @param {String} url 
+   * @param {string} email 
+   * @param {string} password 
+   * @returns {Response} Returns http-response or promise rejection
+   */
   const loginAttempt = (url, email, password) => {
     const request = {
       method: 'POST',

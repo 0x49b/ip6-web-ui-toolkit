@@ -10,6 +10,7 @@ const registerPasswordProjector = (register, label) => {
   labelElement.htmlFor = label.toLowerCase()
   labelElement.innerHTML = label
 
+
   register.onShowPwChanged( () => {
     register.getShowPw()
       ? inputElement.type = 'text'

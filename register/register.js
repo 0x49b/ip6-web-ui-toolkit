@@ -4,8 +4,26 @@ import { registerProjector } from "./mainProjector/registerProjector.js"
 
 export { RegisterController, RegisterView }
 
+/**
+ * 
+ * @returns {{onRegisterAdd|addRegister}}
+ */
 const RegisterController = () => {
   
+  /**
+   * @typedef {Object} register-model
+   * @property {String} emailAttr - Emailadress
+   * @property {String} pwAttr - Password
+   * @property {String} confirmPwAttr - confirm Password
+   * @property {String} formAttr
+   * @property {boolean} showPwBtnAttr - Indicates whether pasword is shown or not
+   * @property {String} emailValidNotificationAttr - Notification that shows feedback if email is entered
+   * @property {String} passwordStrengthNotificationAttr
+   * @property {String} confirmPwMatchNotificationAttr
+   * @property {Number} pwStrenghtAttr - Indicates strength of entered password
+   * @property {Array} patternsAttr - ALl patterns that password has to match to be valid
+   * @returns {register} register-model
+   */
   const Register = () => {
 
     const emailAttr = Attribute('')
@@ -133,6 +151,10 @@ const RegisterController = () => {
 
   const registerModel = ObservableList([])
 
+  /**
+   * 
+   * @returns {register} newRegister
+   */
   const addRegister = () => {
     const newRegister = Register()
     registerModel.add(newRegister)

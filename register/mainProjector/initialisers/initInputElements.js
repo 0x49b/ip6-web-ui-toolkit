@@ -3,6 +3,11 @@ import { registerPasswordProjector } from '../../subprojectors/passwordProjector
 
 export { initInputElements }
 
+/**
+ * 
+ * @param {register} register-modell 
+ * @returns {Object} input-elements with labels
+ */
 const initInputElements = register => {
   const [ emailInputElement, emailLabelElement ] = registerTextProjector(register, 'Email')
   const [ passwordInputElement, passwordLabelElement ] = registerPasswordProjector(register, 'Password')

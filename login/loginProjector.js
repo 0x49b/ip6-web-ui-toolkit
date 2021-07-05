@@ -1,5 +1,11 @@
 export { loginProjector }
 
+/**
+ * 
+ * @param {loginController} loginController 
+ * @param {rootElement} rootElement 
+ * @param {login} login-Modell 
+ */
 const loginProjector = (loginController, rootElement, login) => {
   const loginButton = document.createElement('button')
   loginButton.innerHTML = 'Login'
@@ -43,7 +49,12 @@ const loginProjector = (loginController, rootElement, login) => {
   rootElement.appendChild(loginButton)
 }
 
-
+/**
+ * 
+ * @param {Login} login 
+ * @param {Label} label
+ * @returns {{inputElement | labelElement}} 
+ */
 const loginTextProjector = (login, label) => {
 
   const inputElement = document.createElement('input')
@@ -67,6 +78,12 @@ const loginTextProjector = (login, label) => {
   return [ inputElement, labelElement ]
 }
 
+/**
+ * 
+ * @param {Login} login-Model 
+ * @param {String} label-String
+ * @returns {{InputElement | LabelElement}}
+ */
 const loginPasswordProjector = (login, label) => {
 
   const inputElement = document.createElement('input')
@@ -84,6 +101,12 @@ const loginPasswordProjector = (login, label) => {
   return [ inputElement, labelElement ]
 }
 
+
+/**
+ * 
+ * @param {login} login-Model 
+ * @returns {buttonElement}
+ */
 const loginShowButtonProjector = login => {
 
   const buttonElement = document.createElement('button')
@@ -97,7 +120,11 @@ const loginShowButtonProjector = login => {
 
   return buttonElement
 }
-
+/**
+ * 
+ * @param {Login} login-Modell 
+ * @returns {pElement}
+ */
 const loginNotificationProjector = (login) => {
 
   const pElement = document.createElement('p')

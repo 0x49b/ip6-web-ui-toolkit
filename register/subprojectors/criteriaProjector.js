@@ -2,6 +2,12 @@ import { toggleColor } from '../utils/toggleColor.js'
 
 export { registerCriteriaProjector }
 
+/**
+ * 
+ * @param {register} register-model ;
+ * @param {string} label-string element 
+ * @returns pElement
+ */
 const registerCriteriaProjector = (register, label) => {
 
   const pElement    = document.createElement('p')
