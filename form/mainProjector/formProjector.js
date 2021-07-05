@@ -73,6 +73,7 @@ const appendNestedFieldSetsRecursively = (attribute, form) => {
   const innerFieldSetConfigs        = attribute.fieldSet
   const appendingInputFieldsConfigs = attribute.appendingInputFields
 
+
   // Creating the fieldset, which will contain all coresponding inputs
   const fieldSetElement = document.createElement('fieldset')
   fieldSetElement.id = attribute.id
@@ -94,7 +95,6 @@ const appendNestedFieldSetsRecursively = (attribute, form) => {
 
   // Append leftover input fields if they exist
   if(appendingInputFieldsConfigs){
-
     appendInputFields(appendingInputFieldsConfigs, fieldSetElement, form)
   }
 

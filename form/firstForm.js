@@ -18,6 +18,11 @@ const FIRST_ALL_ATTRIBUTES = [
           { id: 'eyeColor', type: 'color' },
         ],
       },
+      fieldSet: { id: 'detailedPersonalia', legend: 'Detailed Personalia:',
+        inputFields: [
+          { id: 'eyeColor', type: 'color' },
+        ],
+      },
       // These input fields will be appended after the nested fieldset
       appendingInputFields: [  
         { id: 'birthDate', type: 'date' },
@@ -27,11 +32,10 @@ const FIRST_ALL_ATTRIBUTES = [
   {
     fieldSet: { id: 'meeting', legend: 'Next Meeting:',
       inputFields: [
-        { id: 'date', type: 'date' }, 
-        { id: 'time', type: 'time' },
+        { id: 'date', type: 'date' },
+        { id: 'time', type: 'time', group: 'meeting' },
       ],
-    },
-    
+    },  
   },
   {
     fieldSet: { id: 'miscellaneous', legend: 'Miscellaneous:',
@@ -47,7 +51,7 @@ const FIRST_ALL_ATTRIBUTES = [
   }
 ]
 
-const FirstFormController = () => {
+const FirstFormController = (service) => {
 
   const Form = () => {
 
