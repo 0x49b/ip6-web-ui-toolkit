@@ -1,6 +1,6 @@
 import { ObservableList } from '../observable/observable.js'
 import { Attribute, LABEL, VALID, VALUE } from '../presentationModel/presentationModel.js'
-import { formProjector, pageCss } from './mainProjector/formProjectorV2.js'
+import { formProjector, pageCss } from './mainProjector/formProjectorV3.js'
 
 import { setLabel } from './utils/attrLabels.js'
 
@@ -27,7 +27,7 @@ const ALL_ATTRIBUTE_CONFIGS = [
   { id: 'radio2',     type: 'radio', name: 'radio-example'      },
   { id: 'favColor',   type: 'text',  },
   { id: 'submit',     type: 'submit' },
-  { id: 'place',      type: 'text' },
+  { id: 'place',      type: 'text'   },
 ]
 
 const FirstFormControllerV2 = (service) => {

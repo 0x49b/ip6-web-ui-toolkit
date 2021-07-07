@@ -1,4 +1,6 @@
+
 export { loginProjector }
+
 
 /**
  * 
@@ -7,10 +9,14 @@ export { loginProjector }
  * @param {login} login-Modell 
  */
 const loginProjector = (loginController, rootElement, login) => {
-  const loginButton = document.createElement('button')
-  loginButton.innerHTML = 'Login'
 
-  loginButton.onclick = () => {
+  const loginButton = document.createElement('input')
+  loginButton.type = 'submit'
+  loginButton.value = 'Login'
+  loginButton.classList.add('primary')
+
+  loginButton.onclick = (event) => {
+    event.preventDefault()
     
     login.onLogin(emailInputElement.value, passwordInputElement.value)
       .then(result => {
@@ -23,31 +29,59 @@ const loginProjector = (loginController, rootElement, login) => {
       })
   }
 
+  const titleElement = document.createElement('h2')
+  titleElement.innerHTML = 'Login'
+
   const [ emailInputElement, emailLabelElement ] = loginTextProjector(login, 'Email')
   const [ passwordInputElement, passwordLabelElement ] = loginPasswordProjector(login, 'Password')
 
+  const emailValidNotificationElement = loginEmailValidNotification(login, emailInputElement)
+
+  const emailInputContainer = document.createElement('div')
+  emailInputContainer.id = 'emailInputContainer'
+
   const showButtonElement = loginShowButtonProjector(login)
+
+  const passwordInputContainer = document.createElement('div')
+  passwordInputContainer.id = 'passwordInputContainer'
+
+  const forgotLinkElement = document.createElement('a')
+  forgotLinkElement.innerHTML = 'Forgot email or password?'
 
   const notificationElement = loginNotificationProjector(login)
 
   login.onFormValidityChanged(
     valid => valid
-      ? loginButton.classList.remove('disabled')
-      : loginButton.classList.add('disabled')
+      ? loginButton.disabled = false
+      : loginButton.disabled = true
   )
 
   login.onPwVisibilityChanged( () => passwordInputElement.type = login.getPwVisibility() ? 'text' : 'password' )
 
-  rootElement.appendChild(notificationElement)
-  rootElement.appendChild(emailLabelElement)
-  rootElement.appendChild(emailInputElement)
-  rootElement.appendChild(document.createElement('br'))
-  rootElement.appendChild(passwordLabelElement)
-  rootElement.appendChild(passwordInputElement)
-  rootElement.appendChild(showButtonElement)
-  rootElement.appendChild(document.createElement('br'))
-  rootElement.appendChild(loginButton)
+  
+
+  const formElement = document.createElement('form')
+
+  rootElement.appendChild(titleElement)
+  rootElement.appendChild(formElement)
+
+  formElement.appendChild(notificationElement)
+  formElement.appendChild(emailLabelElement)
+  
+  emailInputContainer.appendChild(emailInputElement)
+  emailInputContainer.appendChild(emailValidNotificationElement)
+
+  formElement.appendChild(emailInputContainer)
+  formElement.appendChild(passwordLabelElement)
+
+  passwordInputContainer.appendChild(passwordInputElement)
+  passwordInputContainer.appendChild(showButtonElement)
+
+  formElement.appendChild(passwordInputContainer)
+  formElement.appendChild(forgotLinkElement)
+  formElement.appendChild(loginButton)
 }
+
 
 /**
  * 
@@ -58,25 +92,38 @@ const loginProjector = (loginController, rootElement, login) => {
 const loginTextProjector = (login, label) => {
 
   const inputElement = document.createElement('input')
-  inputElement.type = 'text'
+  inputElement.type = 'email'
   inputElement.id   = label.toLowerCase()
+  inputElement.placeholder = 'example@mail.com'
 
   const labelElement = document.createElement('label')
   labelElement.htmlFor = label.toLowerCase()
   labelElement.innerHTML = label
   
-  inputElement.oninput = () => login.setEmail(inputElement.value)
+  inputElement.onchange = () => login.setEmail(inputElement.value)
+
+  inputElement.addEventListener('change', () => {
+
+    if(login.getEmailValidity()){
+      inputElement.classList.add('valid')
+      inputElement.classList.remove('invalid')
+    } else {
+      inputElement.classList.remove('valid')
+      inputElement.classList.add('invalid')
+    }
+
+    // Reset classes when input field is empty
+    if(!login.getEmail()) {
+      inputElement.classList.remove('valid')
+      inputElement.classList.remove('invalid')
+    }
+  })
 
   login.onEmailChanged( () => inputElement.value = login.getEmail() )
 
-  login.onEmailValidityChanged(
-    valid => valid
-      ? inputElement.classList.add('valid')
-      : inputElement.classList.remove('valid')
-  )
-
   return [ inputElement, labelElement ]
 }
+
 
 /**
  * 
@@ -89,6 +136,7 @@ const loginPasswordProjector = (login, label) => {
   const inputElement = document.createElement('input')
   inputElement.type = 'password'
   inputElement.id = label.toLowerCase()
+  inputElement.placeholder = 'P4$$word'
 
   const labelElement = document.createElement('label')
   labelElement.htmlFor = label.toLowerCase()
@@ -109,35 +157,63 @@ const loginPasswordProjector = (login, label) => {
  */
 const loginShowButtonProjector = login => {
 
-  const buttonElement = document.createElement('button')
-  buttonElement.innerHTML = 'show'
+  const inputElement = document.createElement('input')
+  inputElement.type = 'button'
+  inputElement.classList.add('secondary')
+  inputElement.innerHTML = 'show'
 
-  buttonElement.onclick = () => {
+  inputElement.onclick = () => {
     login.setPwVisibility(!login.getPwVisibility())
   }
 
-  login.onPwVisibilityChanged( () => buttonElement.innerHTML = login.getPwVisibility() ? 'hide' : 'show')
+  login.onPwVisibilityChanged( () => inputElement.value = login.getPwVisibility() ? 'hide' : 'show')
 
-  return buttonElement
+  return inputElement
 }
+
+
 /**
  * 
  * @param {Login} login-Modell 
  * @returns {pElement}
  */
-const loginNotificationProjector = (login) => {
+const loginNotificationProjector = login => {
+
+  const pElement = document.createElement('p')
+  pElement.id = 'loginNotification'
+
+  login.onLoginSuccessChanged( () => {
+
+    if(login.getLoginSuccess()) {
+      login.setNotification('Logged in successfully!')
+      pElement.classList.add('success')
+    } else if(login.getPassword()){ // Checking if pw has value, because the onLoginSuccessChanged gets called immediately, therefore setting notification even without any input.
+      login.setNotification('Sorry we could not process your login attempt')
+      pElement.classList.remove('success')
+    } else {
+      login.setNotification('')
+      pElement.classList.remove('success')
+    }
+  })
+
+  login.onNotificationChanged( () => pElement.innerHTML = login.getNotification())
+
+  return pElement
+}
+
+
+const loginEmailValidNotification = (login, emailInputElement) => {
 
   const pElement = document.createElement('p')
 
-  login.onLoginSuccessChanged( () => 
-    login.getLoginSuccess() 
-      ? login.setNotification('Logged in successfully!')
-      : login.getPassword()  // Checking if pw has value, because the onLoginSuccessChanged gets called immediately, therefore setting notification even without any input.
-        ? login.setNotification('Sorry we could not process your login attempt')
-        : login.setNotification('')
-  )
+  emailInputElement.addEventListener('change', () => {
 
-  login.onNotificationChanged( () => pElement.innerHTML = login.getNotification())
+    if(!login.getEmail()) return pElement.innerHTML = ''
+
+    login.getEmailValidity() 
+      ? pElement.innerHTML = ''
+      : pElement.innerHTML = 'Malformed Email'
+  })
 
   return pElement
 }
