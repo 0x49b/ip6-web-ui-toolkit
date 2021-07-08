@@ -1,10 +1,10 @@
 import { registerButtonProjector }  from '../subprojectors/buttonProjector.js'
 
-import { initInputElements }        from './initialisers/initInputElements.js'
-import { initShowButtons }          from './initialisers/initShowButtons.js'
-import { initNotificationElements } from './initialisers/initNotificationElements.js'
-import { initStrengthLines }        from './initialisers/initStrengthLines.js'
-import { initCriterias }            from './initialisers/initCriterias.js'
+import { setupInputElements }        from './setups/setupInputElements.js'
+import { setupShowButtons }          from './setups/setupShowButtons.js'
+import { setupNotificationElements } from './setups/setupNotificationElements.js'
+import { setupStrengthLines }        from './setups/setupStrengthLines.js'
+import { setupCriterias }            from './setups/setupCriterias.js'
 
 export { registerProjector }
 
@@ -29,14 +29,14 @@ const registerProjector = (registerController, rootElement, register) => {
     passwordLabelElement,
     confirmPasswordInputElement,
     confirmPasswordLabelElement,
-  } = initInputElements(register)
+  } = setupInputElements(register)
 
 
   // -------------Show Password Buttons-------------
   const {
     showPasswordButton,
     showConfirmPasswordButton
-  } = initShowButtons(register, passwordInputElement, confirmPasswordInputElement)
+  } = setupShowButtons(register, passwordInputElement, confirmPasswordInputElement)
 
 
   // -------------Notifications-------------
@@ -44,15 +44,15 @@ const registerProjector = (registerController, rootElement, register) => {
     emailValidityNotificiation,
     passwordStrengthNotification,
     confirmPwMatchNotification
-  } = initNotificationElements(register, emailInputElement)
+  } = setupNotificationElements(register, emailInputElement)
 
 
   // -------------Strength Lines-------------
-  const strengthLinesContainer = initStrengthLines(register, rootElement)
+  const strengthLinesContainer = setupStrengthLines(register, rootElement)
 
 
   // -------------Criterias-------------
-  const criteriaContainer = initCriterias(register, rootElement)
+  const criteriaContainer = setupCriterias(register, rootElement)
 
 
   // -------------Setting up the HTML-------------

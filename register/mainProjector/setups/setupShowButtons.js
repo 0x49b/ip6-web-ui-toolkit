@@ -1,6 +1,6 @@
 import { registerShowButtonProjector } from '../../subprojectors/showButtonProjector.js'
 
-export { initShowButtons }
+export { setupShowButtons }
 
 /**
  * 
@@ -9,7 +9,7 @@ export { initShowButtons }
  * @param {confirmPasswordInputElement} confirmPasswordInputElement 
  * @returns Show- and Confirm Pasword Button
  */
-const initShowButtons = (register, passwordInputElement, confirmPasswordInputElement) => {
+const setupShowButtons = (register, passwordInputElement, confirmPasswordInputElement) => {
   const showPasswordButton = registerShowButtonProjector(register)
   const showConfirmPasswordButton = registerShowButtonProjector(register)
 

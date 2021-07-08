@@ -1,6 +1,6 @@
 import { ObservableList } from "../observable/observable.js"
 import { Attribute, VALID, VALUE, VISIBILITY } from "../presentationModel/presentationModel.js"
-import { loginProjector } from "./loginProjector.js"
+import { loginProjector } from "./mainProjector/loginProjector.js"
 
 export { LoginController, LoginView }
 

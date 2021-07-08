@@ -1,6 +1,6 @@
 import { registerStrengthLineProjector } from '../../subprojectors/strengthLineProjector.js'
 
-export { initStrengthLines }
+export { setupStrengthLines }
 
 const BGRED    = 'line-bg-red'
 const BGORANGE = 'line-bg-orange'
@@ -12,7 +12,7 @@ const BGGREEN  = 'line-bg-green'
  * @param {rootElement} rootElement - Rootelement where we append all elements 
  * @returns 
  */
-const initStrengthLines = (register, rootElement) => {
+const setupStrengthLines = (register, rootElement) => {
   let strengthLines = Array.from('x'.repeat(6))  // Create an array with a length of 6
 
   strengthLines = strengthLines.map(line => registerStrengthLineProjector(register)) // Fill the array with strengthlineElements

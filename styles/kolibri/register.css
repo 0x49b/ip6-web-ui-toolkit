@@ -1,2 +1,4 @@
 @import "./kolibriColorScheme.css";
+@import "./fontStyles.css";
 @import "./globals.css";
+@import "../../register/style/registerProjector.css";

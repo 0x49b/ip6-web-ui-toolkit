@@ -1,7 +1,7 @@
 import { registerNotificationProjector } from '../../subprojectors/notificationProjector.js'
 import { toggleColor } from '../../utils/toggleColor.js'
 
-export { initNotificationElements }
+export { setupNotificationElements }
 
 
 /**
@@ -11,7 +11,7 @@ export { initNotificationElements }
  * @returns email, password and confirm pw notification
  * @description Initializes Notifiaction elements
  */
-const initNotificationElements = (register, emailInputElement) => {
+const setupNotificationElements = (register, emailInputElement) => {
 
   const emailValidityNotificiation = registerNotificationProjector(
     register, 
