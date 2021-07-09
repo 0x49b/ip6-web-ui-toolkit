@@ -4,7 +4,7 @@ import { setupInputElements }        from './setups/setupInputElements.js'
 import { setupShowButtons }          from './setups/setupShowButtons.js'
 import { setupNotificationElements } from './setups/setupNotificationElements.js'
 import { setupStrengthLines }        from './setups/setupStrengthLines.js'
-import { setupCriterias }            from './setups/setupCriterias.js'
+import { setupCriteria }            from './setups/setupCriteria.js'
 
 export { registerProjector }
 
@@ -51,8 +51,8 @@ const registerProjector = (registerController, rootElement, register) => {
   const strengthLinesContainer = setupStrengthLines(register, rootElement)
 
 
-  // -------------Criterias-------------
-  const criteriaContainer = setupCriterias(register, rootElement)
+  // -------------Criteria-------------
+  const criteriaContainer = setupCriteria(register, rootElement)
 
 
   // -------------Setting up the HTML-------------

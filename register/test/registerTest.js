@@ -13,7 +13,7 @@ const setUpRegisterContext = (withContainer = false) => {
   const criteriaContainer = document.createElement("div")
 
   strengthLinesContainer.classList.add("strength-lines")
-  criteriaContainer.classList.add("pw-criterias")
+  criteriaContainer.classList.add("pw-criteria")
 
   registerContainer.appendChild(strengthLinesContainer)
   registerContainer.appendChild(criteriaContainer)
