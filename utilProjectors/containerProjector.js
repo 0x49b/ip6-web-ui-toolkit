@@ -1,7 +1,7 @@
 
-export { loginContainerProjector }
+export { containerProjector }
 
-const loginContainerProjector = (elements, containerId) => {
+const containerProjector = (elements, containerId) => {
 
   const divElement = document.createElement('div')
   divElement.id = containerId

@@ -2,14 +2,16 @@ export { registerShowButtonProjector }
 
 const registerShowButtonProjector = register => {
 
-  const buttonElement = document.createElement('button')
-  buttonElement.innerHTML = 'show'
+  const inputElement = document.createElement('input')
+  inputElement.type = 'button'
+  inputElement.value = 'show'
+  inputElement.classList.add('secondary')
 
-  buttonElement.addEventListener('click', () => {
+  inputElement.addEventListener('click', () => {
     register.setShowPw(!register.getShowPw())
   })
   
-  register.onShowPwChanged( () => buttonElement.innerHTML = register.getShowPw() ? 'hide' : 'show')
+  register.onShowPwChanged( () => inputElement.value = register.getShowPw() ? 'hide' : 'show')
 
-  return buttonElement
+  return inputElement
 }

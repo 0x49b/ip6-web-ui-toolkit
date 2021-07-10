@@ -1,4 +1,5 @@
 import { registerStrengthLineProjector } from '../../subprojectors/strengthLineProjector.js'
+import { containerProjector } from '../../../utilProjectors/containerProjector.js'
 
 export { setupStrengthLines }
 
@@ -13,13 +14,18 @@ const BGGREEN  = 'line-bg-green'
  * @returns 
  */
 const setupStrengthLines = (register, rootElement) => {
-  let strengthLines = Array.from('x'.repeat(6))  // Create an array with a length of 6
+  let strengthLines = Array.from('x'.repeat(5))  // Create an array with a length of 6
 
   strengthLines = strengthLines.map(line => registerStrengthLineProjector(register)) // Fill the array with strengthlineElements
 
-  // Get the div container from DOM and append all strengthlines to it
+  // Get the div container from DOM and append the strengthlines box to it
   const strengthLinesContainer = rootElement.querySelector('.strength-lines')
-  strengthLines.forEach(line => strengthLinesContainer.appendChild(line))
+  const strengthLinesBox = containerProjector(strengthLines, 'strengthlines-box')
+  strengthLinesContainer.appendChild(strengthLinesBox)
+
+  // Adding a placeholder for styling reasons (alignment of strengthlines to the input field)
+  const placeholderElement = containerProjector([], 'placeholder')
+  strengthLinesContainer.appendChild(placeholderElement)
 
   coloriseStrengLines(register, strengthLines)
 
@@ -39,8 +45,8 @@ const coloriseStrengLines = (register, strengthLines) => {
     resetBackgroundColors(strengthLines)
 
     let color = BGRED
-    if(pwStrength > 1 && pwStrength < 6)  color = BGORANGE
-    if(pwStrength === 6)                  color = BGGREEN;
+    if(pwStrength > 1 && pwStrength < 5)  color = BGORANGE
+    if(pwStrength === 5)                  color = BGGREEN;
 
     [...strengthLines].slice(0, pwStrength).forEach(line => line.classList.add(color))
   })

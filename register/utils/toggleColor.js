@@ -19,3 +19,4 @@ const toggleColor = (element, isFulfilled) => {
     element.classList.remove(RED)
   }
 }
+

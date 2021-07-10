@@ -1,5 +1,5 @@
 
-export { loginTextProjector }
+export { loginEmailProjector }
 
 /**
  * 
@@ -7,7 +7,7 @@ export { loginTextProjector }
  * @param {Label} label
  * @returns {{inputElement | labelElement}} 
  */
- const loginTextProjector = (login, label) => {
+ const loginEmailProjector = (login, label) => {
 
   const inputElement = document.createElement('input')
   inputElement.type = 'email'

@@ -7,18 +7,22 @@ export { registerButtonProjector }
  */
 const registerButtonProjector = (register) => {
   
-  const buttonElement = document.createElement('button')
-  buttonElement.innerHTML = 'Register'
+  const inputElement = document.createElement('input')
+  inputElement.type = 'submit'
+  inputElement.value = 'Register'
+  inputElement.classList.add('primary')
 
-  register.onclick = () => {
+  inputElement.onclick = (event) => {
+    event.preventDefault()
+
     // TODO: API Call auf den Server
   }
 
   register.onFormValidityChanged(
     valid => valid
-      ? buttonElement.classList.remove('disabled')
-      : buttonElement.classList.add('disabled')
+      ? inputElement.disabled = false
+      : inputElement.disabled = true
   )
 
-  return buttonElement
+  return inputElement
 }

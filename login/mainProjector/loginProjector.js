@@ -1,9 +1,9 @@
-import { loginTextProjector } from '../subProjectors/textProjector.js'
+import { loginEmailProjector } from '../subProjectors/emailProjector.js'
 import { loginPasswordProjector } from '../subProjectors/passwordProjector.js'
 import { loginShowButtonProjector } from '../subProjectors/showButtonProjector.js'
 import { loginSubmitButtonProjector } from '../subProjectors/submitButtonProjector.js'
 import { loginTitleProjector } from '../subProjectors/titleProjector.js'
-import { loginContainerProjector } from '../subProjectors/containerProjector.js'
+import { containerProjector } from '../../utilProjectors/containerProjector.js'
 import { loginLinkProjector } from '../subProjectors/linkProjector.js'
 import { loginNotificationProjector } from '../subProjectors/notificationProjector.js'
 
@@ -31,7 +31,7 @@ const loginProjector = (loginController, rootElement, login) => {
 
 
   // -------------Input Elements-------------
-  const [ emailInputElement, emailLabelElement ] = loginTextProjector(login, 'Email')
+  const [ emailInputElement, emailLabelElement ] = loginEmailProjector(login, 'Email')
   const [ passwordInputElement, passwordLabelElement ] = loginPasswordProjector(login, 'Password')
 
 
@@ -53,16 +53,16 @@ const loginProjector = (loginController, rootElement, login) => {
 
 
   // -------------Container Elements-------------
-  const emailInputContainer = loginContainerProjector([emailInputElement, emailValidNotificationElement], 'emailInputContainer')
+  const emailInputContainer = containerProjector([emailInputElement, emailValidNotificationElement], 'emailInputContainer')
 
-  const passwordInputContainer = loginContainerProjector([passwordInputElement, showButtonElement], 'passwordInputContainer')
+  const passwordInputContainer = containerProjector([passwordInputElement, showButtonElement], 'passwordInputContainer')
 
 
   // -------------Form Element-------------
   const formElement = document.createElement('form')
 
 
-  
+  // -------------Setting up the HTML-------------
   rootElement.appendChild(titleElement)
   rootElement.appendChild(formElement)
 

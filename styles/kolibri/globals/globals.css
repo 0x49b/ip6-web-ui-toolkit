@@ -50,7 +50,7 @@ input {
 
   font-size: var(--font-medium);
 
-  transition: var(--transition);
+  transition: var(--transition-quick);
 }
 
 input.valid {
@@ -97,7 +97,7 @@ input[type="button"].primary {
   background-color: var(--primary);
   color: var(--text-contrast);
 
-  transition: var(--transition);
+  transition: var(--transition-quick);
 }
 
 .primary:hover,
@@ -116,6 +116,7 @@ input[type="button"].primary:active {
 button.primary:disabled,
 input[type="button"].primary:disabled {
   opacity: 0.4;
+  background-color: var(--primary);
 }
 
 
@@ -130,7 +131,7 @@ input[type="button"].secondary {
   background-color: transparent;
   border-color: var(--primary);
 
-  transition: var(--transition);
+  transition: var(--transition-quick);
 }
 
 .secondary:hover,
@@ -155,5 +156,6 @@ input[type="button"].secondary:disabled {
 
 /* General Variables */
 :root {
-  --transition: all 0.1s ease-in-out;
+  --transition-quick: all 0.15s ease-in-out;
+  --transition-slow:  all 0.25s ease-in-out;
 }

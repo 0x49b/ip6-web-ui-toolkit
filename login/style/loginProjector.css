@@ -3,7 +3,7 @@
 /* Login container */
 #login {
   background-color: var(--background);
-  width: 25rem;
+  width: 28rem;
   text-align: left;
   margin: 0 auto;
   margin-top: 4rem;
@@ -15,13 +15,13 @@
 
 
 /* Email input + Email validity notification */
-input[type="email"] {
+#emailInputContainer {
   position: relative;
 }
 
 input[type="email"] + p {
   position: absolute;
-  margin-top: 0.15rem;
+  top: calc(100% + 0.15rem);
 
   font-size: var(--font-small);
   font-weight: var(--font-bold);

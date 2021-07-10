@@ -21,14 +21,6 @@ const setupNotificationElements = (register, emailInputElement) => {
     }
   )
 
-  const passwordStrengthNotification = registerNotificationProjector(
-    register, 
-    { 
-      onNotificationChange: register.onPwStrengthNotificationChanged, 
-      getNotification:      register.getPwStrengthNotification 
-    }
-  )
-
   const confirmPwMatchNotification = registerNotificationProjector(
     register, 
     { 
@@ -39,13 +31,10 @@ const setupNotificationElements = (register, emailInputElement) => {
 
   setupEmailValidityNotification(register, emailInputElement)
 
-  setupPasswordStrengthNotification(register)
-
   setupConfirmPwMatchNotification(register, confirmPwMatchNotification)
 
   return {
     emailValidityNotificiation,
-    passwordStrengthNotification,
     confirmPwMatchNotification
   }
 }
@@ -57,25 +46,6 @@ const setupEmailValidityNotification = (register, emailInputElement) => {
       ? register.setEmailValidNotification('Malformed Email')
       : register.setEmailValidNotification('')
   }
-
-  register.onEmailValidityChanged( valid => {
-    if(valid) return register.setEmailValidNotification('')
-  })
-}
-
-const setupPasswordStrengthNotification = register => {
-  register.onPasswordChanged(() => {
-    const pwStrength = register.getPwStrength()
-    const notificationMessage = pwStrength === 0
-      ? 'Hint: Type the strongest password you can'
-      : pwStrength < 5
-        ? `Missing ${5-pwStrength} more criteria`
-        : pwStrength === 5
-          ? 'Add a personal touch for stronger password'
-          : "You're password is now strong enough!"
-
-    register.setPwStrengthNotification(notificationMessage)
-  })
 }
 
 const setupConfirmPwMatchNotification = (register, confirmPwMatchNotification) => {

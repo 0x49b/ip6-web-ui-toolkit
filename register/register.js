@@ -57,13 +57,8 @@ const RegisterController = () => {
         isFulfilled: false
       },
       {
-        name: '6 Characters',
+        name: '6 characters',
         regex: /^.{6,}/,
-        isFulfilled: false
-      },
-      {
-        name: '8 Characters',
-        regex: /^.{8,}/,
         isFulfilled: false
       },
     ])
@@ -100,12 +95,14 @@ const RegisterController = () => {
           ))
       })
 
+      confirmPwAttr.setValidator( input => input === pwAttr.getObs(VALUE).getValue())
+
       const amountOfFulfilledPatterns = patternsAttr.getObs(VALUE).getValue().filter(pattern => pattern.isFulfilled).length
 
       pwStrenghtAttr.getObs(VALUE).setValue(amountOfFulfilledPatterns)
 
 
-      return amountOfFulfilledPatterns === 6
+      return amountOfFulfilledPatterns === patternsAttr.getObs(VALUE).getValue().length
     })
 
     return {
@@ -125,9 +122,6 @@ const RegisterController = () => {
       getConfirmPassword:                   confirmPwAttr.getObs(VALUE).getValue,
       setConfirmPassword:                   confirmPwAttr.getObs(VALUE).setValue,
       onConfirmPasswordChanged:             confirmPwAttr.getObs(VALUE).onChange,
-      getConfirmPwVisibility:               confirmPwAttr.getObs(VISIBILITY).getValue,
-      setConfirmPwVisibility:               confirmPwAttr.getObs(VISIBILITY).setValue,
-      onConfirmPwVisibilityChanged:         confirmPwAttr.getObs(VISIBILITY).onChange,
       getShowPw:                            showPwBtnAttr.getObs(VALUE).getValue,
       setShowPw:                            showPwBtnAttr.getObs(VALUE).setValue,
       onShowPwChanged:                      showPwBtnAttr.getObs(VALUE).onChange,

@@ -1,4 +1,4 @@
-import { registerTextProjector } from '../../subprojectors/textProjector.js'
+import { registerEmailProjector } from '../../subprojectors/emailProjector.js'
 import { registerPasswordProjector } from '../../subprojectors/passwordProjector.js'
 
 export { setupInputElements }
@@ -9,23 +9,35 @@ export { setupInputElements }
  * @returns {Object} input-elements with labels
  */
 const setupInputElements = register => {
-  const [ emailInputElement, emailLabelElement ] = registerTextProjector(register, 'Email')
-  const [ passwordInputElement, passwordLabelElement ] = registerPasswordProjector(register, 'Password')
-  const [ confirmPasswordInputElement, confirmPasswordLabelElement ] = registerPasswordProjector(register, 'Confirm Password (optional)')
+  const [ 
+    emailInputElement, 
+    emailLabelElement 
+  ] = registerEmailProjector(register, 'Email')
+
+
+  const [ 
+    passwordInputElement, 
+    passwordLabelElement 
+  ] = registerPasswordProjector(register, 'Password')
+
+  passwordInputElement.placeholder = 'P4$$word'
 
   passwordInputElement.oninput = () => register.setPassword(passwordInputElement.value)
 
   register.onPasswordChanged( () => passwordInputElement.value = register.getPassword() )
 
-  register.onPasswordValidityChanged(
-    valid => valid
-      ? passwordInputElement.classList.add('valid')
-      : passwordInputElement.classList.remove('valid')
-  )
+  
+  const [ 
+    confirmPasswordInputElement, 
+    confirmPasswordLabelElement 
+  ] = registerPasswordProjector(register, 'Confirm Password (optional)')
+
+  confirmPasswordInputElement.placeholder = 'P4$$word'
 
   confirmPasswordInputElement.oninput = () => register.setConfirmPassword(confirmPasswordInputElement.value)
 
   register.onConfirmPasswordChanged( () => confirmPasswordInputElement.value = register.getConfirmPassword() )
+
 
   return {
     emailInputElement,
@@ -34,5 +46,22 @@ const setupInputElements = register => {
     passwordLabelElement,
     confirmPasswordInputElement,
     confirmPasswordLabelElement,
+  }
+}
+
+const setValidityClass = (element, valid) => {
+
+  if(null === valid) {
+    element.classList.remove('valid')
+    element.classList.remove('invalid')
+    return
+  }
+
+  if(valid) {
+    element.classList.add('valid')
+    element.classList.remove('invalid')
+  } else {
+    element.classList.remove('valid')
+    element.classList.add('invalid')
   }
 }
