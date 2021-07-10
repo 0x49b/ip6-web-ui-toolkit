@@ -122,7 +122,7 @@ registerSuite.add("Password is not valid if criterion is not met", assert => {
   // 6 Characters Test
   Register.setPassword("passw")
 
-  const sixCharCriteria = registerContainer.getElementsByClassName('6Characters')[0]
+  const sixCharCriteria = registerContainer.getElementsByClassName('6characters')[0]
 
   assert.true(sixCharCriteria.classList.contains("red"))
   assert.true(!Register.getPasswordValidity())
@@ -211,7 +211,7 @@ registerSuite.add("Show buttons toggle password input type", assert => {
   const [Register, registerContainer] = setUpRegisterContext(true)
 
   // first Show Button
-  const firstShowButton = registerContainer.querySelectorAll('button')[0]
+  const firstShowButton = registerContainer.querySelectorAll('input[type="button"]')[0]
 
   firstShowButton.click()
 
@@ -225,7 +225,7 @@ registerSuite.add("Show buttons toggle password input type", assert => {
   assert.true(!Register.getShowPw())
 
   // second Show Button
-  const secondShowButton = registerContainer.querySelectorAll('button')[1]
+  const secondShowButton = registerContainer.querySelectorAll('input[type="button"]')[1]
 
   secondShowButton.click()
 
@@ -265,35 +265,6 @@ registerSuite.add("PaswordStrength changes when password get changed ", assert =
   Register.setPassword("P4$$wo")
   pwStrength = Register.getPwStrength()
   assert.is(pwStrength, 5)
-
-  Register.setPassword("P4$$word")
-  pwStrength = Register.getPwStrength()
-  assert.is(pwStrength, 6)
-})
-
-registerSuite.add("Correct password strength notification gets displayed when certain criteria are met", assert => {
-  const [Register, registerContainer] = setUpRegisterContext(true)
-
-  let pwStrength = Register.getPwStrength()
-  assert.is(Register.getPwStrengthNotification(), "Hint: Type the strongest password you can")
-
-  Register.setPassword("P")
-  assert.is(Register.getPwStrengthNotification(), "Missing 4 more criteria")
-
-  Register.setPassword("P4")
-  assert.is(Register.getPwStrengthNotification(), "Missing 3 more criteria")
-
-  Register.setPassword("P4$$")
-  assert.is(Register.getPwStrengthNotification(), "Missing 2 more criteria")
-
-  Register.setPassword("P4$$w")
-  assert.is(Register.getPwStrengthNotification(), "Missing 1 more criteria")
-
-  Register.setPassword("P4$$wor")
-  assert.is(Register.getPwStrengthNotification(), "Add a personal touch for stronger password")
-
-  Register.setPassword("P4$$word")
-  assert.is(Register.getPwStrengthNotification(), "You're password is now strong enough!")
 })
 
 
