@@ -10,12 +10,6 @@ const bindInput = (attribute, inputElement) => {
 
   attribute.getObs(VALUE).onChange( input => inputElement.value = input)
 
-  attribute.getObs(VALID).onChange(
-    valid => valid
-      ? inputElement.classList.add(VALID)
-      : inputElement.classList.remove(VALID)
-  )
-
   attribute.getObs(EDITABLE, true).onChange(
     isEditable => isEditable
       ? inputElement.readOnly = false
@@ -67,28 +61,11 @@ const setupFieldsets = groupNames => {
   groupNames.forEach(groupName => {
     
     const fieldsetElement = fieldsetProjector(groupName)
-    if(groupName) fieldsetElement.classList.add('group')
 
     fieldsets[groupName] = fieldsetElement
   })
 
   return fieldsets
-}
-
-const setupDatalist = listId => {
-
-  const datalistElement = document.createElement('datalist')
-  datalistElement.id = listId
-
-  const colors = ['Yellow', 'Red', 'Orange', 'Green']
-
-  colors.forEach(clr => {
-    const optionElement = document.createElement('option')
-    optionElement.value = clr
-    datalistElement.appendChild(optionElement)
-  })
-
-  return datalistElement
 }
 
 
@@ -126,20 +103,14 @@ const formProjector = (formController, rootElement, form, attributeConfigs) => {
       inputContainerElement.append(labelElement, inputElement)
     }
 
-    if(attributeConfig.id === 'favColor') {
-      const listName = 'favouriteColor'
-      inputElement.setAttribute('list', listName)
-      const datalistElement = setupDatalist(listName)
-      inputContainerElement.appendChild(datalistElement)
-    }
-
     const groupName = attribute.getGroup()
     const fieldsetElement = fieldsets[groupName]
+    if(groupName) fieldsetElement.classList.add('group')
 
-    if(attributeConfig.type === 'submit') submitElement = inputContainerElement
+    if(attributeConfig.type === 'submit') submitElement = inputElement 
 
     fieldsetElement.append(inputContainerElement)
-    inputFiledsContainerElement.appendChild(fieldsetElement)
+    inputFiledsContainerElement.append(fieldsets['Meeting'], fieldsets['Personalia'])
   })
 
   inputFiledsContainerElement.appendChild(submitElement)
@@ -160,18 +131,15 @@ const pageCss = `
   }
 
   fieldset {
-    border: none;
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-row-gap: 0.5rem;
     grid-column-gap: 1rem;
   }
 
   fieldset.group {
     position: relative;
-    border: none;
-    background: #e0e0e0;
     margin-top: 2.1rem;
   }
 

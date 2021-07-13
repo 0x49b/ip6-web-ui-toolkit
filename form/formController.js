@@ -1,10 +1,10 @@
 import { ObservableList } from '../observable/observable.js'
 import { Attribute, LABEL, VALID, VALUE } from '../presentationModel/presentationModel.js'
-import { formProjector, pageCss } from './mainProjector/formProjectorV3.js'
+import { formProjector, pageCss } from './mainProjector/formProjectorV2.js'
 
 import { setLabel } from './utils/attrLabels.js'
 
-export { FirstFormControllerV2, FirstFormViewV2 }
+export { FormController, FormView }
 
 // insert page style
 const style = document.createElement('style')
@@ -30,9 +30,9 @@ const ALL_ATTRIBUTE_CONFIGS = [
   { id: 'place',      type: 'text'   },
 ]
 
-const FirstFormControllerV2 = (service) => {
+const FormController = () => {
 
-  const Form = () => {
+  const FormModel = () => {
 
     const firstNameAttr = Attribute('')
     setLabel(firstNameAttr, 'First Name')
@@ -78,6 +78,7 @@ const FirstFormControllerV2 = (service) => {
 
     const favColorAttr = Attribute('')
     setLabel(favColorAttr, 'Fav. Color')
+    favColorAttr.setGroup('Meeting')
 
     const submitAttr = Attribute('Submit this form')
     setLabel(submitAttr, '')
@@ -111,7 +112,7 @@ const FirstFormControllerV2 = (service) => {
   const formModel = ObservableList([])
 
   const addForm = () => {
-    const newForm = Form()
+    const newForm = FormModel()
     formModel.add(newForm)
     return newForm
   }
@@ -122,7 +123,7 @@ const FirstFormControllerV2 = (service) => {
   }
 }
 
-const FirstFormViewV2 = (FormController, rootElement) => {
+const FormView = (FormController, rootElement) => {
 
   const render = form => formProjector(FormController, rootElement, form, ALL_ATTRIBUTE_CONFIGS)
 
