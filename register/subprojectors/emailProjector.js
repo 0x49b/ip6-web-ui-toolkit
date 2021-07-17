@@ -1,10 +1,11 @@
 export { registerEmailProjector }
 
+
 /**
- * 
- * @param {register} register-model 
- * @param {string} label 
- * @returns inputElement and labelElement
+ * Generates an input element of type email and a label element. Additionally binds various values to the attribute and adds/removes css classes.
+ * @param {object} register - Holds all attributes of the register model
+ * @param {string} label - Describes what the label of the input element should be 
+ * @returns {HTMLElement[inputElement, labelElement]} - returns both the input and label element in an array
  */
 const registerEmailProjector = (register, label) => {
 
@@ -31,6 +32,13 @@ const registerEmailProjector = (register, label) => {
   return [ inputElement, labelElement ]
 }
 
+
+/**
+ * updates classes on an html element, according to the valid status. If valid is null, then all css classes are removed.
+ * @param {HTMLElement} element - The element's class to be changed
+ * @param {boolean} valid - whether the email in valid or not
+ * @returns {void}
+ */
 const setValidityClass = (element, valid) => {
 
   if(null === valid) {

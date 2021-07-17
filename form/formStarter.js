@@ -1,7 +1,8 @@
 import { FormController, FormView } from './formController.js'
 
 
-// First Form V2
+// Setting up a form would look like this
+
 const formController = FormController()
 
 const firstV2RootElement = document.getElementById('formV2')

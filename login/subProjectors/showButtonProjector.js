@@ -2,9 +2,9 @@
 export { loginShowButtonProjector }
 
 /**
- * 
- * @param {login} login-Model 
- * @returns {buttonElement}
+ * Generates an input element of type button. Additionally binds various values to the attribute.
+ * @param {object} login - Holds all attributes of the login model 
+ * @returns {HTMLElement}
  */
  const loginShowButtonProjector = login => {
 

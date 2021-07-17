@@ -3,11 +3,12 @@ export { toggleColor }
 const RED   = 'red'
 const GREEN = 'green'
 
+
 /**
- * 
- * @param {element} element where color has to be toggled 
- * @param {boolean} isFulfilled 
- * @returns 
+ * Toggles the css classes to either red or green depending on the isFulfilled parameter. If isFulfilled is null then both classes are removed
+ * @param {HTMLElement} element - The element, whose color has to be toggled 
+ * @param {boolean} isFulfilled
+ * @returns {void}
  */
 const toggleColor = (element, isFulfilled) => {
   if(isFulfilled === null) return element.classList.remove(GREEN, RED)

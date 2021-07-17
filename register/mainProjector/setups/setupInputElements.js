@@ -4,11 +4,19 @@ import { registerPasswordProjector } from '../../subprojectors/passwordProjector
 export { setupInputElements }
 
 /**
- * 
- * @param {register} register-modell 
- * @returns {Object} input-elements with labels
+ * Grabs all the input and label elements from various projectors and binds them to their specific attributes.
+ * @param {object} register - Holds all attributes of the register model
+ * @returns {{
+ *  emailInputElement: HTMLElement,
+ *  emailLabelElement: HTMLElement,
+ *  passwordInputElement: HTMLElement,
+ *  passwordLabelElement: HTMLElement,
+ *  confirmPasswordInputElement: HTMLElement,
+ *  confirmPasswordLabelElement: HTMLElement
+ * }} - input elements with their corresponding labels
  */
 const setupInputElements = register => {
+
   const [ 
     emailInputElement, 
     emailLabelElement 
@@ -46,22 +54,5 @@ const setupInputElements = register => {
     passwordLabelElement,
     confirmPasswordInputElement,
     confirmPasswordLabelElement,
-  }
-}
-
-const setValidityClass = (element, valid) => {
-
-  if(null === valid) {
-    element.classList.remove('valid')
-    element.classList.remove('invalid')
-    return
-  }
-
-  if(valid) {
-    element.classList.add('valid')
-    element.classList.remove('invalid')
-  } else {
-    element.classList.remove('valid')
-    element.classList.add('invalid')
   }
 }

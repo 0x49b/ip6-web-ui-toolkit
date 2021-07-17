@@ -1,6 +1,6 @@
 import { ObservableList } from '../observable/observable.js'
-import { Attribute, LABEL, VALID, VALUE } from '../presentationModel/presentationModel.js'
-import { formProjector, pageCss } from './mainProjector/formProjectorV2.js'
+import { Attribute } from '../presentationModel/presentationModel.js'
+import { formProjector, pageCss } from './mainProjector/formProjectorV1.js'
 
 import { setLabel } from './utils/attrLabels.js'
 
@@ -11,7 +11,10 @@ const style = document.createElement('style')
 style.innerHTML = pageCss
 document.head.appendChild(style)
 
-// All input fields as attributes listed in an array. id propperty makes it distinguishable and type propperty says what type of input field it should become
+/**
+ * All configurations which are necessary for the attribute and the model, to correctly display the form
+ * @type {object[]}
+ */
 const ALL_ATTRIBUTE_CONFIGS = [
   { id: 'firstname',  type: 'text',  placeholder: 'Placeholder' },
   { id: 'lastname',   type: 'text'   },
@@ -30,8 +33,22 @@ const ALL_ATTRIBUTE_CONFIGS = [
   { id: 'place',      type: 'text'   },
 ]
 
+
+/**
+ * The Form Controller, which encapsulates the Model
+ * @typedef {function(): object} FormController
+ * @returns {{
+ *  onFormAdd: function(): number,
+ *  addForm: function(): void
+ * }}
+ */
 const FormController = () => {
 
+
+  /**
+   * The Form Model manages all information needed for the projectors, such as attribute value and validators
+   * @returns {{attributeId: Attribute}}
+   */
   const FormModel = () => {
 
     const firstNameAttr = Attribute('')
@@ -111,6 +128,10 @@ const FormController = () => {
 
   const formModel = ObservableList([])
 
+  /**
+   * Adds a new form to the form model
+   * @returns {object} - The form model
+   */
   const addForm = () => {
     const newForm = FormModel()
     formModel.add(newForm)
@@ -123,6 +144,12 @@ const FormController = () => {
   }
 }
 
+
+/**
+ * Renders the form as soon as a form is being added
+ * @param {FormController} FormController 
+ * @param {HTMLElement} rootElement - The root element which will contain the whole form
+ */
 const FormView = (FormController, rootElement) => {
 
   const render = form => formProjector(FormController, rootElement, form, ALL_ATTRIBUTE_CONFIGS)

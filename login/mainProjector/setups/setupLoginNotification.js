@@ -1,6 +1,11 @@
 
 export { setupLoginNotification }
 
+/**
+ * Checks whether the login was successful or not and updates notification to the user.
+ * @param {object} login - Holds all attributes of the login model
+ * @param {HTMLElement} notificationElement - A paragraph HTMLElement which contains messages for the user
+ */
 const setupLoginNotification = (login, notificationElement) => {
 
   login.onLoginSuccessChanged( () => {

@@ -4,25 +4,30 @@ import { registerProjector } from "./mainProjector/registerProjector.js"
 
 export { RegisterController, RegisterView }
 
+
 /**
- * 
- * @returns {{onRegisterAdd|addRegister}}
+ * The Register Controller, which encapsulates the Model
+ * @typedef {function(service): object} RegisterController
+ * @returns {{
+ *  onRegisterAdd: function(): number,
+ *  addRegister: function(): void
+ * }}
  */
 const RegisterController = () => {
   
   /**
-   * @typedef {Object} register-model
-   * @property {String} emailAttr - Emailadress
-   * @property {String} pwAttr - Password
-   * @property {String} confirmPwAttr - confirm Password
-   * @property {String} formAttr
-   * @property {boolean} showPwBtnAttr - Indicates whether pasword is shown or not
-   * @property {String} emailValidNotificationAttr - Notification that shows feedback if email is entered
-   * @property {String} passwordStrengthNotificationAttr
-   * @property {String} confirmPwMatchNotificationAttr
-   * @property {Number} pwStrenghtAttr - Indicates strength of entered password
-   * @property {Array} patternsAttr - ALl patterns that password has to match to be valid
-   * @returns {register} register-model
+   * Holds all the Attributes of the Register component and makes them partially externally available
+   * @typedef {object} register
+   * @property {Attribute} emailAttr - Emailadress
+   * @property {Attribute} pwAttr - Password
+   * @property {Attribute} confirmPwAttr - confirm Password
+   * @property {Attribute} formAttr - Indicates whether the form is valid or not
+   * @property {Attribute} showPwBtnAttr - Indicates whether pasword is shown or not
+   * @property {Attribute} emailValidNotificationAttr - Notification that shows feedback if email is valid or not
+   * @property {Attribute} confirmPwMatchNotificationAttr - Notification that notifies user whether is confirm password input matches with his password input or not
+   * @property {Attribute} pwStrenghtAttr - Indicates strength of the entered password
+   * @property {Attribute} patternsAttr - ALl patterns that a password has to match in order to be valid
+   * @returns {object} - Register Model
    */
   const Register = () => {
 
@@ -32,7 +37,6 @@ const RegisterController = () => {
     const formAttr = Attribute('')
     const showPwBtnAttr = Attribute(false)
     const emailValidNotificationAttr = Attribute('')
-    const passwordStrengthNotificationAttr = Attribute('')
     const confirmPwMatchNotificationAttr = Attribute('')
     const pwStrenghtAttr = Attribute(0)
     const patternsAttr = Attribute([
@@ -128,9 +132,6 @@ const RegisterController = () => {
       getEmailValidNotification:            emailValidNotificationAttr.getObs(VALUE).getValue,
       setEmailValidNotification:            emailValidNotificationAttr.getObs(VALUE).setValue,
       onEmailValidNotificationChanged:      emailValidNotificationAttr.getObs(VALUE).onChange,
-      getPwStrengthNotification:            passwordStrengthNotificationAttr.getObs(VALUE).getValue,
-      setPwStrengthNotification:            passwordStrengthNotificationAttr.getObs(VALUE).setValue,
-      onPwStrengthNotificationChanged:      passwordStrengthNotificationAttr.getObs(VALUE).onChange,
       getConfirmPwMatchNotification:        confirmPwMatchNotificationAttr.getObs(VALUE).getValue,
       setConfirmPwMatchNotification:        confirmPwMatchNotificationAttr.getObs(VALUE).setValue,
       onConfirmPwMatchNotificationChanged:  confirmPwMatchNotificationAttr.getObs(VALUE).onChange,
@@ -146,8 +147,8 @@ const RegisterController = () => {
   const registerModel = ObservableList([])
 
   /**
-   * 
-   * @returns {register} newRegister
+   * Adds a new Register to the login model
+   * @returns {object} - The register model and its externally avalaible attribute functions
    */
   const addRegister = () => {
     const newRegister = Register()
@@ -162,6 +163,11 @@ const RegisterController = () => {
   
 }
 
+/**
+ * Renders the register component as soon as a new register is being added
+ * @param {RegisterController} RegisterController 
+ * @param {HTMLElement} rootElement - The root element which will contain the whole Register component
+ */
 const RegisterView = (RegisterController, rootElement) => {
   
   const render = register => registerProjector(RegisterController, rootElement, register)

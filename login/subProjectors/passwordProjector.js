@@ -2,10 +2,10 @@
 export { loginPasswordProjector }
 
 /**
- * 
- * @param {Login} login-Model 
- * @param {String} label-String
- * @returns {{InputElement | LabelElement}}
+ * Generates an input element of type password and a label element. Additionally binds various values to the attribute.
+ * @param {object} login - Holds all attributes of the login model
+ * @param {string} label - Describes what the label of the input element should be
+ * @returns {HTMLElement[labelElement, inputElement]} - Returns both the input and label element in an array
  */
  const loginPasswordProjector = (login, label) => {
 

@@ -1,13 +1,18 @@
 export { loginService }
 
+
+/**
+ * Offers a login attempt service, which check whetehr or not a login was successful
+ * @returns {{loginAttempt: function(url, email, password): object}}
+ */
 const loginService = () => {
 
   /**
-   * 
-   * @param {String} url 
+   * Checks whether a login attempt was successful or not.
+   * @param {string} url 
    * @param {string} email 
    * @param {string} password 
-   * @returns {Response} Returns http-response or promise rejection
+   * @returns {promise} returns either the returned data or a rejected promise
    */
   const loginAttempt = (url, email, password) => {
     const request = {

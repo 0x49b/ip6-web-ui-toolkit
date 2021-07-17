@@ -1,11 +1,10 @@
 export { registerStrengthLineProjector }
 
 /**
- * 
- * @param {register} register-model 
- * @returns divElement
+ * Generates a div element that represents a strength line and adds the "line" css class to it
+ * @returns {HTMLElement}
  */
-const registerStrengthLineProjector = register => {
+const registerStrengthLineProjector = () => {
 
   const divElement = document.createElement('div')
 

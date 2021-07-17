@@ -8,15 +8,17 @@ const BGORANGE = 'line-bg-orange'
 const BGGREEN  = 'line-bg-green'
 
 /**
- * 
- * @param {register} register-model 
- * @param {rootElement} rootElement - Rootelement where we append all elements 
- * @returns 
+ * Grabs the amount of strengthlines needed from projector and calls helper function to bind their functionality
+ * @param {object} register - Holds all attributes of the register model
+ * @param {HTMLElement} rootElement 
+ * @returns {HTMLElement} - Container containing all strengthlines
  */
 const setupStrengthLines = (register, rootElement) => {
-  let strengthLines = Array.from('x'.repeat(5))  // Create an array with a length of 6
 
-  strengthLines = strengthLines.map(line => registerStrengthLineProjector(register)) // Fill the array with strengthlineElements
+  const numberOfLines = 5
+  let strengthLines = Array.from('x'.repeat(numberOfLines))  // Create an array with a length of 5
+
+  strengthLines = strengthLines.map(() => registerStrengthLineProjector()) // Fill the array with strengthlineElements
 
   // Get the div container from DOM and append the strengthlines box to it
   const strengthLinesContainer = rootElement.querySelector('.strength-lines')
@@ -33,9 +35,9 @@ const setupStrengthLines = (register, rootElement) => {
 }
 
 /**
- * 
- * @param {register} register-model 
- * @param {strengthLines} strengthLines
+ * Sets the classes to each strength line element, corresponding to the password strength
+ * @param {object} register - Holds all attributes of the register model
+ * @param {HTMLElement[]} strengthLines - all html strengthlines element in an array
  * @description Used to colorise strength lines based on password strength
  */
 const coloriseStrengLines = (register, strengthLines) => {
@@ -53,8 +55,8 @@ const coloriseStrengLines = (register, strengthLines) => {
 }
 
 /**
- * 
- * @param {strengthLines} strengthLines 
+ * Helper function which removes all classes from all strength lines
+ * @param {HTMLElement[]} strengthLines
  */
 const resetBackgroundColors = strengthLines => {
   [...strengthLines].forEach(line => line.classList.remove(BGRED));

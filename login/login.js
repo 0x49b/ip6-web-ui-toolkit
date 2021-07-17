@@ -4,17 +4,26 @@ import { loginProjector } from "./mainProjector/loginProjector.js"
 
 export { LoginController, LoginView }
 
+
+/**
+ * The Login Controller, which encapsulates the Model
+ * @typedef {function(service): object} LoginController
+ * @returns {{
+ *  onLoginAdd: function(): number,
+ *  addLogin: function(): void
+ * }}
+ */
 const LoginController = service => {
 
   /**
-   * Holds all the Attributes of the Login component and makes them externally available
-   * @typedef {Object} Login-Model
-   * @property {String} emailAttr - Emailadress
-   * @property {String} pwAttr - Password
-   * @property {boolean} formAttr - Indicates whether the form is valid or not
-   * @property {boolean} loginSuccessAttr - Indicates whether the login attempt was successful or not
-   * @property {String} notificationAttr - Notification message when the user tries to login
-   * @returns {Object} Login-Model
+   * Holds all the Attributes of the Login component and makes them partially externally available
+   * @typedef {object} login
+   * @property {Attribute} emailAttr - Emailadress
+   * @property {Attribute} pwAttr - Password
+   * @property {Attribute} formAttr - Indicates whether the form is valid or not
+   * @property {Attribute} loginSuccessAttr - Indicates whether the login attempt was successful or not
+   * @property {Attribute} notificationAttr - Notification message when the user tries to login
+   * @returns {object} - Login Model
    */
   const Login = () => {
     
@@ -62,8 +71,8 @@ const LoginController = service => {
   const loginModel = ObservableList([])
 
   /**
-   * 
-   * @returns {newLogin} 
+   * Adds a new login to the login model
+   * @returns {object} - The login model and its externally avalaible attribute functions
    */
   const addLogin = () => {
     const newLogin = Login()
@@ -79,9 +88,9 @@ const LoginController = service => {
 }
 
 /**
- * 
+ * Renders the login component as soon as a new login is being added
  * @param {LoginController} loginController 
- * @param {RootElement} rootElement 
+ * @param {HTMLElement} rootElement - The root element which will contain the whole login component
  */
 const LoginView = (loginController, rootElement) => {
 

@@ -1,9 +1,9 @@
 export { registerButtonProjector }
 
 /**
- * 
- * @param {register} register-model 
- * @returns 
+ * Generates an input element of type submit. Additionally binds various values to the attribute and adds/removes css classes.
+ * @param {object} register - Holds all attributes of the register model 
+ * @returns {HTMLElement}
  */
 const registerButtonProjector = (register) => {
   

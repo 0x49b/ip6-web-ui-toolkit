@@ -12,10 +12,10 @@ export { registerProjector }
 
 
 /**
- * 
- * @param {registerController} registerController  
- * @param {rootElement} rootElement - root Element which is used to append element
- * @param {register} register-model
+ * The main Projector which uses all sub projectors in this module and ties them together into a single UI
+ * @param {RegisterController} registerController
+ * @param {HTMLElement} rootElement - The root element which will be populated with the entire Register component
+ * @param {object} register - Holds all attributes of the register model 
  */
 const registerProjector = (registerController, rootElement, register) => {
 

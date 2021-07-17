@@ -15,10 +15,10 @@ export { loginProjector }
 
 
 /**
- * 
- * @param {loginController} loginController 
- * @param {rootElement} rootElement 
- * @param {login} login-Modell 
+ * The main Projector which uses all sub projectors in this module and ties them together into a single UI
+ * @param {LoginController} loginController
+ * @param {HTMLElement} rootElement - The root element which will be populated with the entire login component
+ * @param {object} login - Holds all attributes of the login model 
  */
 const loginProjector = (loginController, rootElement, login) => {
 
