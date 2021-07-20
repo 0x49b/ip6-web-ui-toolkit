@@ -41,7 +41,7 @@ class Counter extends HTMLElement {
   }
 }
 
-
+window.customElements.define('my-counter', Counter)
 
 // An other method to implement the counter
 class Counter2 extends HTMLElement {
@@ -90,7 +90,7 @@ class Counter2 extends HTMLElement {
   }
 }
 
-window.customElements.define('my-counter', Counter)
+
 window.customElements.define('my-counter2', Counter2)
 
 class Counter3 extends HTMLElement {
